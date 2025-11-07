@@ -60,12 +60,4 @@ app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
-// Ensure database is created
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<AdminDbContext>();
-    dbContext.Database.EnsureCreated();
-}
-
 app.Run();
