@@ -7,16 +7,14 @@ const Footer = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Check if we're on the home page
+    //check if we're on the home page
     const isHomePage = location.pathname === '/';
 
     const handleNavClick = (sectionId) => {
         if (isHomePage) {
-            // On home page - scroll to section
             const section = document.getElementById(sectionId);
             if (section) section.scrollIntoView({ behavior: 'smooth' });
         } else {
-            // On other pages - navigate to home page with hash
             navigate(`/#${sectionId}`);
         }
     };
@@ -34,7 +32,6 @@ const Footer = () => {
         navigate('/');
     };
 
-    // Social media links - replace with actual URLs
     const socialLinks = {
         facebook: 'https://www.facebook.com/samsoundlight/',
         instagram: 'https://instagram.com/samssoundnlight?igshid=1bkr3f38xwq30',

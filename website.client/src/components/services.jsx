@@ -128,7 +128,6 @@ const Services = () => {
                     </div>
                 ))}
 
-                {/* CTA Section */}
                 <div className="service-section">
                     <div className="section-content">
                         <div className="cta-container">

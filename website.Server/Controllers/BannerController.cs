@@ -134,7 +134,6 @@ namespace website.Server.Controllers
         }
     }
 
-    // Add this class definition inside the namespace but outside the Controller class
     public class BannerUpdateModel
     {
         public string Title { get; set; } = string.Empty;

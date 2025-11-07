@@ -11,9 +11,9 @@ namespace website.Server.Controllers
     [Route("api/[controller]")]
     public class ContactController : ControllerBase
     {
-        private readonly AdminDbContext _context; // Change to AdminDbContext
+        private readonly AdminDbContext _context; 
 
-        public ContactController(AdminDbContext context) // Change to AdminDbContext
+        public ContactController(AdminDbContext context) 
         {
             _context = context;
         }
@@ -28,7 +28,6 @@ namespace website.Server.Controllers
                 return BadRequest(new { success = false, message = "Invalid data received" });
             }
 
-            // Manual validation
             if (string.IsNullOrEmpty(contact.FullName) || string.IsNullOrEmpty(contact.Email) || string.IsNullOrEmpty(contact.EventDetails))
             {
                 return BadRequest(new { success = false, message = "All required fields must be filled" });
@@ -53,7 +52,6 @@ namespace website.Server.Controllers
             }
             catch (Exception ex)
             {
-                // Log the full error details
                 Console.WriteLine($"=== DATABASE ERROR ===");
                 Console.WriteLine($"Error Type: {ex.GetType().Name}");
                 Console.WriteLine($"Error Message: {ex.Message}");
@@ -91,13 +89,11 @@ namespace website.Server.Controllers
             }
         }
 
-        // Add test endpoint
         [HttpGet("check-table")]
         public async Task<IActionResult> CheckTableExists()
         {
             try
             {
-                // Try to query the Contacts table
                 var tableExists = await _context.Contacts.AnyAsync();
                 return Ok(new
                 {

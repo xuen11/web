@@ -10,10 +10,10 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Check if we're on the home page
+    //check if we're on the home page
     const isHomePage = location.pathname === '/';
 
-    // Check login status
+    //check login status
     useEffect(() => {
         const checkLoginStatus = () => {
             const user = localStorage.getItem('user');
@@ -65,11 +65,9 @@ const Header = () => {
 
     const handleNavClick = (sectionId) => {
         if (isHomePage) {
-            // On home page - scroll to section
             const section = document.getElementById(sectionId);
             if (section) section.scrollIntoView({ behavior: 'smooth' });
         } else {
-            // On other pages - navigate to home page with hash
             navigate(`/#${sectionId}`);
         }
         setIsMobileMenuOpen(false);

@@ -9,11 +9,11 @@ import About from './components/about';
 import Contact from './components/contact';
 import Footer from './components/footer';
 import Login from './components/login';
-import { AuthProvider } from './components/AuthContext'; // Import AuthProvider
+import { AuthProvider } from './components/AuthContext'; 
 
 function App() {
     return (
-        <AuthProvider> {/* Wrap everything with AuthProvider */}
+        <AuthProvider> 
             <div className="App">
                 <Routes>
                     <Route

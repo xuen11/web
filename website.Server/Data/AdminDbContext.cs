@@ -11,25 +11,22 @@ namespace website.Server.Data
 
         public DbSet<StaffAccount> StaffAccounts { get; set; }
         public DbSet<Banner> Banners { get; set; }
-        public DbSet<Contact> Contacts { get; set; } // ADD THIS LINE
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure StaffAccount
             modelBuilder.Entity<StaffAccount>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            // Configure Banner
             modelBuilder.Entity<Banner>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            // Configure Contact - ADD THIS CONFIGURATION
             modelBuilder.Entity<Contact>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -40,7 +37,6 @@ namespace website.Server.Data
                 entity.Property(e => e.EventDetails).IsRequired();
             });
 
-            // Seed staff accounts
             modelBuilder.Entity<StaffAccount>().HasData(
                 new StaffAccount
                 {
@@ -62,7 +58,6 @@ namespace website.Server.Data
                 }
             );
 
-            // Seed initial banner
             modelBuilder.Entity<Banner>().HasData(
                 new Banner
                 {

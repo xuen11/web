@@ -41,7 +41,6 @@ namespace website.Server.Controllers
                 });
             }
 
-            // Simple token for testing (without JWT)
             var simpleToken = $"simple-token-{staff.Id}-{DateTime.Now.Ticks}";
 
             Console.WriteLine($"Login successful for: {staff.Email}");
