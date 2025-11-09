@@ -3,13 +3,11 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\assets",
-    "\\website.client\\src\\components",
     "\\website.Server",
-    "\\website.Server\\Controllers",
     "\\website.Server\\Data",
-    "\\website.Server\\Models"
+    "\\website.Server\\wwwroot",
+    "\\website.Server\\wwwroot\\uploads"
   ],
-  "SelectedNode": "\\website.Server\\website.Server.csproj",
+  "SelectedNode": "\\website.client\\vite.config.js",
   "PreviewInSolutionExplorer": false
 }

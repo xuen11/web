@@ -54,10 +54,8 @@ if (app.Environment.IsDevelopment())
 
 // Add request localization middleware
 app.UseRequestLocalization();
-
-app.UseCors();
 app.UseStaticFiles();
-app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

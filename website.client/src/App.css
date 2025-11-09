@@ -1109,7 +1109,7 @@
 .about-bg {
     position: relative;
     min-height: 100vh;
-    background: url("src/img/about.jpg"); 
+    background: url("./img/about.jpg"); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed; 
