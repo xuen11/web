@@ -3,11 +3,8 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.Server",
-    "\\website.Server\\Data",
-    "\\website.Server\\wwwroot",
-    "\\website.Server\\wwwroot\\uploads"
+    "\\website.Server"
   ],
-  "SelectedNode": "\\website.client\\vite.config.js",
+  "SelectedNode": "\\website.Server\\website.Server.csproj",
   "PreviewInSolutionExplorer": false
 }
