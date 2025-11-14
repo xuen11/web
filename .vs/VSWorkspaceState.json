@@ -9,6 +9,6 @@
     "\\website.Server\\Data",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.Server\\.env",
+  "SelectedNode": "\\website.client\\src\\components\\AuthContext.jsx",
   "PreviewInSolutionExplorer": false
 }
