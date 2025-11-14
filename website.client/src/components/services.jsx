@@ -11,19 +11,19 @@ const Services = () => {
             id: 1,
             title: "Sound Systems",
             description: "As a professional Sound and Lighting Services, we take your requirements very seriously. That's why when you book this service, we will leave no stone unturned and do all that's necessary to make sure that your expectations are not just met, but exceeded. To find out more and start collaborating, get in touch today.",
-            image: "src/img/sound2.jpg"
+            image: "./img/sound2.jpg"
         },
         {
             id: 2,
             title: "Professional Staff",
             description: "Experienced staff can specify, deliver, setup and operate with 24hour 7day a week service to match your specific requirement.",
-            image: "src/img/staff.jpg"
+            image: "./img/staff.jpg"
         },
         {
             id: 3,
             title: "Stage Lighting",
             description: "We are extremely passionate about every production and project we take on. When you book this service, we'll help you make the perfect plan and take care of all the details. Call or get in touch with a member of our team today and book an initial consultation so we can start working together.",
-            image: "src/img/light.jpg"
+            image: "./img/light.jpg"
         },
     ];
 
@@ -34,7 +34,18 @@ const Services = () => {
         "Home Party", "Variety Show", "Company Opening", "and more.."
     ];
 
-    const totalSlides = 1 + services.length + 1; 
+    const totalSlides = 1 + services.length + 1;
+
+    // Scroll to contact function
+    const scrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    };
 
     // Handle scroll events
     useEffect(() => {
@@ -49,9 +60,9 @@ const Services = () => {
 
                 // Show navigation dots only in first, service, or last sections
                 if (newSection === 0 || newSection === services.length + 1 || (newSection >= 1 && newSection <= services.length)) {
-                    setShowNavDots(true); 
+                    setShowNavDots(true);
                 } else {
-                    setShowNavDots(false);  
+                    setShowNavDots(false);
                 }
             }
         };
@@ -134,7 +145,12 @@ const Services = () => {
                             <h3>Ready to Elevate Your Event?</h3>
                             <p>Let's create something amazing together. Get in touch for a custom quote.</p>
                             <div className="cta-buttons">
-                                <button className="cta-primary">Get Contact</button>
+                                <button
+                                    className="cta-primary"
+                                    onClick={scrollToContact}
+                                >
+                                    Get Contact
+                                </button>
                             </div>
                         </div>
                     </div>

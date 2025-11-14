@@ -3,6 +3,7 @@
     "",
     "\\website.client",
     "\\website.client\\src",
+    "\\website.client\\src\\components",
     "\\website.Server"
   ],
   "PreviewInSolutionExplorer": false
