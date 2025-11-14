@@ -32,7 +32,8 @@ export const AuthProvider = ({ children }) => {
         try {
             console.log('Attempting login with:', { email, password });
 
-            const response = await fetch('http://localhost:5136/api/auth/login', {
+            // CHANGE THIS URL FROM 5136 TO 8080
+            const response = await fetch('http://localhost:8080/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,9 +45,18 @@ export const AuthProvider = ({ children }) => {
             console.log('Response status:', response.status);
 
             if (!response.ok) {
-                const errorText = await response.text();
-                console.error('Login failed:', errorText);
-                return { success: false, message: 'Login failed. Check credentials.' };
+                // Try to get error message from response
+                let errorMessage = 'Login failed. Check credentials.';
+                try {
+                    const errorData = await response.json();
+                    errorMessage = errorData.message || errorMessage;
+                } catch {
+                    // If response is not JSON, use status text
+                    errorMessage = response.statusText || errorMessage;
+                }
+
+                console.error('Login failed:', errorMessage);
+                return { success: false, message: errorMessage };
             }
 
             const data = await response.json();
@@ -64,7 +74,10 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Login error:', error);
-            return { success: false, message: 'Network error. Please try again.' };
+            return {
+                success: false,
+                message: 'Network error. Please check if the backend server is running.'
+            };
         }
     };
 

@@ -9,8 +9,20 @@ namespace website.Server.Controllers
     {
         private readonly List<StaffAccount> _staffAccounts = new()
         {
-            new StaffAccount { Id = 1, Email = "staff@gmail.com", Password = "staff123", Role = "staff" },
-            new StaffAccount { Id = 2, Email = "admin@gmail.com", Password = "admin123", Role = "admin" }
+            new StaffAccount
+            {
+                Id = 1,
+                Email = "staff@gmail.com",
+                Password = "staff123",
+                Role = "staff"
+            },
+            new StaffAccount
+            {
+                Id = 2,
+                Email = "admin@gmail.com",
+                Password = "admin123",
+                Role = "admin"
+            }
         };
 
         [HttpPost("login")]
@@ -29,7 +41,8 @@ namespace website.Server.Controllers
 
             var staff = _staffAccounts.FirstOrDefault(a =>
                 a.Email.Equals(request.Email, StringComparison.OrdinalIgnoreCase) &&
-                a.Password == request.Password);
+                a.Password == request.Password
+            );
 
             if (staff == null)
             {

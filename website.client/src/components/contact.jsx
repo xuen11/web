@@ -5,8 +5,10 @@ export default function Contact() {
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
+        phone: "",
         eventDetails: ""
     });
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -136,6 +138,17 @@ export default function Contact() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Phone Number</label>
+                            <input
+                                type="text"
+                                name="phone"
+                                className="form-input"
+                                placeholder="Enter your phone number"
+                                value={formData.phone}
+                                onChange={handleChange}
                             />
                         </div>
                         <div className="form-group">
