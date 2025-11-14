@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using website.Server.Data;
 
@@ -18,9 +17,7 @@ namespace website.Server.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("website.Server.Models.Banner", b =>
                 {
@@ -28,22 +25,20 @@ namespace website.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("ImagePath")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Subtitle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -56,7 +51,7 @@ namespace website.Server.Migrations
                             ImagePath = "uploads/default-banner.jpg",
                             Subtitle = "Explore our exclusive Golden and Platinum Packages designed to make your event truly unforgettable.",
                             Title = "Elevate Your Event Experience",
-                            UpdatedAt = new DateTime(2025, 11, 7, 14, 6, 52, 558, DateTimeKind.Utc).AddTicks(1381)
+                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9472)
                         });
                 });
 
@@ -66,33 +61,96 @@ namespace website.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("EventDetails")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("website.Server.Models.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ButtonText")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ButtonText = "Learn More",
+                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9487),
+                            Date = "Sat, 29 June",
+                            Detail = "Event by Sam Sound & Lights",
+                            Image = "/img/event1.jpg",
+                            Title = "Lets plan your memorable moment at Sam Sound & Light",
+                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9487)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ButtonText = "Learn More",
+                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9489),
+                            Date = "Sat, 19 Nov",
+                            Detail = "Event by Karabaw Martial Arts & Fitness Centre",
+                            Image = "/img/event2.jpg",
+                            Title = "Steppin Out 1st Anniversary Competition",
+                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9490)
+                        });
                 });
 
             modelBuilder.Entity("website.Server.Models.StaffAccount", b =>
@@ -101,25 +159,23 @@ namespace website.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
 
@@ -129,20 +185,20 @@ namespace website.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 11, 7, 14, 6, 52, 558, DateTimeKind.Utc).AddTicks(1298),
+                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9364),
                             Email = "staff@gmail.com",
                             Password = "staff123",
                             Role = "staff",
-                            UpdatedAt = new DateTime(2025, 11, 7, 14, 6, 52, 558, DateTimeKind.Utc).AddTicks(1299)
+                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9365)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 11, 7, 14, 6, 52, 558, DateTimeKind.Utc).AddTicks(1301),
+                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9367),
                             Email = "admin@gmail.com",
                             Password = "admin123",
                             Role = "admin",
-                            UpdatedAt = new DateTime(2025, 11, 7, 14, 6, 52, 558, DateTimeKind.Utc).AddTicks(1301)
+                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9368)
                         });
                 });
 #pragma warning restore 612, 618

@@ -1,40 +1,71 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
+import { useAuth } from "./AuthContext";
 
-const API_BASE = "http://localhost:5136/api/banner";
+const API_BASE = import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/api/banner`
+    : "http://localhost:8080/api/banner";
 
 const Banner = () => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const isStaff = user.role === "staff";
+    const { user, token } = useAuth();
+    const isStaff = user?.role === "staff";
 
-    const [title, setTitle] = useState("");
-    const [subtitle, setSubtitle] = useState("");
-    const [bgImage, setBgImage] = useState("");
+    const [bannerData, setBannerData] = useState({
+        title: "",
+        subtitle: "",
+        imagePath: ""
+    });
+
     const [editMode, setEditMode] = useState(false);
     const [file, setFile] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [showEditButton, setShowEditButton] = useState(false);
+    const [saveSuccess, setSaveSuccess] = useState(false);
 
     const loadBanner = async () => {
         try {
-            const res = await fetch(API_BASE);
-            if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            console.log("Loading banner from:", API_BASE);
+            const res = await fetch(API_BASE, {
+                credentials: 'include'
+            });
+
+            if (!res.ok) {
+                throw new Error(`HTTP ${res.status} - ${await res.text()}`);
+            }
 
             const data = await res.json();
-            setTitle(data.title || "");
-            setSubtitle(data.subtitle || "");
+            console.log("Banner API response:", data);
 
-            if (data.imagePath) {
-                const imageUrl = `http://localhost:5136/${data.imagePath}`;
-                setBgImage(imageUrl);
+            let banner;
+            if (data.banner) {
+                banner = data.banner;
+            } else if (data.Id || data.id) {
+                banner = data;
             } else {
-                setBgImage("src/img/services.jpg");
+                throw new Error("No banner data found in response");
+            }
+
+            setBannerData({
+                title: banner.Title || banner.title || "",
+                subtitle: banner.Subtitle || banner.subtitle || "",
+                imagePath: banner.ImagePath || banner.imagePath || ""
+            });
+
+            if (banner.ImagePath || banner.imagePath) {
+                const imagePath = banner.ImagePath || banner.imagePath;
+                const fullUrl = imagePath.startsWith("http")
+                    ? imagePath
+                    : `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/${imagePath.replace(/^\/+/, "")}`;
+                console.log("Setting banner image:", fullUrl);
             }
         } catch (err) {
-            setTitle("Elevate Your Event Experience");
-            setSubtitle("Explore our exclusive Golden and Platinum Packages designed to make your event truly unforgettable.");
-            setBgImage("src/img/services.jpg");
+            console.error("Failed to load banner:", err);
+            setBannerData({
+                title: "Elevate Your Event Experience",
+                subtitle: "Explore our exclusive Golden and Platinum Packages designed to make your event unforgettable.",
+                imagePath: "/img/services.jpg"
+            });
         }
     };
 
@@ -42,16 +73,23 @@ const Banner = () => {
         loadBanner();
     }, []);
 
+    useEffect(() => {
+        if (editMode) {
+            loadBanner();
+        }
+    }, [editMode]);
+
     const handleImageChange = (e) => {
         const f = e.target.files[0];
         if (!f) return;
 
         if (!f.type.startsWith("image/")) {
-            alert("Please select a valid image file.");
+            alert("Please upload a valid image file.");
             return;
         }
+
         if (f.size > 5 * 1024 * 1024) {
-            alert("Image must be less than 5MB.");
+            alert("Image must be smaller than 5MB.");
             return;
         }
 
@@ -63,6 +101,7 @@ const Banner = () => {
         setEditMode(false);
         setFile(null);
         setPreviewImage(null);
+        setSaveSuccess(false);
         loadBanner();
     };
 
@@ -76,62 +115,84 @@ const Banner = () => {
 
         try {
             const formData = new FormData();
-            formData.append("Title", title);
-            formData.append("Subtitle", subtitle);
-            if (file) {
-                formData.append("Image", file);
-            }
+            formData.append("Title", bannerData.title);
+            formData.append("Subtitle", bannerData.subtitle);
+            if (file) formData.append("Image", file);
+
+            console.log("Saving banner data:", {
+                title: bannerData.title,
+                subtitle: bannerData.subtitle,
+                hasFile: !!file
+            });
 
             const res = await fetch(API_BASE, {
                 method: "POST",
+                headers: token ? {
+                    Authorization: `Bearer ${token}`,
+                } : {},
                 body: formData,
+                credentials: 'include'
             });
 
-            const responseText = await res.text();
-            let data;
+            const result = await res.json();
+            console.log("Update response:", result);
 
-            try {
-                data = JSON.parse(responseText);
-            } catch {
-                throw new Error("Invalid response from server");
+            if (!res.ok || !result.success) {
+                throw new Error(result.message || "Failed to update banner");
             }
 
-            if (res.ok && data.success) {
-                alert("Banner updated successfully!");
+            if (result.banner) {
+                setBannerData({
+                    title: result.banner.Title || result.banner.title || bannerData.title,
+                    subtitle: result.banner.Subtitle || result.banner.subtitle || bannerData.subtitle,
+                    imagePath: result.banner.ImagePath || result.banner.imagePath || bannerData.imagePath
+                });
+            }
+
+            setSaveSuccess(true);
+            alert("Banner updated successfully!");
+
+            setTimeout(() => {
                 setEditMode(false);
                 setFile(null);
                 setPreviewImage(null);
+                setSaveSuccess(false);
+                loadBanner();
+            }, 1000);
 
-                if (data.banner?.imagePath) {
-                    const newImageUrl = `http://localhost:5136/${data.banner.imagePath}?t=${new Date().getTime()}`;
-                    setBgImage(newImageUrl);
-                }
-
-                await loadBanner();
-            } else {
-                alert(data.message || "Failed to update banner.");
-            }
         } catch (err) {
-            alert(`Error updating banner: ${err.message}`);
+            console.error("Update error:", err);
+            alert(`Error: ${err.message}`);
         } finally {
             setLoading(false);
         }
     };
 
-    const displayImage = previewImage || bgImage;
+    const handleInputChange = (field, value) => {
+        setBannerData(prev => ({
+            ...prev,
+            [field]: value
+        }));
+    };
+
+    const displayImage = previewImage || (
+        bannerData.imagePath && bannerData.imagePath.startsWith("http")
+            ? bannerData.imagePath
+            : `${import.meta.env.VITE_API_URL || "http://localhost:8080"}${bannerData.imagePath?.startsWith("/") ? "" : "/"}${bannerData.imagePath}`
+    );
 
     return (
         <div
             className="banner-container"
             style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${displayImage})`,
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${displayImage || "/img/services.jpg"})`,
             }}
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
             {isStaff && !editMode && (
                 <button
-                    className={`banner-edit-btn ${showEditButton ? 'visible' : ''}`}
+                    className={`banner-edit-btn ${showEditButton ? "visible" : ""}`}
                     onClick={() => setEditMode(true)}
                 >
                     Edit Banner
@@ -152,60 +213,51 @@ const Banner = () => {
                             </button>
                         </div>
 
+                        {saveSuccess && (
+                            <div className="save-success-message">
+                                ✅ Banner saved successfully!
+                            </div>
+                        )}
+
                         <div className="form-group">
                             <label>Title</label>
                             <input
-                                type="text"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                placeholder="Enter banner title"
-                                disabled={loading}
                                 className="edit-input"
+                                value={bannerData.title}
+                                onChange={(e) => handleInputChange("title", e.target.value)}
+                                disabled={loading}
                             />
                         </div>
 
                         <div className="form-group">
                             <label>Subtitle</label>
                             <textarea
-                                value={subtitle}
-                                onChange={(e) => setSubtitle(e.target.value)}
-                                placeholder="Enter banner subtitle"
-                                disabled={loading}
                                 rows="3"
                                 className="edit-textarea"
+                                value={bannerData.subtitle}
+                                onChange={(e) => handleInputChange("subtitle", e.target.value)}
+                                disabled={loading}
                             />
                         </div>
 
                         <div className="form-group">
                             <label>Background Image</label>
-                            <div className="file-upload">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
-                                    disabled={loading}
-                                    id="banner-image"
-                                    className="file-input"
-                                />
-                                <label htmlFor="banner-image" className="file-label">
-                                    <span className="file-label-text">
-                                        {file ? 'Change Image' : 'Choose Image'}
-                                    </span>
-                                </label>
-                                {file && (
-                                    <div className="file-info">
-                                        <span className="file-name">{file.name}</span>
-                                        <span className="file-size">
-                                            {(file.size / 1024 / 1024).toFixed(2)} MB
-                                        </span>
-                                    </div>
-                                )}
-                                {!file && (
-                                    <div className="file-help">
-                                        Recommended: 1920x1080px, max 5MB
-                                    </div>
-                                )}
-                            </div>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                disabled={loading}
+                            />
+                            {previewImage && (
+                                <div className="image-preview">
+                                    <p>Preview:</p>
+                                    <img
+                                        src={previewImage}
+                                        alt="Preview"
+                                        style={{ maxWidth: "300px" }}
+                                    />
+                                </div>
+                            )}
                         </div>
 
                         <div className="edit-actions">
@@ -214,14 +266,7 @@ const Banner = () => {
                                 onClick={handleSave}
                                 disabled={loading}
                             >
-                                {loading ? (
-                                    <>
-                                        <span className="loading-spinner"></span>
-                                        Saving...
-                                    </>
-                                ) : (
-                                    'Save Changes'
-                                )}
+                                {loading ? "Saving..." : "Save Changes"}
                             </button>
                             <button
                                 className="cancel-btn"
@@ -234,8 +279,8 @@ const Banner = () => {
                     </div>
                 ) : (
                     <>
-                        <h1 className="banner-title">{title}</h1>
-                        <p className="banner-subtitle">{subtitle}</p>
+                        <h1 className="banner-title">{bannerData.title}</h1>
+                        <p className="banner-subtitle">{bannerData.subtitle}</p>
                         <button className="cta-btn">Book Now</button>
                     </>
                 )}

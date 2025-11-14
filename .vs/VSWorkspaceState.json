@@ -4,7 +4,11 @@
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
-    "\\website.Server"
+    "\\website.Server",
+    "\\website.Server\\Controllers",
+    "\\website.Server\\Data",
+    "\\website.Server\\Models"
   ],
+  "SelectedNode": "\\website.Server\\Migrations",
   "PreviewInSolutionExplorer": false
 }

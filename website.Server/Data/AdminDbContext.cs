@@ -12,6 +12,7 @@ namespace website.Server.Data
         public DbSet<StaffAccount> StaffAccounts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +36,17 @@ namespace website.Server.Data
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.Phone).HasMaxLength(20);
                 entity.Property(e => e.EventDetails).IsRequired();
+            });
+
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Title).IsRequired().HasMaxLength(255);
+                entity.Property(e => e.Date).HasMaxLength(100);
+                entity.Property(e => e.Detail).HasMaxLength(500);
+                entity.Property(e => e.Image).HasMaxLength(500);
+                entity.Property(e => e.ButtonText).HasMaxLength(100);
             });
 
             modelBuilder.Entity<StaffAccount>().HasData(
@@ -68,6 +80,31 @@ namespace website.Server.Data
                     UpdatedAt = DateTime.UtcNow
                 }
             );
+            modelBuilder.Entity<Event>().HasData(
+                new Event
+                {
+                    Id = 1,
+                    Title = "Lets plan your memorable moment at Sam Sound & Light",
+                    Date = "Sat, 29 June",
+                    Detail = "Event by Sam Sound & Lights",
+                    Image = "/img/event1.jpg",
+                    ButtonText = "Learn More",
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                },
+                new Event
+                {
+                    Id = 2,
+                    Title = "Steppin Out 1st Anniversary Competition",
+                    Date = "Sat, 19 Nov",
+                    Detail = "Event by Karabaw Martial Arts & Fitness Centre",
+                    Image = "/img/event2.jpg",
+                    ButtonText = "Learn More",
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                }
+            );
+        
         }
     }
 }

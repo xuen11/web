@@ -1,0 +1,56 @@
+[33m3f14604[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to origin/main
+[33m1eaa549[m HEAD@{1}: reset: moving to HEAD~1
+[33m3f14604[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: commit: update
+[33m1eaa549[m HEAD@{3}: commit: update
+[33mc541b11[m HEAD@{4}: reset: moving to HEAD
+[33mc541b11[m HEAD@{5}: commit: update
+[33m4c1aaba[m HEAD@{6}: rebase (abort): returning to refs/heads/main
+[33m4c1aaba[m HEAD@{7}: rebase (abort): returning to refs/heads/main
+[33mdce4993[m HEAD@{8}: commit: update
+[33m431d4c1[m HEAD@{9}: commit: update
+[33m3211d65[m HEAD@{10}: commit: update
+[33m248d2d1[m HEAD@{11}: commit: update
+[33maf536ce[m HEAD@{12}: commit: update
+[33m304182f[m HEAD@{13}: commit: update
+[33m4903774[m HEAD@{14}: commit: update
+[33mb66a905[m HEAD@{15}: commit: update
+[33mf47f536[m HEAD@{16}: commit: update
+[33m48b294a[m HEAD@{17}: commit: update
+[33m923ad05[m HEAD@{18}: commit: update
+[33mda9a967[m HEAD@{19}: commit: update
+[33m14b09cf[m HEAD@{20}: commit: update
+[33m8fcebb7[m HEAD@{21}: commit: update
+[33m9d35a36[m HEAD@{22}: commit: update
+[33m07bef1b[m HEAD@{23}: commit: update
+[33m55cd5d5[m HEAD@{24}: commit: update
+[33m29ac61c[m HEAD@{25}: commit: update
+[33m4ebaef2[m HEAD@{26}: commit: update
+[33m29826fa[m HEAD@{27}: commit: update
+[33m77cc031[m HEAD@{28}: commit: update
+[33m0ec2553[m HEAD@{29}: commit: Update AuthContext and frontend login
+[33m95fad9a[m HEAD@{30}: commit: Update AuthContext and frontend login
+[33m8199315[m HEAD@{31}: commit: Update AuthContext and frontend login
+[33m45ad8bb[m HEAD@{32}: commit: Update AuthContext and frontend login
+[33mbc6b624[m HEAD@{33}: commit: Update AuthContext and frontend login
+[33m11ee943[m HEAD@{34}: commit: Update AuthContext and frontend login
+[33mab0c736[m HEAD@{35}: commit: Update AuthContext and frontend login
+[33m6ce6171[m HEAD@{36}: checkout: moving from main to main
+[33m6ce6171[m HEAD@{37}: Branch: renamed refs/heads/main to refs/heads/main
+[33m6ce6171[m HEAD@{39}: commit: Update Services component and CSS
+[33m385d04e[m HEAD@{40}: commit (merge): Initial commit of completed project
+[33m4c1aaba[m HEAD@{41}: checkout: moving from my-changes to main
+[33mafb1a41[m[33m ([m[1;32mmy-changes[m[33m)[m HEAD@{42}: commit: Fix MySQL table creation and Program.cs endpoints
+[33mfd64fbc[m HEAD@{43}: pull origin main: updating HEAD
+[33mfd64fbc[m HEAD@{44}: commit: Ready for Railway deployment
+[33m2dbf502[m HEAD@{45}: commit (merge): Merge remote changes
+[33m7b8c3f1[m HEAD@{46}: commit: Fix MySQL connection and add SQLite for local development
+[33mb991941[m[33m ([m[1;31morigin/my-changes[m[33m)[m HEAD@{47}: checkout: moving from b99194131f7f299a8061ff96a2316ca2ece53be3 to my-changes
+[33mb991941[m[33m ([m[1;31morigin/my-changes[m[33m)[m HEAD@{48}: pull origin main: Merge made by the 'ort' strategy.
+[33mdc9548d[m HEAD@{49}: commit: Update project: fix PostgreSQL EF Core, Docker, and build issues
+[33madba573[m HEAD@{50}: pull origin main --rebase (start): checkout adba5730241658da98067373ea6f95d154707146
+[33m4c1aaba[m HEAD@{51}: commit: Update Dockerfile, build React and .NET backend
+[33m8eba985[m HEAD@{52}: rebase (finish): returning to refs/heads/main
+[33m8eba985[m HEAD@{53}: commit: Save local changes before pulling
+[33mc9077ff[m HEAD@{54}: commit: Add React build folder
+[33m2e6e8aa[m HEAD@{55}: commit: Fix EF Core version mismatch
+[33m17534f1[m HEAD@{56}: pull origin main --rebase (start): checkout 17534f10d4be7509df7825a85f70772025596443
