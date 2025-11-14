@@ -5,6 +5,6 @@
     "\\website.client\\src",
     "\\website.Server"
   ],
-  "SelectedNode": "\\website.Server\\website.Server.csproj",
+  "SelectedNode": "\\website.client\\src\\App.css",
   "PreviewInSolutionExplorer": false
 }
