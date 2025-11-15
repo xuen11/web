@@ -39,7 +39,7 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: './img/default-event.jpg',
+        image: '/img/default-event.jpg',
         buttonText: 'Learn More'
     };
 
@@ -65,7 +65,16 @@ const Event = () => {
             console.log("Events data received:", data);
 
             if (data && data.length > 0) {
-                setEvents(data);
+                // Map backend properties to frontend properties
+                const mappedEvents = data.map(event => ({
+                    id: event.Id || event.id,
+                    title: event.Title || event.title,
+                    date: event.Date || event.date,
+                    detail: event.Detail || event.detail,
+                    image: event.Image || event.image,
+                    buttonText: event.ButtonText || event.buttonText
+                }));
+                setEvents(mappedEvents);
                 return;
             }
         } catch (err) {
@@ -106,12 +115,24 @@ const Event = () => {
         try {
             console.log("Saving events with:", events);
 
+            // Map frontend properties to backend properties
+            const eventsToSave = events.map(event => ({
+                Id: event.id,
+                Title: event.title,
+                Date: event.date,
+                Detail: event.detail,
+                Image: event.image,
+                ButtonText: event.buttonText,
+                CreatedAt: new Date().toISOString(),
+                UpdatedAt: new Date().toISOString()
+            }));
+
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(events),
+                body: JSON.stringify(eventsToSave),
             });
 
             console.log("Save response status:", res.status);

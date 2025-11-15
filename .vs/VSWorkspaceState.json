@@ -11,6 +11,6 @@
     "\\website.Server\\Data",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\event.jsx",
+  "SelectedNode": "\\website.Server\\Controllers\\BannerController.cs",
   "PreviewInSolutionExplorer": false
 }
