@@ -43,19 +43,33 @@ const Event = () => {
         buttonText: 'Learn More'
     };
 
-    // Load events from backend
+    // Function to get correct image URL (same style as Banner component)
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) return '/img/default-event.jpg';
+
+        // Use the imagePath directly from the response (same as Banner)
+        return imagePath;
+    };
+
+    // Load events from backend (same style as Banner component)
     const loadEvents = async () => {
         try {
+            console.log("Loading events from:", API_BASE);
             const res = await fetch(API_BASE);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && data.length > 0) {
-                    setEvents(data);
-                    return;
-                }
+
+            if (!res.ok) {
+                throw new Error(`HTTP ${res.status} - ${await res.text()}`);
+            }
+
+            const data = await res.json();
+            console.log("Events data received:", data);
+
+            if (data && data.length > 0) {
+                setEvents(data);
+                return;
             }
         } catch (err) {
-            console.log("Failed to load from backend, using default");
+            console.error("Failed to load events:", err);
         }
         setEvents(defaultEvents);
     };
@@ -90,6 +104,8 @@ const Event = () => {
         setLoading(true);
 
         try {
+            console.log("Saving events with:", events);
+
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
@@ -98,28 +114,38 @@ const Event = () => {
                 body: JSON.stringify(events),
             });
 
-            if (res.ok) {
-                const data = await res.json();
-                if (data.success) {
-                    alert("Events updated successfully!");
-                    setEditMode(false);
-                } else {
-                    alert(data.message || "Failed to update events.");
-                }
+            console.log("Save response status:", res.status);
+
+            // Handle response (same style as Banner component)
+            if (!res.ok) {
+                const errorText = await res.text();
+                console.error("Save error response:", errorText);
+                throw new Error(`Server error: ${res.status}`);
+            }
+
+            const data = await res.json();
+            console.log("Save response data:", data);
+
+            if (data.success) {
+                alert("Events updated successfully!");
+                setEditMode(false);
+
+                // Reload the events to get fresh data (same as Banner)
+                await loadEvents();
             } else {
-                throw new Error(`HTTP ${res.status}`);
+                alert(data.message || "Failed to update events.");
             }
         } catch (err) {
-            alert("Events updated successfully!");
-            setEditMode(false);
+            console.error("Error updating events:", err);
+            alert(`Error: ${err.message}`);
         } finally {
             setLoading(false);
         }
     };
 
     const handleCancel = () => {
-        setEvents(defaultEvents);
         setEditMode(false);
+        loadEvents(); // Reload original events (same as Banner)
     };
 
     return (
@@ -163,7 +189,11 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
-                                <img src={event.image} alt={event.title} className="event-image" />
+                                <img
+                                    src={getImageUrl(event.image)}
+                                    alt={event.title}
+                                    className="event-image"
+                                />
                             </div>
 
                             <div className="event-content">
@@ -248,10 +278,18 @@ const Event = () => {
 
             {editMode && isStaff && (
                 <div className="events-edit-controls">
-                    <button className="save-events-btn" onClick={handleSave} disabled={loading}>
+                    <button
+                        className="save-events-btn"
+                        onClick={handleSave}
+                        disabled={loading}
+                    >
                         {loading ? 'Saving...' : 'Save Changes'}
                     </button>
-                    <button className="cancel-events-btn" onClick={handleCancel} disabled={loading}>
+                    <button
+                        className="cancel-events-btn"
+                        onClick={handleCancel}
+                        disabled={loading}
+                    >
                         Cancel
                     </button>
                 </div>
