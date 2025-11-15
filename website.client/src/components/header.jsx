@@ -2,6 +2,10 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../App.css';
 
+// Import images directly
+import logoImg from '../img/logo.jpg';
+import profileImg from '../img/profile.jpg';
+
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -10,10 +14,10 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    //check if we're on the home page
+    // Check if we're on the home page
     const isHomePage = location.pathname === '/';
 
-    //check login status
+    // Check login status
     useEffect(() => {
         const checkLoginStatus = () => {
             const user = localStorage.getItem('user');
@@ -77,12 +81,23 @@ const Header = () => {
         navigate('/');
     };
 
+    // Handle image errors
+    const handleImageError = (e, imageType) => {
+        console.error(`Failed to load ${imageType} image`);
+        e.target.style.display = 'none';
+    };
+
     return (
         <>
             <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
                     <div className="logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
-                        <img src="../img/logo.jpg" alt="Sam Sound and Light" className="logo-img" />
+                        <img
+                            src={logoImg}
+                            alt="Sam Sound and Light"
+                            className="logo-img"
+                            onError={(e) => handleImageError(e, 'logo')}
+                        />
                         <span className="logo-text">SAM SOUND & LIGHT</span>
                     </div>
 
@@ -129,7 +144,12 @@ const Header = () => {
                                 </button>
                             ) : (
                                 <button className="profile-btn" onClick={handleProfileClick} aria-label="User Profile">
-                                    <img src="../src/img/profile.jpg" alt="User Profile" className="profile-img" />
+                                    <img
+                                        src={profileImg}
+                                        alt="User Profile"
+                                        className="profile-img"
+                                        onError={(e) => handleImageError(e, 'profile')}
+                                    />
                                 </button>
                             )}
                         </div>
@@ -180,14 +200,18 @@ const Header = () => {
                 {isLoggedIn ? (
                     <button className="mobile-logout-btn" onClick={handleLogout}>
                         <div className="mobile-logout-content">
-                            <span className="logout-icon">🚪</span>
                             Logout
                         </div>
                     </button>
                 ) : (
                     <button className="mobile-profile-btn" onClick={handleProfileClick}>
                         <div className="mobile-profile-content">
-                            <img src="../src/img/profile.jpg" alt="User Profile" className="mobile-profile-img" />
+                            <img
+                                src={profileImg}
+                                alt="User Profile"
+                                className="mobile-profile-img"
+                                onError={(e) => handleImageError(e, 'mobile profile')}
+                            />
                             Profile
                         </div>
                     </button>
