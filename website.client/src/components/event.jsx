@@ -1,21 +1,22 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContext";
-import event1 from "img/event1.jpg";
+
+import event1 from "../img/event1.jpg";
 import event2 from "../img/event2.jpg";
+import defaultEvent from "../img/banner.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
     : "http://localhost:8080/api/events";
 
-// Default events data
 const defaultEvents = [
     {
         id: 1,
         title: "Lets plan your memorable moment at Sam Sound & Light",
         date: "Sat, 29 June",
         detail: "Event by Sam Sound & Lights",
-        image: event1,
+        image: event1, 
         buttonText: "Learn More",
     },
     {
@@ -23,7 +24,7 @@ const defaultEvents = [
         title: "Steppin Out 1st Anniversary Competition",
         date: "Sat, 19 Nov",
         detail: "Event by Karabaw Martial Arts & Fitness Centre",
-        image: event2,
+        image: event2, 
         buttonText: "Learn More",
     },
 ];
@@ -38,6 +39,28 @@ const Event = () => {
     const [showEditButton, setShowEditButton] = useState(false);
     const [loading, setLoading] = useState(false);
     const [backendAvailable, setBackendAvailable] = useState(false);
+
+    // Helper function to handle image paths
+    const getImageUrl = (imagePath) => {
+        // If it's already an imported image (object with default property), use it
+        if (typeof imagePath === 'object' && imagePath.default) {
+            return imagePath.default;
+        }
+        // If it's a string path from backend
+        if (typeof imagePath === 'string') {
+            // Remove leading slash if present
+            const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
+            // Check if it's a local image we can import
+            if (cleanPath.includes('event1.jpg')) return event1;
+            if (cleanPath.includes('event2.jpg')) return event2;
+            if (cleanPath.includes('default-event.jpg')) return defaultEvent;
+
+            // For other images, try to construct the path
+            return `/${cleanPath}`;
+        }
+        // Fallback to default event image
+        return defaultEvent;
+    };
 
     // Test backend connection
     const testBackendConnection = async () => {
@@ -81,7 +104,12 @@ const Event = () => {
                 console.log("Events loaded from backend:", data);
 
                 if (Array.isArray(data) && data.length > 0) {
-                    setEvents(data);
+                    // Process images from backend
+                    const processedEvents = data.map(event => ({
+                        ...event,
+                        image: getImageUrl(event.image)
+                    }));
+                    setEvents(processedEvents);
                 } else {
                     console.log("No events in backend, using defaults");
                     setEvents(defaultEvents);
@@ -112,7 +140,7 @@ const Event = () => {
             title: "New Event Title",
             date: "Date TBA",
             detail: "Event details here...",
-            image: "/img/default-event.jpg",
+            image: defaultEvent, // Use imported default image
             buttonText: "Learn More",
         };
 
@@ -138,12 +166,18 @@ const Event = () => {
         try {
             console.log("Saving events to backend:", events);
 
+            // Prepare events for backend - convert images to string paths
+            const eventsForBackend = events.map(event => ({
+                ...event,
+                image: typeof event.image === 'string' ? event.image : 'img/default-event.jpg'
+            }));
+
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(events),
+                body: JSON.stringify(eventsForBackend),
                 credentials: 'include'
             });
 
@@ -153,7 +187,7 @@ const Event = () => {
             if (res.ok && data.success) {
                 alert("Events updated successfully in backend!");
                 setEditMode(false);
-                await loadEvents(); 
+                await loadEvents();
             } else {
                 alert(data.message || "Failed to update events in backend.");
             }
@@ -170,6 +204,12 @@ const Event = () => {
         setEditMode(false);
     };
 
+    // Handle image loading errors
+    const handleImageError = (e) => {
+        console.error('Failed to load event image:', e.target.src);
+        e.target.src = defaultEvent;
+    };
+
     return (
         <div
             className="upcoming-events-container"
@@ -177,8 +217,6 @@ const Event = () => {
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
-            
-
             {/* Floating Edit Button */}
             {isStaff && !editMode && (
                 <button
@@ -213,9 +251,10 @@ const Event = () => {
 
                             <div className="event-image-container">
                                 <img
-                                    src={event.image}
+                                    src={getImageUrl(event.image)}
                                     alt={event.title}
                                     className="event-image"
+                                    onError={handleImageError}
                                 />
                             </div>
 
@@ -224,12 +263,12 @@ const Event = () => {
                                     <div className="event-edit-form">
                                         <input
                                             type="text"
-                                            value={event.image}
+                                            value={typeof event.image === 'string' ? event.image : 'img/default-event.jpg'}
                                             onChange={(e) =>
                                                 handleEventChange(index, "image", e.target.value)
                                             }
                                             className="edit-image-input"
-                                            placeholder="Image URL"
+                                            placeholder="Image URL or path (e.g., img/event1.jpg)"
                                         />
                                         <input
                                             type="text"
