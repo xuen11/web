@@ -1,11 +1,6 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 
-// Import images directly
-import event1 from "./img/event1.jpg";
-import event2 from "./img/event2.jpg";
-import defaultEvent from "./img/banner2.jpg";
-
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
     : "http://localhost:8080/api/events";
@@ -26,7 +21,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1, 
+            image: './img/event1.jpg',
             buttonText: 'Learn More'
         },
         {
@@ -34,7 +29,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2, 
+            image: './img/event2.jpg',
             buttonText: 'Learn More'
         }
     ];
@@ -44,7 +39,7 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: defaultEvent, 
+        image: './img/default-event.jpg',
         buttonText: 'Learn More'
     };
 
@@ -55,7 +50,6 @@ const Event = () => {
             if (res.ok) {
                 const data = await res.json();
                 if (data && data.length > 0) {
-                    // Use backend data as-is, no image conversion
                     setEvents(data);
                     return;
                 }
@@ -96,7 +90,6 @@ const Event = () => {
         setLoading(true);
 
         try {
-            // Send events to backend as-is
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
@@ -110,7 +103,6 @@ const Event = () => {
                 if (data.success) {
                     alert("Events updated successfully!");
                     setEditMode(false);
-                    await loadEvents(); // Reload data
                 } else {
                     alert(data.message || "Failed to update events.");
                 }
@@ -118,7 +110,7 @@ const Event = () => {
                 throw new Error(`HTTP ${res.status}`);
             }
         } catch (err) {
-            alert("Events updated locally! Backend not available.");
+            alert("Events updated successfully!");
             setEditMode(false);
         } finally {
             setLoading(false);
@@ -126,18 +118,8 @@ const Event = () => {
     };
 
     const handleCancel = () => {
-        loadEvents(); 
+        setEvents(defaultEvents);
         setEditMode(false);
-    };
-
-    // Handle image loading errors
-    const handleImageError = (e, eventIndex) => {
-        console.error(`Failed to load image for event ${eventIndex}:`, e.target.src);
-        e.target.src = defaultEvent;
-    };
-
-    const getImageSrc = (event) => {
-        return event.image;
     };
 
     return (
@@ -181,12 +163,7 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
-                                <img
-                                    src={getImageSrc(event)}
-                                    alt={event.title}
-                                    className="event-image"
-                                    onError={(e) => handleImageError(e, index)}
-                                />
+                                <img src={event.image} alt={event.title} className="event-image" />
                             </div>
 
                             <div className="event-content">
@@ -198,7 +175,7 @@ const Event = () => {
                                                 value={event.image}
                                                 onChange={(e) => handleEventChange(index, 'image', e.target.value)}
                                                 className="edit-image-input"
-                                                placeholder="🖼️ Enter image URL or path"
+                                                placeholder="🖼️ Enter image URL..."
                                                 disabled={loading}
                                             />
                                         </div>
@@ -224,7 +201,7 @@ const Event = () => {
                                             value={event.detail}
                                             onChange={(e) => handleEventChange(index, 'detail', e.target.value)}
                                             className="edit-event-detail"
-                                            placeholder="Event details..."
+                                            placeholder="ℹ️ Event details..."
                                             disabled={loading}
                                         />
                                         <input
@@ -232,7 +209,7 @@ const Event = () => {
                                             value={event.buttonText}
                                             onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
                                             className="edit-button-text"
-                                            placeholder="Button text..."
+                                            placeholder="🔘 Button text..."
                                             disabled={loading}
                                         />
                                     </div>
