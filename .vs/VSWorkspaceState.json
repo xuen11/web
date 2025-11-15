@@ -4,11 +4,12 @@
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
+    "\\website.client\\src\\img",
     "\\website.Server",
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\event.jsx",
+  "SelectedNode": "\\website.client\\src\\img",
   "PreviewInSolutionExplorer": false
 }

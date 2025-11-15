@@ -4,7 +4,7 @@ import "../App.css";
 // Import images directly
 import event1 from "../img/event1.jpg";
 import event2 from "../img/event2.jpg";
-import defaultEvent from "../img/default-event.jpg";
+import defaultEvent from "../img/banner2.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
