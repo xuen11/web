@@ -18,23 +18,35 @@ namespace website.Server.Controllers
 
         // GET: api/events
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
+        public async Task<ActionResult<IEnumerable<object>>> GetEvents()
         {
             try
             {
                 var events = await _context.Events.ToListAsync();
-                return Ok(events);
+
+                // Return events with camelCase properties for frontend
+                var response = events.Select(e => new
+                {
+                    id = e.Id,
+                    title = e.Title,
+                    date = e.Date,
+                    detail = e.Detail,
+                    image = e.Image,
+                    buttonText = e.ButtonText
+                }).ToList();
+
+                return Ok(response);
             }
             catch (Exception ex)
             {
                 // Return empty array if table doesn't exist yet
-                return Ok(new List<Event>());
+                return Ok(new List<object>());
             }
         }
 
         // POST: api/events/update-all
         [HttpPost("update-all")]
-        public async Task<ActionResult> UpdateAllEvents([FromBody] List<Event> events)
+        public async Task<ActionResult> UpdateAllEvents([FromBody] List<EventInputModel> events)
         {
             try
             {
@@ -50,20 +62,39 @@ namespace website.Server.Controllers
                 // Add new events
                 foreach (var eventItem in events)
                 {
-                    // Reset ID to let database generate new ones
-                    eventItem.Id = 0;
-                    eventItem.CreatedAt = DateTime.UtcNow;
-                    eventItem.UpdatedAt = DateTime.UtcNow;
-                    _context.Events.Add(eventItem);
+                    var newEvent = new Event
+                    {
+                        Title = eventItem.title,
+                        Date = eventItem.date,
+                        Detail = eventItem.detail,
+                        Image = eventItem.image,
+                        ButtonText = eventItem.buttonText,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
+                    };
+
+                    _context.Events.Add(newEvent);
                 }
 
                 await _context.SaveChangesAsync();
+
+                // Return the updated events with camelCase
+                var updatedEvents = await _context.Events.ToListAsync();
+                var response = updatedEvents.Select(e => new
+                {
+                    id = e.Id,
+                    title = e.Title,
+                    date = e.Date,
+                    detail = e.Detail,
+                    image = e.Image,
+                    buttonText = e.ButtonText
+                }).ToList();
 
                 return Ok(new
                 {
                     success = true,
                     message = "Events updated successfully",
-                    events = events
+                    events = response
                 });
             }
             catch (Exception ex)
@@ -75,5 +106,16 @@ namespace website.Server.Controllers
                 });
             }
         }
+    }
+
+    // Input model for events with camelCase properties
+    public class EventInputModel
+    {
+        public int id { get; set; }
+        public string title { get; set; } = string.Empty;
+        public string date { get; set; } = string.Empty;
+        public string detail { get; set; } = string.Empty;
+        public string image { get; set; } = string.Empty;
+        public string buttonText { get; set; } = string.Empty;
     }
 }
