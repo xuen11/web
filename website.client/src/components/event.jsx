@@ -21,7 +21,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: '/img/event1.jpg',
+            image: './img/event1.jpg',
             buttonText: 'Learn More'
         },
         {
@@ -29,7 +29,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: '/img/event2.jpg',
+            image: './img/event2.jpg',
             buttonText: 'Learn More'
         }
     ];
@@ -39,7 +39,7 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: '/img/default-event.jpg',
+        image: './img/default-event.jpg',
         buttonText: 'Learn More'
     };
 

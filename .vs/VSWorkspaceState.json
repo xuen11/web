@@ -3,13 +3,14 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\components",
     "\\website.client\\src\\img",
+    "\\website.client\\src\\public",
+    "\\website.client\\src\\public\\img",
     "\\website.Server",
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\banner.jsx",
+  "SelectedNode": "\\website.client\\src\\public\\img",
   "PreviewInSolutionExplorer": false
 }
