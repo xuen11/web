@@ -26,7 +26,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1, // Use imported image
+            image: event1, // Use imported image directly
             buttonText: 'Learn More'
         },
         {
@@ -34,7 +34,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2, // Use imported image
+            image: event2, // Use imported image directly
             buttonText: 'Learn More'
         }
     ];
@@ -44,37 +44,8 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: defaultEvent, // Use imported default image
+        image: defaultEvent, // Use imported default image directly
         buttonText: 'Learn More'
-    };
-
-    // Helper function to handle image paths from backend
-    const getImageUrl = (imagePath) => {
-        // If it's already an imported image, return it
-        if (typeof imagePath !== 'string') {
-            return imagePath;
-        }
-
-        // If it's a string path from backend
-        if (imagePath.startsWith('/img/')) {
-            // Convert backend path to frontend path
-            if (imagePath === '/img/event1.jpg') return event1;
-            if (imagePath === '/img/event2.jpg') return event2;
-            if (imagePath === '/img/default-event.jpg') return defaultEvent;
-
-            // For other images, try to serve from public folder
-            return imagePath.substring(1); // Remove leading slash
-        }
-
-        // If it's already a correct path
-        if (imagePath.startsWith('img/') || imagePath.startsWith('./img/')) {
-            if (imagePath.includes('event1.jpg')) return event1;
-            if (imagePath.includes('event2.jpg')) return event2;
-            return defaultEvent;
-        }
-
-        // Default fallback
-        return defaultEvent;
     };
 
     // Load events from backend
@@ -84,12 +55,8 @@ const Event = () => {
             if (res.ok) {
                 const data = await res.json();
                 if (data && data.length > 0) {
-                    // Process images from backend
-                    const processedEvents = data.map(event => ({
-                        ...event,
-                        image: getImageUrl(event.image)
-                    }));
-                    setEvents(processedEvents);
+                    // Use backend data as-is, no image conversion
+                    setEvents(data);
                     return;
                 }
             }
@@ -129,20 +96,13 @@ const Event = () => {
         setLoading(true);
 
         try {
-            // Prepare events for backend - convert images to string paths
-            const eventsForBackend = events.map(event => ({
-                ...event,
-                image: typeof event.image === 'string' ? event.image :
-                    event.image === event1 ? '/img/event1.jpg' :
-                        event.image === event2 ? '/img/event2.jpg' : '/img/default-event.jpg'
-            }));
-
+            // Send events to backend as-is
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(eventsForBackend),
+                body: JSON.stringify(events),
             });
 
             if (res.ok) {
@@ -150,7 +110,7 @@ const Event = () => {
                 if (data.success) {
                     alert("Events updated successfully!");
                     setEditMode(false);
-                    await loadEvents(); // Reload to get processed images
+                    await loadEvents(); // Reload data
                 } else {
                     alert(data.message || "Failed to update events.");
                 }
@@ -174,6 +134,11 @@ const Event = () => {
     const handleImageError = (e, eventIndex) => {
         console.error(`Failed to load image for event ${eventIndex}:`, e.target.src);
         e.target.src = defaultEvent;
+    };
+
+    // Helper to get image source - use whatever is in the event object
+    const getImageSrc = (event) => {
+        return event.image; // Use the image as-is from the event data
     };
 
     return (
@@ -218,7 +183,7 @@ const Event = () => {
 
                             <div className="event-image-container">
                                 <img
-                                    src={event.image}
+                                    src={getImageSrc(event)}
                                     alt={event.title}
                                     className="event-image"
                                     onError={(e) => handleImageError(e, index)}
@@ -231,10 +196,10 @@ const Event = () => {
                                         <div className="image-url-input-container">
                                             <input
                                                 type="text"
-                                                value={typeof event.image === 'string' ? event.image : '/img/default-event.jpg'}
+                                                value={event.image}
                                                 onChange={(e) => handleEventChange(index, 'image', e.target.value)}
                                                 className="edit-image-input"
-                                                placeholder="🖼️ Enter image URL or path (e.g., /img/event1.jpg)"
+                                                placeholder="🖼️ Enter image URL or path"
                                                 disabled={loading}
                                             />
                                         </div>
