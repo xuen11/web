@@ -43,6 +43,21 @@ const Event = () => {
         buttonText: 'Learn More'
     };
 
+    const getImageUrl = (path) => {
+        if (!path) return "/img/default-event.jpg";
+
+        // Full HTTP path (external)
+        if (path.startsWith("http")) return path;
+
+        // Local project static images
+        if (path.startsWith("./img") || path.startsWith("/img")) {
+            return path.replace("./", "/");
+        }
+
+        // Backend stored images
+        return `${import.meta.env.VITE_API_URL}/${path.replace(/^\/+/, "")}`;
+    };
+
     // Load events from backend
     const loadEvents = async () => {
         try {
@@ -129,7 +144,6 @@ const Event = () => {
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
-            {/* Floating Edit Button - Only show when staff is logged in and hovering */}
             {isStaff && !editMode && (
                 <button
                     className={`events-edit-btn ${showEditButton ? 'visible' : ''}`}
@@ -150,7 +164,6 @@ const Event = () => {
                             onMouseEnter={() => setHoveredEventIndex(index)}
                             onMouseLeave={() => setHoveredEventIndex(null)}
                         >
-                            {/* Edit Button for Individual Events */}
                             {editMode && isStaff && (
                                 <button
                                     className={`event-edit-btn ${hoveredEventIndex === index ? 'visible' : ''}`}
@@ -163,29 +176,31 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
-                                <img src={event.image} alt={event.title} className="event-image" />
+                                {/* FIXED IMAGE HERE */}
+                                <img
+                                    src={getImageUrl(event.image)}
+                                    alt={event.title}
+                                    className="event-image"
+                                />
                             </div>
 
                             <div className="event-content">
                                 {editMode && isStaff ? (
                                     <div className="event-edit-form">
-                                        <div className="image-url-input-container">
-                                            <input
-                                                type="text"
-                                                value={event.image}
-                                                onChange={(e) => handleEventChange(index, 'image', e.target.value)}
-                                                className="edit-image-input"
-                                                placeholder="🖼️ Enter image URL..."
-                                                disabled={loading}
-                                            />
-                                        </div>
+                                        <input
+                                            type="text"
+                                            value={event.image}
+                                            onChange={(e) => handleEventChange(index, 'image', e.target.value)}
+                                            className="edit-image-input"
+                                            placeholder="Enter image URL..."
+                                            disabled={loading}
+                                        />
 
                                         <input
                                             type="text"
                                             value={event.title}
                                             onChange={(e) => handleEventChange(index, 'title', e.target.value)}
                                             className="edit-event-title"
-                                            placeholder="Event title..."
                                             disabled={loading}
                                         />
                                         <input
@@ -193,7 +208,6 @@ const Event = () => {
                                             value={event.date}
                                             onChange={(e) => handleEventChange(index, 'date', e.target.value)}
                                             className="edit-event-date"
-                                            placeholder="📅 Event date..."
                                             disabled={loading}
                                         />
                                         <input
@@ -201,7 +215,6 @@ const Event = () => {
                                             value={event.detail}
                                             onChange={(e) => handleEventChange(index, 'detail', e.target.value)}
                                             className="edit-event-detail"
-                                            placeholder="ℹ️ Event details..."
                                             disabled={loading}
                                         />
                                         <input
@@ -209,7 +222,6 @@ const Event = () => {
                                             value={event.buttonText}
                                             onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
                                             className="edit-button-text"
-                                            placeholder="🔘 Button text..."
                                             disabled={loading}
                                         />
                                     </div>
@@ -254,15 +266,6 @@ const Event = () => {
                     <button className="cancel-events-btn" onClick={handleCancel} disabled={loading}>
                         Cancel
                     </button>
-                </div>
-            )}
-
-            {events.length === 0 && !editMode && (
-                <div className="no-events-message">
-                    <p>No upcoming events scheduled.</p>
-                    {isStaff && (
-                        <p>Hover over this section and click "Edit Events" to add new events.</p>
-                    )}
                 </div>
             )}
         </div>

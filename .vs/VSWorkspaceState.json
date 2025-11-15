@@ -3,7 +3,9 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\components"
+    "\\website.client\\src\\components",
+    "\\website.Server",
+    "\\website.Server\\Controllers"
   ],
   "SelectedNode": "\\website.client\\src\\components\\event.jsx",
   "PreviewInSolutionExplorer": false
