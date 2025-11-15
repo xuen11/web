@@ -1,114 +1,53 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
-import { useAuth } from "./AuthContext";
-import banner from "../img/services.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/banner`
     : "http://localhost:8080/api/banner";
 
 const Banner = () => {
-    const { user, token } = useAuth();
-    const isStaff = user?.role === "staff";
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const token = localStorage.getItem("authToken");
+    const isStaff = user.role === "staff";
 
-    const [bannerData, setBannerData] = useState({
-        title: "Elevate Your Event Experience",
-        subtitle: "Explore our exclusive Golden and Platinum Packages designed to make your event unforgettable.",
-        imagePath: banner
-    });
-
+    const [title, setTitle] = useState("");
+    const [subtitle, setSubtitle] = useState("");
+    const [bgImage, setBgImage] = useState("");
     const [editMode, setEditMode] = useState(false);
     const [file, setFile] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [showEditButton, setShowEditButton] = useState(false);
-    const [saveSuccess, setSaveSuccess] = useState(false);
-    const [backendAvailable, setBackendAvailable] = useState(false);
 
-    // Test if backend endpoint exists
-    const testBackend = async () => {
-        try {
-            console.log("Testing backend connection to:", API_BASE);
-            const response = await fetch(API_BASE, {
-                method: 'GET',
-                credentials: 'include'
-            });
-
-            const contentType = response.headers.get('content-type');
-            console.log("Response content-type:", contentType);
-            console.log("Response status:", response.status);
-
-            if (response.ok && contentType && contentType.includes('application/json')) {
-                setBackendAvailable(true);
-                return true;
-            } else {
-                console.log("Backend not properly configured");
-                setBackendAvailable(false);
-                return false;
-            }
-        } catch (error) {
-            console.log("Backend connection failed:", error.message);
-            setBackendAvailable(false);
-            return false;
-        }
-    };
-
+    // Load banner from backend
     const loadBanner = async () => {
-        const isBackendAvailable = await testBackend();
-
-        if (!isBackendAvailable) {
-            console.log("Using default banner data - backend not available");
-            // Use the default data we already set in useState
-            return;
-        }
-
         try {
-            console.log("Loading banner from backend:", API_BASE);
-            const res = await fetch(API_BASE, {
-                credentials: 'include'
-            });
-
-            console.log("Load response status:", res.status);
-            console.log("Load response headers:", res.headers);
-
-            const contentType = res.headers.get("content-type");
-            let data;
-
-            if (contentType && contentType.includes("application/json")) {
-                data = await res.json();
-                console.log("Banner JSON response:", data);
-            } else {
-                const text = await res.text();
-                console.log("Banner non-JSON response:", text.substring(0, 200));
-                throw new Error(`Backend returned ${contentType || 'unknown'} instead of JSON`);
-            }
+            console.log("Loading banner from:", API_BASE);
+            const res = await fetch(API_BASE);
 
             if (!res.ok) {
-                throw new Error(data.message || `HTTP ${res.status}`);
+                throw new Error(`HTTP ${res.status} - ${await res.text()}`);
             }
 
-            // Extract banner data from different possible response structures
-            let banner;
-            if (data.banner) {
-                banner = data.banner;
-            } else if (data.Id || data.id) {
-                banner = data;
-            } else if (Array.isArray(data) && data.length > 0) {
-                banner = data[0]; // Take first if array
+            const data = await res.json();
+            console.log("Banner data received:", data);
+
+            setTitle(data.title || "");
+            setSubtitle(data.subtitle || "");
+
+            // Use the imagePath directly from the response
+            if (data.imagePath) {
+                setBgImage(data.imagePath);
             } else {
-                console.log("No banner data in response, using defaults");
-                return;
+                setBgImage("./img/services.jpg");
             }
-
-            setBannerData({
-                title: banner.Title || banner.title || "Elevate Your Event Experience",
-                subtitle: banner.Subtitle || banner.subtitle || "Explore our exclusive Golden and Platinum Packages designed to make your event unforgettable.",
-                imagePath: banner.ImagePath || banner.imagePath || banner
-            });
-
         } catch (err) {
-            console.error("Failed to load banner from backend:", err);
-            // Keep the default data that's already set
+            console.error("Failed to load banner:", err);
+            setTitle("Elevate Your Event Experience");
+            setSubtitle(
+                "Explore our exclusive Golden and Platinum Packages designed to make your event truly unforgettable."
+            );
+            setBgImage("./img/services.jpg");
         }
     };
 
@@ -121,12 +60,11 @@ const Banner = () => {
         if (!f) return;
 
         if (!f.type.startsWith("image/")) {
-            alert("Please upload a valid image file (JPEG, PNG, etc.).");
+            alert("Please select a valid image file.");
             return;
         }
-
         if (f.size > 5 * 1024 * 1024) {
-            alert("Image must be smaller than 5MB.");
+            alert("Image must be less than 5MB.");
             return;
         }
 
@@ -138,8 +76,7 @@ const Banner = () => {
         setEditMode(false);
         setFile(null);
         setPreviewImage(null);
-        setSaveSuccess(false);
-        loadBanner(); // Reload original data
+        loadBanner();
     };
 
     const handleSave = async () => {
@@ -152,157 +89,73 @@ const Banner = () => {
 
         try {
             const formData = new FormData();
-            formData.append("Title", bannerData.title);
-            formData.append("Subtitle", bannerData.subtitle);
-
+            formData.append("Title", title);
+            formData.append("Subtitle", subtitle);
             if (file) {
                 formData.append("Image", file);
             }
 
-            console.log("Saving banner to:", API_BASE);
-            console.log("Data:", {
-                title: bannerData.title,
-                subtitle: bannerData.subtitle,
-                hasFile: !!file
+            console.log("Saving banner with:", { title, subtitle, file: file?.name });
+
+            const res = await fetch(API_BASE, {
+                method: "POST",
+                headers: token ? { Authorization: `Bearer ${token}` } : {},
+                body: formData,
             });
 
-            // Try different methods and endpoints
-            let res;
-            let result;
-
-            // First try PUT
-            try {
-                res = await fetch(API_BASE, {
-                    method: "PUT",
-                    body: formData,
-                    credentials: 'include'
-                });
-            } catch (err) {
-                console.log("PUT failed, trying POST:", err);
-                // If PUT fails, try POST
-                res = await fetch(API_BASE, {
-                    method: "POST",
-                    body: formData,
-                    credentials: 'include'
-                });
-            }
-
             console.log("Save response status:", res.status);
-            console.log("Save response headers:", res.headers);
 
-            const contentType = res.headers.get("content-type");
-
-            if (contentType && contentType.includes("application/json")) {
-                result = await res.json();
-                console.log("Save JSON response:", result);
-            } else {
-                const text = await res.text();
-                console.log("Save non-JSON response:", text.substring(0, 500));
-
-                // If we get HTML, it might be a 404 page or error
-                if (res.ok && text) {
-                    // If the response is OK but not JSON, assume success
-                    alert("Banner updated successfully!");
-                    setSaveSuccess(true);
-                    setTimeout(() => {
-                        setEditMode(false);
-                        setFile(null);
-                        setPreviewImage(null);
-                        setSaveSuccess(false);
-                        loadBanner();
-                    }, 1000);
-                    return;
-                } else {
-                    throw new Error(`Server returned ${contentType || 'unknown content-type'}. Status: ${res.status}`);
-                }
-            }
-
+            // Handle response
             if (!res.ok) {
-                throw new Error(result.message || `HTTP ${res.status}: Failed to update banner`);
+                const errorText = await res.text();
+                console.error("Save error response:", errorText);
+                throw new Error(`Server error: ${res.status}`);
             }
 
-            // Update with response data if available
-            if (result.banner || result.Id || result.id) {
-                const updatedBanner = result.banner || result;
-                setBannerData({
-                    title: updatedBanner.Title || updatedBanner.title || bannerData.title,
-                    subtitle: updatedBanner.Subtitle || updatedBanner.subtitle || bannerData.subtitle,
-                    imagePath: updatedBanner.ImagePath || updatedBanner.imagePath || bannerData.imagePath
-                });
-            }
+            const data = await res.json();
+            console.log("Save response data:", data);
 
-            setSaveSuccess(true);
-            alert("Banner updated successfully!");
-
-            setTimeout(() => {
+            if (data.success) {
+                alert("Banner updated successfully!");
                 setEditMode(false);
                 setFile(null);
                 setPreviewImage(null);
-                setSaveSuccess(false);
-                loadBanner();
-            }, 1000);
 
-        } catch (err) {
-            console.error("Update error:", err);
+                // Update the background image with the new URL from response
+                if (data.banner?.imagePath) {
+                    setBgImage(data.banner.imagePath);
+                }
 
-            if (err.message.includes("404")) {
-                alert("Banner endpoint not found. Please check if the backend API is properly configured.");
-            } else if (err.message.includes("CORS")) {
-                alert("CORS error. Please check backend CORS configuration.");
+                // Reload the banner to get fresh data
+                await loadBanner();
             } else {
-                alert(`Error: ${err.message}`);
+                alert(data.message || "Failed to update banner.");
             }
+        } catch (err) {
+            console.error("Error updating banner:", err);
+            alert(`Error: ${err.message}`);
         } finally {
             setLoading(false);
         }
     };
 
-    const handleInputChange = (field, value) => {
-        setBannerData(prev => ({
-            ...prev,
-            [field]: value
-        }));
-    };
-
-    const getDisplayImage = () => {
-        if (previewImage) return previewImage;
-
-        if (bannerData.imagePath) {
-            if (typeof bannerData.imagePath === 'string') {
-                if (bannerData.imagePath.startsWith("http") || bannerData.imagePath.startsWith("data:") || bannerData.imagePath.startsWith("/")) {
-                    return bannerData.imagePath;
-                }
-                return `/${bannerData.imagePath}`;
-            }
-            // If it's an imported image object
-            if (bannerData.imagePath.default) {
-                return bannerData.imagePath.default;
-            }
-        }
-
-        return banner;
-    };
-
-    const displayImage = getDisplayImage();
+    const displayImage = previewImage || bgImage;
 
     return (
         <div
             className="banner-container"
             style={{
                 backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${displayImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
             }}
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
             {isStaff && !editMode && (
                 <button
-                    className={`banner-edit-btn ${showEditButton ? "visible" : ""}`}
+                    className={`banner-edit-btn ${showEditButton ? 'visible' : ''}`}
                     onClick={() => setEditMode(true)}
                 >
-                    {backendAvailable ? "Edit Banner" : "Edit Banner (Backend Offline)"}
+                    Edit Banner
                 </button>
             )}
 
@@ -310,7 +163,7 @@ const Banner = () => {
                 {editMode && isStaff ? (
                     <div className="banner-edit">
                         <div className="edit-header">
-                            <h3>Edit Banner {!backendAvailable && "(Local Only)"}</h3>
+                            <h3>Edit Banner</h3>
                             <button
                                 className="close-btn"
                                 onClick={handleCancel}
@@ -320,38 +173,27 @@ const Banner = () => {
                             </button>
                         </div>
 
-                        {!backendAvailable && (
-                            <div className="warning-message">
-                                ⚠️ Backend is not available. Changes will be local only and reset on page refresh.
-                            </div>
-                        )}
-
-                        {saveSuccess && (
-                            <div className="save-success-message">
-                                ✅ {backendAvailable ? "Banner saved successfully!" : "Local changes saved!"}
-                            </div>
-                        )}
-
                         <div className="form-group">
                             <label>Title</label>
                             <input
-                                className="edit-input"
-                                value={bannerData.title}
-                                onChange={(e) => handleInputChange("title", e.target.value)}
-                                disabled={loading}
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
                                 placeholder="Enter banner title"
+                                disabled={loading}
+                                className="edit-input"
                             />
                         </div>
 
                         <div className="form-group">
                             <label>Subtitle</label>
                             <textarea
+                                value={subtitle}
+                                onChange={(e) => setSubtitle(e.target.value)}
+                                placeholder="Enter banner subtitle"
+                                disabled={loading}
                                 rows="3"
                                 className="edit-textarea"
-                                value={bannerData.subtitle}
-                                onChange={(e) => handleInputChange("subtitle", e.target.value)}
-                                disabled={loading}
-                                placeholder="Enter banner subtitle"
                             />
                         </div>
 
@@ -363,20 +205,28 @@ const Banner = () => {
                                     accept="image/*"
                                     onChange={handleImageChange}
                                     disabled={loading}
-                                    id="banner-image-upload"
+                                    id="banner-image"
+                                    className="file-input"
                                 />
-                                <label htmlFor="banner-image-upload" className="file-label">
-                                    {file ? file.name : "Choose new image..."}
+                                <label htmlFor="banner-image" className="file-label">
+                                    <span className="file-label-text">
+                                        {file ? 'Change Image' : 'Choose Image'}
+                                    </span>
                                 </label>
+                                {file && (
+                                    <div className="file-info">
+                                        <span className="file-name">{file.name}</span>
+                                        <span className="file-size">
+                                            {(file.size / 1024 / 1024).toFixed(2)} MB
+                                        </span>
+                                    </div>
+                                )}
+                                {!file && (
+                                    <div className="file-help">
+                                        Recommended: 1920x1080px, max 5MB
+                                    </div>
+                                )}
                             </div>
-
-                            {file && (
-                                <div className="file-info">
-                                    <span className="file-name">Selected: {file.name}</span>
-                                    <span className="file-size">Size: {(file.size / 1024 / 1024).toFixed(2)} MB</span>
-                                </div>
-                            )}
-
                             {previewImage && (
                                 <div className="image-preview">
                                     <p>Preview:</p>
@@ -384,10 +234,11 @@ const Banner = () => {
                                         src={previewImage}
                                         alt="Preview"
                                         style={{
-                                            maxWidth: "100%",
+                                            maxWidth: "300px",
                                             maxHeight: "200px",
-                                            borderRadius: "8px",
-                                            marginTop: "10px"
+                                            marginTop: "10px",
+                                            border: "1px solid #ddd",
+                                            borderRadius: "4px"
                                         }}
                                     />
                                 </div>
@@ -398,9 +249,16 @@ const Banner = () => {
                             <button
                                 className="save-btn"
                                 onClick={handleSave}
-                                disabled={loading || (!bannerData.title.trim() || !bannerData.subtitle.trim())}
+                                disabled={loading}
                             >
-                                {loading ? "Saving..." : backendAvailable ? "Save to Backend" : "Save Locally"}
+                                {loading ? (
+                                    <>
+                                        <span className="loading-spinner"></span>
+                                        Saving...
+                                    </>
+                                ) : (
+                                    'Save Changes'
+                                )}
                             </button>
                             <button
                                 className="cancel-btn"
@@ -413,8 +271,8 @@ const Banner = () => {
                     </div>
                 ) : (
                     <>
-                        <h1 className="banner-title">{bannerData.title}</h1>
-                        <p className="banner-subtitle">{bannerData.subtitle}</p>
+                        <h1 className="banner-title">{title}</h1>
+                        <p className="banner-subtitle">{subtitle}</p>
                         <button className="cta-btn">Book Now</button>
                     </>
                 )}
