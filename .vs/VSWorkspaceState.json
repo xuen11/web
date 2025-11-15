@@ -3,11 +3,8 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\components",
-    "\\website.Server\\Controllers",
-    "\\website.Server\\Data",
-    "\\website.Server\\Models"
+    "\\website.client\\src\\components"
   ],
-  "SelectedNode": "\\website.client\\src\\App.css",
+  "SelectedNode": "\\website.client\\src\\components\\event.jsx",
   "PreviewInSolutionExplorer": false
 }
