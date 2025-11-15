@@ -2,283 +2,332 @@
 import "../App.css";
 
 const API_BASE = import.meta.env.VITE_API_URL
-    ? `${import.meta.env.VITE_API_URL}/api/banner`
-    : "http://localhost:8080/api/banner";
+    ? `${import.meta.env.VITE_API_URL}/api/events`
+    : "http://localhost:8080/api/events";
 
-const Banner = () => {
+const Event = () => {
+    const [events, setEvents] = useState([]);
+    const [editMode, setEditMode] = useState(false);
+    const [hoveredEventIndex, setHoveredEventIndex] = useState(null);
+    const [showEditButton, setShowEditButton] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const token = localStorage.getItem("authToken");
     const isStaff = user.role === "staff";
 
-    const [title, setTitle] = useState("");
-    const [subtitle, setSubtitle] = useState("");
-    const [bgImage, setBgImage] = useState("");
-    const [editMode, setEditMode] = useState(false);
-    const [file, setFile] = useState(null);
-    const [previewImage, setPreviewImage] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [showEditButton, setShowEditButton] = useState(false);
+    const defaultEvents = [
+        {
+            id: 1,
+            title: 'Lets plan your memorable moment at Sam Sound & Light',
+            date: 'Sat, 29 June',
+            detail: 'Event by Sam Sound & Lights',
+            image: '/img/event1.jpg',
+            buttonText: 'Learn More'
+        },
+        {
+            id: 2,
+            title: 'Steppin Out 1st Anniversary Competition',
+            date: 'Sat, 19 Nov',
+            detail: 'Event by Karabaw Martial Arts & Fitness Centre',
+            image: '/img/event2.jpg',
+            buttonText: 'Learn More'
+        }
+    ];
 
-    // Load banner from backend
-    const loadBanner = async () => {
+    const newEventTemplate = {
+        id: 0,
+        title: 'New Event Title',
+        date: 'Date TBA',
+        detail: 'Event details here...',
+        image: '/img/default-event.jpg',
+        buttonText: 'Learn More'
+    };
+
+    // Load events from backend
+    const loadEvents = async () => {
         try {
-            console.log("Loading banner from:", API_BASE);
             const res = await fetch(API_BASE);
-
-            if (!res.ok) {
-                throw new Error(`HTTP ${res.status} - ${await res.text()}`);
-            }
-
-            const data = await res.json();
-            console.log("Banner data received:", data);
-
-            setTitle(data.title || "");
-            setSubtitle(data.subtitle || "");
-
-            // Use the imagePath directly from the response
-            if (data.imagePath) {
-                setBgImage(data.imagePath);
-            } else {
-                setBgImage("./img/services.jpg");
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.length > 0) {
+                    setEvents(data);
+                    return;
+                }
             }
         } catch (err) {
-            console.error("Failed to load banner:", err);
-            setTitle("Elevate Your Event Experience");
-            setSubtitle(
-                "Explore our exclusive Golden and Platinum Packages designed to make your event truly unforgettable."
-            );
-            setBgImage("./img/services.jpg");
+            console.log("Failed to load from backend, using default");
         }
+        setEvents(defaultEvents);
     };
 
     useEffect(() => {
-        loadBanner();
+        loadEvents();
     }, []);
 
-    const handleImageChange = (e) => {
-        const f = e.target.files[0];
-        if (!f) return;
-
-        if (!f.type.startsWith("image/")) {
-            alert("Please select a valid image file.");
-            return;
-        }
-        if (f.size > 5 * 1024 * 1024) {
-            alert("Image must be less than 5MB.");
-            return;
-        }
-
-        setFile(f);
-        setPreviewImage(URL.createObjectURL(f));
+    const handleEventChange = (index, field, value) => {
+        const updatedEvents = [...events];
+        updatedEvents[index] = {
+            ...updatedEvents[index],
+            [field]: value
+        };
+        setEvents(updatedEvents);
     };
 
-    const handleCancel = () => {
-        setEditMode(false);
-        setFile(null);
-        setPreviewImage(null);
-        loadBanner();
+    const addEvent = () => {
+        const eventToAdd = {
+            ...newEventTemplate,
+            id: events.length > 0 ? Math.max(...events.map(e => e.id)) + 1 : 1
+        };
+        setEvents([...events, eventToAdd]);
+    };
+
+    const removeEvent = (index) => {
+        const updatedEvents = events.filter((_, i) => i !== index);
+        setEvents(updatedEvents);
     };
 
     const handleSave = async () => {
-        if (!isStaff) {
-            alert("Only staff can edit the banner.");
-            return;
-        }
-
         setLoading(true);
 
         try {
-            const formData = new FormData();
-            formData.append("Title", title);
-            formData.append("Subtitle", subtitle);
-            if (file) {
-                formData.append("Image", file);
-            }
-
-            console.log("Saving banner with:", { title, subtitle, file: file?.name });
-
-            const res = await fetch(API_BASE, {
+            const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
-                headers: token ? { Authorization: `Bearer ${token}` } : {},
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(events),
             });
 
-            console.log("Save response status:", res.status);
-
-            // Handle response
-            if (!res.ok) {
-                const errorText = await res.text();
-                console.error("Save error response:", errorText);
-                throw new Error(`Server error: ${res.status}`);
-            }
-
-            const data = await res.json();
-            console.log("Save response data:", data);
-
-            if (data.success) {
-                alert("Banner updated successfully!");
-                setEditMode(false);
-                setFile(null);
-                setPreviewImage(null);
-
-                // Update the background image with the new URL from response
-                if (data.banner?.imagePath) {
-                    setBgImage(data.banner.imagePath);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success) {
+                    alert("Events updated successfully!");
+                    setEditMode(false);
+                    await loadEvents(); // Reload to get fresh data
+                } else {
+                    alert(data.message || "Failed to update events.");
                 }
-
-                // Reload the banner to get fresh data
-                await loadBanner();
             } else {
-                alert(data.message || "Failed to update banner.");
+                throw new Error(`HTTP ${res.status}`);
             }
         } catch (err) {
-            console.error("Error updating banner:", err);
-            alert(`Error: ${err.message}`);
+            alert("Events updated locally! Backend not available.");
+            setEditMode(false);
         } finally {
             setLoading(false);
         }
     };
 
-    const displayImage = previewImage || bgImage;
+    const handleCancel = () => {
+        loadEvents(); // Reload original data
+        setEditMode(false);
+    };
+
+    // Handle image loading errors - same style as Banner
+    const handleImageError = (e) => {
+        console.error('Failed to load event image:', e.target.src);
+        e.target.src = '/img/default-event.jpg';
+        e.target.style.objectFit = 'cover';
+    };
+
+    // Handle image load success - same style as Banner
+    const handleImageLoad = (e) => {
+        e.target.style.objectFit = 'cover';
+    };
 
     return (
         <div
-            className="banner-container"
-            style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${displayImage})`,
-            }}
+            className="upcoming-events-container"
+            id="events"
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
+            {/* Floating Edit Button - Same style as Banner */}
             {isStaff && !editMode && (
                 <button
-                    className={`banner-edit-btn ${showEditButton ? 'visible' : ''}`}
+                    className={`events-edit-btn ${showEditButton ? "visible" : ""}`}
                     onClick={() => setEditMode(true)}
                 >
-                    Edit Banner
+                    <span className="edit-icon">✏️</span>
+                    Edit Events
                 </button>
             )}
 
-            <div className="banner-content">
-                {editMode && isStaff ? (
-                    <div className="banner-edit">
-                        <div className="edit-header">
-                            <h3>Edit Banner</h3>
-                            <button
-                                className="close-btn"
-                                onClick={handleCancel}
-                                disabled={loading}
-                            >
-                                ×
-                            </button>
-                        </div>
+            <h2 className="upcoming-events-title">Upcoming Events</h2>
 
-                        <div className="form-group">
-                            <label>Title</label>
-                            <input
-                                type="text"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                placeholder="Enter banner title"
-                                disabled={loading}
-                                className="edit-input"
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Subtitle</label>
-                            <textarea
-                                value={subtitle}
-                                onChange={(e) => setSubtitle(e.target.value)}
-                                placeholder="Enter banner subtitle"
-                                disabled={loading}
-                                rows="3"
-                                className="edit-textarea"
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Background Image</label>
-                            <div className="file-upload">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
+            <div className="events-grid-container">
+                <div className="events-grid">
+                    {events.map((event, index) => (
+                        <div
+                            key={event.id}
+                            className="event-card"
+                            onMouseEnter={() => setHoveredEventIndex(index)}
+                            onMouseLeave={() => setHoveredEventIndex(null)}
+                        >
+                            {/* Edit Button for Individual Events - Same style as Banner */}
+                            {editMode && isStaff && (
+                                <button
+                                    className={`event-edit-btn ${hoveredEventIndex === index ? "visible" : ""}`}
+                                    onClick={() => removeEvent(index)}
+                                    title="Remove event"
                                     disabled={loading}
-                                    id="banner-image"
-                                    className="file-input"
+                                >
+                                    ×
+                                </button>
+                            )}
+
+                            <div className="event-image-container">
+                                <img
+                                    src={event.image}
+                                    alt={event.title}
+                                    className="event-image"
+                                    onError={handleImageError}
+                                    onLoad={handleImageLoad}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                        display: 'block'
+                                    }}
                                 />
-                                <label htmlFor="banner-image" className="file-label">
-                                    <span className="file-label-text">
-                                        {file ? 'Change Image' : 'Choose Image'}
-                                    </span>
-                                </label>
-                                {file && (
-                                    <div className="file-info">
-                                        <span className="file-name">{file.name}</span>
-                                        <span className="file-size">
-                                            {(file.size / 1024 / 1024).toFixed(2)} MB
-                                        </span>
+                            </div>
+
+                            <div className="event-content">
+                                {editMode && isStaff ? (
+                                    <div className="event-edit-form">
+                                        {/* Image URL Input - Same style as Banner */}
+                                        <div className="form-group">
+                                            <label>Image URL</label>
+                                            <div className="image-url-input-container">
+                                                <input
+                                                    type="text"
+                                                    value={event.image}
+                                                    onChange={(e) => handleEventChange(index, 'image', e.target.value)}
+                                                    className="edit-image-input"
+                                                    placeholder="Enter image URL or path (e.g., /img/event1.jpg)"
+                                                    disabled={loading}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label>Title</label>
+                                            <input
+                                                type="text"
+                                                value={event.title}
+                                                onChange={(e) => handleEventChange(index, 'title', e.target.value)}
+                                                className="edit-event-title"
+                                                placeholder="Enter event title"
+                                                disabled={loading}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label>Date</label>
+                                            <input
+                                                type="text"
+                                                value={event.date}
+                                                onChange={(e) => handleEventChange(index, 'date', e.target.value)}
+                                                className="edit-event-date"
+                                                placeholder="Enter event date"
+                                                disabled={loading}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label>Details</label>
+                                            <input
+                                                type="text"
+                                                value={event.detail}
+                                                onChange={(e) => handleEventChange(index, 'detail', e.target.value)}
+                                                className="edit-event-detail"
+                                                placeholder="Enter event details"
+                                                disabled={loading}
+                                            />
+                                        </div>
+
+                                        <div className="form-group">
+                                            <label>Button Text</label>
+                                            <input
+                                                type="text"
+                                                value={event.buttonText}
+                                                onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
+                                                className="edit-button-text"
+                                                placeholder="Enter button text"
+                                                disabled={loading}
+                                            />
+                                        </div>
                                     </div>
-                                )}
-                                {!file && (
-                                    <div className="file-help">
-                                        Recommended: 1920x1080px, max 5MB
+                                ) : (
+                                    <div className="event-view-content">
+                                        <h3 className="event-title">{event.title}</h3>
+                                        <div className="event-meta">
+                                            <span className="event-date">{event.date}</span>
+                                            <span className="event-detail">{event.detail}</span>
+                                        </div>
+                                        <button className="event-btn">
+                                            {event.buttonText}
+                                        </button>
                                     </div>
                                 )}
                             </div>
-                            {previewImage && (
-                                <div className="image-preview">
-                                    <p>Preview:</p>
-                                    <img
-                                        src={previewImage}
-                                        alt="Preview"
-                                        style={{
-                                            maxWidth: "300px",
-                                            maxHeight: "200px",
-                                            marginTop: "10px",
-                                            border: "1px solid #ddd",
-                                            borderRadius: "4px"
-                                        }}
-                                    />
-                                </div>
-                            )}
                         </div>
+                    ))}
 
-                        <div className="edit-actions">
-                            <button
-                                className="save-btn"
-                                onClick={handleSave}
-                                disabled={loading}
-                            >
-                                {loading ? (
-                                    <>
-                                        <span className="loading-spinner"></span>
-                                        Saving...
-                                    </>
-                                ) : (
-                                    'Save Changes'
-                                )}
-                            </button>
-                            <button
-                                className="cancel-btn"
-                                onClick={handleCancel}
-                                disabled={loading}
-                            >
-                                Cancel
-                            </button>
+                    {editMode && isStaff && (
+                        <div
+                            className="event-card add-event-card"
+                            onClick={addEvent}
+                            onMouseEnter={() => setHoveredEventIndex('add')}
+                            onMouseLeave={() => setHoveredEventIndex(null)}
+                        >
+                            <div className="add-event-content">
+                                <div className="add-event-icon">+</div>
+                                <h3>Add New Event</h3>
+                                <p>Click to create a new event card</p>
+                            </div>
                         </div>
-                    </div>
-                ) : (
-                    <>
-                        <h1 className="banner-title">{title}</h1>
-                        <p className="banner-subtitle">{subtitle}</p>
-                        <button className="cta-btn">Book Now</button>
-                    </>
-                )}
+                    )}
+                </div>
             </div>
+
+            {/* Save/Cancel Buttons - Same style as Banner */}
+            {editMode && isStaff && (
+                <div className="events-edit-controls">
+                    <button
+                        className="save-events-btn"
+                        onClick={handleSave}
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <span className="loading-spinner"></span>
+                                Saving...
+                            </>
+                        ) : (
+                            'Save Changes'
+                        )}
+                    </button>
+                    <button
+                        className="cancel-events-btn"
+                        onClick={handleCancel}
+                        disabled={loading}
+                    >
+                        Cancel
+                    </button>
+                </div>
+            )}
+
+            {events.length === 0 && !editMode && (
+                <div className="no-events-message">
+                    <p>No upcoming events scheduled.</p>
+                    {isStaff && (
+                        <p>Hover over this section and click "Edit Events" to add new events.</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
 
-export default Banner;
+export default Event;

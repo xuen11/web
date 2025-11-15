@@ -201,7 +201,7 @@ const Event = () => {
                                             value={event.detail}
                                             onChange={(e) => handleEventChange(index, 'detail', e.target.value)}
                                             className="edit-event-detail"
-                                            placeholder="ℹ️ Event details..."
+                                            placeholder="Event details..."
                                             disabled={loading}
                                         />
                                         <input
@@ -209,7 +209,7 @@ const Event = () => {
                                             value={event.buttonText}
                                             onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
                                             className="edit-button-text"
-                                            placeholder="🔘 Button text..."
+                                            placeholder="Button text..."
                                             disabled={loading}
                                         />
                                     </div>
