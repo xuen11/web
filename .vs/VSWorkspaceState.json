@@ -9,6 +9,6 @@
     "\\website.Server\\Data",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\event.jsx",
+  "SelectedNode": "\\website.Server\\Data\\AdminDbContext.cs",
   "PreviewInSolutionExplorer": false
 }
