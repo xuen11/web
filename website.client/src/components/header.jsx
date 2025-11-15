@@ -82,7 +82,7 @@ const Header = () => {
             <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
                 <div className="header-container">
                     <div className="logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
-                        <img src="../src/img/logo.jpg" alt="Sam Sound and Light" className="logo-img" />
+                        <img src="../img/logo.jpg" alt="Sam Sound and Light" className="logo-img" />
                         <span className="logo-text">SAM SOUND & LIGHT</span>
                     </div>
 

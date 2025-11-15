@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContext";
-import event1 from "../img/event1.jpg";
+import event1 from "img/event1.jpg";
 import event2 from "../img/event2.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
