@@ -10,10 +10,12 @@ namespace website.Server.Controllers
     public class EventsController : ControllerBase
     {
         private readonly AdminDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EventsController(AdminDbContext context)
+        public EventsController(AdminDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: api/events
@@ -24,13 +26,34 @@ namespace website.Server.Controllers
             {
                 Console.WriteLine("GET Events request received");
                 var events = await _context.Events.ToListAsync();
-                Console.WriteLine($"Returning {events.Count} events");
-                return Ok(events);
+
+                // Get full base URL dynamically
+                var request = _httpContextAccessor.HttpContext?.Request;
+                var baseUrl = $"{request?.Scheme}://{request?.Host}";
+
+                // Update image paths to full URLs
+                var eventsWithFullImageUrl = events.Select(e =>
+                {
+                    if (!string.IsNullOrEmpty(e.Image))
+                    {
+                        if (!e.Image.StartsWith("http"))
+                        {
+                            e.Image = $"{baseUrl}/{e.Image.TrimStart('/')}";
+                        }
+                    }
+                    else
+                    {
+                        e.Image = $"{baseUrl}/img/default-event.jpg"; // fallback default
+                    }
+                    return e;
+                }).ToList();
+
+                Console.WriteLine($"Returning {eventsWithFullImageUrl.Count} events");
+                return Ok(eventsWithFullImageUrl);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error getting events: {ex.Message}");
-                // Return empty array if table doesn't exist yet
                 return Ok(new List<Event>());
             }
         }

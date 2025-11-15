@@ -7,6 +7,6 @@
     "\\website.Server",
     "\\website.Server\\Controllers"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\event.jsx",
+  "SelectedNode": "\\website.Server\\Controllers\\EventsController.cs",
   "PreviewInSolutionExplorer": false
 }
