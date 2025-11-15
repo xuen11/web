@@ -5,7 +5,8 @@
     "\\website.client\\src",
     "\\website.client\\src\\components",
     "\\website.Server",
-    "\\website.Server\\Controllers"
+    "\\website.Server\\Controllers",
+    "\\website.Server\\Data"
   ],
   "SelectedNode": "\\website.Server\\Controllers\\EventsController.cs",
   "PreviewInSolutionExplorer": false
