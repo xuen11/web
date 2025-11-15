@@ -1,5 +1,8 @@
 ﻿import React, { useRef, useEffect, useState } from 'react';
 import '../App.css';
+import sound2 from "../img/sound2.jpg";
+import staff from "../img/staff.jpg";
+import light from "../img/light.jpg";
 
 const Services = () => {
     const containerRef = useRef(null);
@@ -11,19 +14,19 @@ const Services = () => {
             id: 1,
             title: "Sound Systems",
             description: "As a professional Sound and Lighting Services, we take your requirements very seriously. That's why when you book this service, we will leave no stone unturned and do all that's necessary to make sure that your expectations are not just met, but exceeded. To find out more and start collaborating, get in touch today.",
-            image: "./img/sound2.jpg"
+            image: sound2
         },
         {
             id: 2,
             title: "Professional Staff",
             description: "Experienced staff can specify, deliver, setup and operate with 24hour 7day a week service to match your specific requirement.",
-            image: "./img/staff.jpg"
+            image: staff
         },
         {
             id: 3,
             title: "Stage Lighting",
             description: "We are extremely passionate about every production and project we take on. When you book this service, we'll help you make the perfect plan and take care of all the details. Call or get in touch with a member of our team today and book an initial consultation so we can start working together.",
-            image: "./img/light.jpg"
+            image: light
         },
     ];
 

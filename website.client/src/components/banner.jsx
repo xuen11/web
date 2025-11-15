@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContext";
+import banner from "../img/services.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/banner`
@@ -64,7 +65,7 @@ const Banner = () => {
             setBannerData({
                 title: "Elevate Your Event Experience",
                 subtitle: "Explore our exclusive Golden and Platinum Packages designed to make your event unforgettable.",
-                imagePath: "/img/services.jpg"
+                imagePath: banner
             });
         }
     };
@@ -83,7 +84,7 @@ const Banner = () => {
         const f = e.target.files[0];
         if (!f) return;
 
-        if (!f.type.startsWith("image/")) {
+        if (!f.type.startsWith("img/")) {
             alert("Please upload a valid image file.");
             return;
         }

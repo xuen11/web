@@ -4,11 +4,10 @@
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
-    "\\website.Server",
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\AuthContext.jsx",
+  "SelectedNode": "\\website.client\\src\\App.css",
   "PreviewInSolutionExplorer": false
 }

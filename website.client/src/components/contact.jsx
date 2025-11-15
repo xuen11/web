@@ -25,21 +25,24 @@ export default function Contact() {
         setMessage("");
 
         try {
-            // Use full URL for development
-            const apiUrl = process.env.NODE_ENV === 'development'
-                ? 'http://localhost:5136/api/contact'
-                : '/api/contact';
+            // Use environment variable or fallback to correct port
+            const API_BASE = import.meta.env.VITE_API_URL
+                ? `${import.meta.env.VITE_API_URL}/api/contact`
+                : "http://localhost:8080/api/contact";
 
-            console.log('Sending request to:', apiUrl);
+            console.log('Sending request to:', API_BASE);
 
-            const response = await fetch(apiUrl, {
+            const response = await fetch(API_BASE, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Origin': window.location.origin
                 },
                 body: JSON.stringify({
                     fullName: formData.fullName,
                     email: formData.email,
+                    phone: formData.phone,
                     eventDetails: formData.eventDetails
                 })
             });
@@ -49,11 +52,12 @@ export default function Contact() {
             const result = await response.json();
             console.log('Response data:', result);
 
-            if (response.ok) {
-                setMessage(result.message);
+            if (response.ok && result.success) {
+                setMessage(result.message || "Thank you for your message! We'll get back to you soon.");
                 setFormData({
                     fullName: "",
                     email: "",
+                    phone: "",
                     eventDetails: ""
                 });
             } else {
@@ -61,11 +65,12 @@ export default function Contact() {
             }
         } catch (error) {
             console.error('Network error details:', error);
-            setMessage("Cannot connect to server. Make sure your backend is running on localhost:5136");
+            setMessage("Cannot connect to server. Make sure your backend is running on localhost:8080");
         } finally {
             setIsSubmitting(false);
         }
     };
+
     return (
         <div className="contact-container" id="contact">
             <div className="contact-background">
@@ -156,7 +161,7 @@ export default function Contact() {
                             <textarea
                                 name="eventDetails"
                                 rows="5"
-                                className="form-inpu"
+                                className="form-input"
                                 placeholder="Tell us about your event - date, venue, type of event, and any special requirements..."
                                 value={formData.eventDetails}
                                 onChange={handleChange}

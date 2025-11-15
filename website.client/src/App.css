@@ -8,7 +8,7 @@
     right: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    height: 150px;
+    height: 180px;
     transition: all 0.3s ease;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .logo-text {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
     color: #ffffff;
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
@@ -62,7 +62,7 @@
     text-decoration: none;
     color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
-    font-size: 15px;
+    font-size: 23px;
     transition: all 0.3s ease;
     position: relative;
     padding: 8px 0;
@@ -166,6 +166,7 @@
     top: 70px;
     left: 0;
     width: 100%;
+    z-index:1000;
     background: rgba(0, 0, 0, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -704,7 +705,7 @@
 
 .form-label {
   display: block;
-  color: #d1d5db;
+  color: black;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
@@ -716,7 +717,7 @@
   border-radius: 0.75rem;
   background-color: #1f2937;
   border: 1px solid #374151;
-  color: white;
+  color: black;
   outline: none;
   transition: all 0.3s ease;
   font-size: 1rem;
@@ -1124,7 +1125,7 @@
 .about-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(5, 5, 5, 0.45);
+    background: rgba(5, 5, 5, 0.25);
     backdrop-filter: blur(2px);
     z-index: 0;
 }
@@ -1186,7 +1187,7 @@
     }
 
     .about-inner p {
-        font-size: 1rem;
+        font-size: 15px;
     }
 }
 
@@ -1327,7 +1328,7 @@
 .login-button {
     width: 100%;
     padding: 12px;
-    background-color: #0078ff;
+    background-color: #F8BC4C;
     color: white;
     font-weight: 600;
     border: none;
@@ -1338,7 +1339,6 @@
 }
 
     .login-button:hover {
-        background-color: #005fcc;
         transform: translateY(-2px);
     }
 
@@ -1352,15 +1352,7 @@
         }
 }
 
-.banner-container {
-    background: url('src/img/services.jpg') center/cover no-repeat;
-    color: white;
-    text-align: center;
-    padding: 120px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .banner-content {
     background: rgba(0, 0, 0, 0.5);
@@ -2088,54 +2080,9 @@
 }
 
 /* Form Groups - Add these styles */
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
 
-    .form-group label {
-        display: block;
-        font-weight: 500;
-        color: #495057;
-        margin-bottom: 8px;
-        font-size: 14px;
-    }
 
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 12px 16px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 14px;
-        transition: border-color 0.2s ease;
-        background: #fafafa;
-        box-sizing: border-box; /* Add this */
-        max-width: 100%; /* Add this */
-    }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #007bff;
-            background: white;
-        }
-
-    .form-group textarea {
-        resize: vertical;
-        min-height: 80px;
-        max-width: 100%; /* Ensure textarea doesn't overflow */
-    }
-
-        /* Specifically for placeholder text */
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #999;
-            font-size: 13px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+   
 
 /* File Upload - Ensure it stays within bounds */
 .file-upload {
@@ -2155,7 +2102,7 @@
     transition: all 0.2s ease;
     text-align: center;
     width: 100%;
-    box-sizing: border-box; /* Add this */
+    box-sizing: border-box; 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2213,7 +2160,7 @@
     position: relative;
     background-size: cover;
     background-position: center;
-    min-height: 500px;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2306,6 +2253,7 @@
         color: #495057;
         margin-bottom: 8px;
         font-size: 14px;
+        color:white;
     }
 
     .form-group input,
@@ -2317,8 +2265,8 @@
         font-size: 14px;
         transition: border-color 0.2s ease;
         background: #fafafa;
-        box-sizing: border-box; /* Add this */
-        max-width: 100%; /* Add this */
+        box-sizing: border-box; 
+        max-width: 100%; 
     }
 
         .form-group input:focus,
@@ -2331,7 +2279,7 @@
     .form-group textarea {
         resize: vertical;
         min-height: 80px;
-        max-width: 100%; /* Ensure textarea doesn't overflow */
+        max-width: 100%; 
     }
 
         /* Specifically for placeholder text */
@@ -2455,8 +2403,6 @@
     min-width: 80px;
 }
 
-    
-
     .cancel-btn:disabled {
         opacity: 0.6;
         cursor: not-allowed;
@@ -2488,7 +2434,7 @@
     background: #ff6b35;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
     font-weight: 600;
@@ -2606,11 +2552,11 @@
 
 /* Logout Button Styles */
 .logout-btn {
-    padding: 8px 16px;
+    padding: 10px 16px;
     background: #dc3545;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
@@ -2630,7 +2576,7 @@
     background: #dc3545;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
@@ -2660,7 +2606,7 @@
     background: #f8f9fa;
     color: #333;
     border: 1px solid #dee2e6;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
@@ -2899,7 +2845,7 @@ body.services-section-active {
 .service-number {
     font-size: 6rem;
     font-weight: 800;
-    color: rgba(255, 107, 53, 0.2);
+    color: #F8BC4C;
     position: absolute;
     top: -40px;
     left: -20px;
@@ -2950,7 +2896,7 @@ body.services-section-active {
     left: 20px;
     right: 20px;
     bottom: 20px;
-    border: 2px solid rgba(255, 107, 53, 0.3);
+    border: 2px solid rgba(255, 107, 53, 0.2);
     border-radius: 15px;
     pointer-events: none;
 }
@@ -2995,7 +2941,7 @@ body.services-section-active {
 .cta-primary {
     padding: 15px 35px;
     border: none;
-    border-radius: 25px;
+    border-radius: 5px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;

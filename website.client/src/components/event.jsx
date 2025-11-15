@@ -1,6 +1,8 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 import { useAuth } from "./AuthContext";
+import event1 from "../img/event1.jpg";
+import event2 from "../img/event2.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -13,7 +15,7 @@ const defaultEvents = [
         title: "Lets plan your memorable moment at Sam Sound & Light",
         date: "Sat, 29 June",
         detail: "Event by Sam Sound & Lights",
-        image: "/img/event1.jpg",
+        image: event1,
         buttonText: "Learn More",
     },
     {
@@ -21,7 +23,7 @@ const defaultEvents = [
         title: "Steppin Out 1st Anniversary Competition",
         date: "Sat, 19 Nov",
         detail: "Event by Karabaw Martial Arts & Fitness Centre",
-        image: "/img/event2.jpg",
+        image: event2,
         buttonText: "Learn More",
     },
 ];
@@ -47,12 +49,12 @@ const Event = () => {
             });
 
             if (response.ok) {
-                console.log("✅ Backend is available");
+                console.log("Backend is available");
                 setBackendAvailable(true);
                 return true;
             }
         } catch (error) {
-            console.log("❌ Backend is not available:", error.message);
+            console.log("Backend is not available:", error.message);
             setBackendAvailable(false);
         }
         return false;
@@ -151,7 +153,7 @@ const Event = () => {
             if (res.ok && data.success) {
                 alert("Events updated successfully in backend!");
                 setEditMode(false);
-                await loadEvents(); // Reload from backend
+                await loadEvents(); 
             } else {
                 alert(data.message || "Failed to update events in backend.");
             }
@@ -175,19 +177,7 @@ const Event = () => {
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
-            {/* Backend Status Indicator */}
-            <div style={{
-                position: 'absolute',
-                top: '10px',
-                right: '10px',
-                padding: '5px 10px',
-                borderRadius: '5px',
-                fontSize: '12px',
-                backgroundColor: backendAvailable ? '#4CAF50' : '#ff9800',
-                color: 'white'
-            }}>
-                {backendAvailable ? 'Backend Connected' : 'Backend Offline'}
-            </div>
+            
 
             {/* Floating Edit Button */}
             {isStaff && !editMode && (
