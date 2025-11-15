@@ -21,7 +21,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: './src/img/event1.jpg',
+            image: '/img/event1.jpg', // Changed from ./img/ to /img/
             buttonText: 'Learn More'
         },
         {
@@ -29,7 +29,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: './src/img/event2.jpg',
+            image: '/img/event2.jpg', // Changed from ./img/ to /img/
             buttonText: 'Learn More'
         }
     ];
@@ -39,24 +39,56 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: './img/default-event.jpg',
+        image: '/img/default-event.jpg', // Use absolute path
         buttonText: 'Learn More'
+    };
+
+    // Function to get correct image URL
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) return '/img/default-event.jpg';
+
+        // If it's already a full URL, return as is
+        if (imagePath.startsWith('http')) {
+            return imagePath;
+        }
+
+        // If it starts with /, it's relative to the domain
+        if (imagePath.startsWith('/')) {
+            return imagePath;
+        }
+
+        // For relative paths without leading slash
+        return `/${imagePath}`;
     };
 
     // Load events from backend
     const loadEvents = async () => {
         try {
+            console.log('Loading events from:', API_BASE);
             const res = await fetch(API_BASE);
+
             if (res.ok) {
                 const data = await res.json();
+                console.log('Events loaded from backend:', data);
+
                 if (data && data.length > 0) {
-                    setEvents(data);
+                    // Ensure image URLs are correct
+                    const eventsWithCorrectedImages = data.map(event => ({
+                        ...event,
+                        image: getImageUrl(event.image)
+                    }));
+                    setEvents(eventsWithCorrectedImages);
                     return;
                 }
+            } else {
+                console.warn('Failed to load events from backend, status:', res.status);
             }
         } catch (err) {
-            console.log("Failed to load from backend, using default");
+            console.error("Failed to load from backend:", err);
         }
+
+        // Use default events if backend fails
+        console.log("Using default events");
         setEvents(defaultEvents);
     };
 
@@ -90,6 +122,8 @@ const Event = () => {
         setLoading(true);
 
         try {
+            console.log('Saving events:', events);
+
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
@@ -98,27 +132,27 @@ const Event = () => {
                 body: JSON.stringify(events),
             });
 
-            if (res.ok) {
-                const data = await res.json();
-                if (data.success) {
-                    alert("Events updated successfully!");
-                    setEditMode(false);
-                } else {
-                    alert(data.message || "Failed to update events.");
-                }
+            const result = await res.json();
+            console.log('Save response:', result);
+
+            if (res.ok && result.success) {
+                alert("Events updated successfully!");
+                setEditMode(false);
+                // Reload events to get the updated data from backend
+                loadEvents();
             } else {
-                throw new Error(`HTTP ${res.status}`);
+                alert(result.message || "Failed to update events.");
             }
         } catch (err) {
-            alert("Events updated successfully!");
-            setEditMode(false);
+            console.error('Save error:', err);
+            alert("Error saving events. Please try again.");
         } finally {
             setLoading(false);
         }
     };
 
     const handleCancel = () => {
-        setEvents(defaultEvents);
+        loadEvents(); // Reload original events
         setEditMode(false);
     };
 
@@ -145,7 +179,7 @@ const Event = () => {
                 <div className="events-grid">
                     {events.map((event, index) => (
                         <div
-                            key={event.id}
+                            key={event.id || index}
                             className="event-card"
                             onMouseEnter={() => setHoveredEventIndex(index)}
                             onMouseLeave={() => setHoveredEventIndex(null)}
@@ -163,7 +197,15 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
-                                <img src={event.image} alt={event.title} className="event-image" />
+                                <img
+                                    src={getImageUrl(event.image)}
+                                    alt={event.title}
+                                    className="event-image"
+                                    onError={(e) => {
+                                        // If image fails to load, use a default
+                                        e.target.src = '/img/default-event.jpg';
+                                    }}
+                                />
                             </div>
 
                             <div className="event-content">
@@ -175,9 +217,12 @@ const Event = () => {
                                                 value={event.image}
                                                 onChange={(e) => handleEventChange(index, 'image', e.target.value)}
                                                 className="edit-image-input"
-                                                placeholder="🖼️ Enter image URL..."
+                                                placeholder="🖼️ Enter image URL or path..."
                                                 disabled={loading}
                                             />
+                                            <small className="image-url-hint">
+                                                Use: /img/filename.jpg or full URL
+                                            </small>
                                         </div>
 
                                         <input

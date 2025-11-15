@@ -8,6 +8,6 @@
     "\\website.Server\\Controllers",
     "\\website.Server\\Data"
   ],
-  "SelectedNode": "\\website.Server\\Controllers\\EventsController.cs",
+  "SelectedNode": "\\website.Server\\Data\\AdminDbContext.cs",
   "PreviewInSolutionExplorer": false
 }
