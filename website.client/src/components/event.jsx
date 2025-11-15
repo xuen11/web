@@ -2,9 +2,9 @@
 import "../App.css";
 
 // Import images directly
-import event1 from "../img/event1.jpg";
-import event2 from "../img/event2.jpg";
-import defaultEvent from "../img/banner2.jpg";
+import event1 from "./img/event1.jpg";
+import event2 from "./img/event2.jpg";
+import defaultEvent from "./img/banner2.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -26,7 +26,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1, // Use imported image directly
+            image: event1, 
             buttonText: 'Learn More'
         },
         {
@@ -34,7 +34,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2, // Use imported image directly
+            image: event2, 
             buttonText: 'Learn More'
         }
     ];
@@ -44,7 +44,7 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: defaultEvent, // Use imported default image directly
+        image: defaultEvent, 
         buttonText: 'Learn More'
     };
 
@@ -126,7 +126,7 @@ const Event = () => {
     };
 
     const handleCancel = () => {
-        loadEvents(); // Reload original data
+        loadEvents(); 
         setEditMode(false);
     };
 
@@ -136,9 +136,8 @@ const Event = () => {
         e.target.src = defaultEvent;
     };
 
-    // Helper to get image source - use whatever is in the event object
     const getImageSrc = (event) => {
-        return event.image; // Use the image as-is from the event data
+        return event.image;
     };
 
     return (
