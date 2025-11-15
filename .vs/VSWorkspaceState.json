@@ -6,7 +6,8 @@
     "\\website.client\\src\\components",
     "\\website.Server",
     "\\website.Server\\Controllers",
-    "\\website.Server\\Data"
+    "\\website.Server\\Data",
+    "\\website.Server\\Models"
   ],
   "SelectedNode": "\\website.Server\\Data\\AdminDbContext.cs",
   "PreviewInSolutionExplorer": false

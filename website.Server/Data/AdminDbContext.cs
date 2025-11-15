@@ -80,30 +80,7 @@ namespace website.Server.Data
                     UpdatedAt = DateTime.UtcNow
                 }
             );
-            modelBuilder.Entity<Event>().HasData(
-                new Event
-                {
-                    Id = 1,
-                    Title = "Lets plan your memorable moment at Sam Sound & Light",
-                    Date = "Sat, 29 June",
-                    Detail = "Event by Sam Sound & Lights",
-                    Image = "/img/event1.jpg",
-                    ButtonText = "Learn More",
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                },
-                new Event
-                {
-                    Id = 2,
-                    Title = "Steppin Out 1st Anniversary Competition",
-                    Date = "Sat, 19 Nov",
-                    Detail = "Event by Karabaw Martial Arts & Fitness Centre",
-                    Image = "/img/event2.jpg",
-                    ButtonText = "Learn More",
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                }
-            );
+            
         
         }
     }
