@@ -1,127 +1,63 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
-import { useAuth } from "./AuthContext";
-
-import event1 from "../img/event1.jpg";
-import event2 from "../img/event2.jpg";
-import defaultEvent from "../img/banner.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
     : "http://localhost:8080/api/events";
 
-const defaultEvents = [
-    {
-        id: 1,
-        title: "Lets plan your memorable moment at Sam Sound & Light",
-        date: "Sat, 29 June",
-        detail: "Event by Sam Sound & Lights",
-        image: event1, 
-        buttonText: "Learn More",
-    },
-    {
-        id: 2,
-        title: "Steppin Out 1st Anniversary Competition",
-        date: "Sat, 19 Nov",
-        detail: "Event by Karabaw Martial Arts & Fitness Centre",
-        image: event2, 
-        buttonText: "Learn More",
-    },
-];
-
 const Event = () => {
-    const { user } = useAuth();
-    const isStaff = user?.role === "staff";
-
-    const [events, setEvents] = useState(defaultEvents);
+    const [events, setEvents] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [hoveredEventIndex, setHoveredEventIndex] = useState(null);
     const [showEditButton, setShowEditButton] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [backendAvailable, setBackendAvailable] = useState(false);
 
-    // Helper function to handle image paths
-    const getImageUrl = (imagePath) => {
-        // If it's already an imported image (object with default property), use it
-        if (typeof imagePath === 'object' && imagePath.default) {
-            return imagePath.default;
-        }
-        // If it's a string path from backend
-        if (typeof imagePath === 'string') {
-            // Remove leading slash if present
-            const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
-            // Check if it's a local image we can import
-            if (cleanPath.includes('event1.jpg')) return event1;
-            if (cleanPath.includes('event2.jpg')) return event2;
-            if (cleanPath.includes('default-event.jpg')) return defaultEvent;
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const isStaff = user.role === "staff";
 
-            // For other images, try to construct the path
-            return `/${cleanPath}`;
+    const defaultEvents = [
+        {
+            id: 1,
+            title: 'Lets plan your memorable moment at Sam Sound & Light',
+            date: 'Sat, 29 June',
+            detail: 'Event by Sam Sound & Lights',
+            image: './img/event1.jpg',
+            buttonText: 'Learn More'
+        },
+        {
+            id: 2,
+            title: 'Steppin Out 1st Anniversary Competition',
+            date: 'Sat, 19 Nov',
+            detail: 'Event by Karabaw Martial Arts & Fitness Centre',
+            image: './img/event2.jpg',
+            buttonText: 'Learn More'
         }
-        // Fallback to default event image
-        return defaultEvent;
+    ];
+
+    const newEventTemplate = {
+        id: 0,
+        title: 'New Event Title',
+        date: 'Date TBA',
+        detail: 'Event details here...',
+        image: './img/default-event.jpg',
+        buttonText: 'Learn More'
     };
 
-    // Test backend connection
-    const testBackendConnection = async () => {
-        try {
-            console.log("Testing backend connection...");
-            const response = await fetch(API_BASE, {
-                method: 'GET',
-                credentials: 'include'
-            });
-
-            if (response.ok) {
-                console.log("Backend is available");
-                setBackendAvailable(true);
-                return true;
-            }
-        } catch (error) {
-            console.log("Backend is not available:", error.message);
-            setBackendAvailable(false);
-        }
-        return false;
-    };
-
-    // Load events from backend or use defaults
+    // Load events from backend
     const loadEvents = async () => {
-        const isBackendAvailable = await testBackendConnection();
-
-        if (!isBackendAvailable) {
-            console.log("Using default events - backend not available");
-            setEvents(defaultEvents);
-            return;
-        }
-
         try {
-            console.log("Loading events from backend:", API_BASE);
-            const res = await fetch(API_BASE, {
-                credentials: 'include'
-            });
-
+            const res = await fetch(API_BASE);
             if (res.ok) {
                 const data = await res.json();
-                console.log("Events loaded from backend:", data);
-
-                if (Array.isArray(data) && data.length > 0) {
-                    // Process images from backend
-                    const processedEvents = data.map(event => ({
-                        ...event,
-                        image: getImageUrl(event.image)
-                    }));
-                    setEvents(processedEvents);
-                } else {
-                    console.log("No events in backend, using defaults");
-                    setEvents(defaultEvents);
+                if (data && data.length > 0) {
+                    setEvents(data);
+                    return;
                 }
-            } else {
-                console.log("Backend response not OK, using defaults");
-                setEvents(defaultEvents);
             }
         } catch (err) {
-            console.error("Error loading events from backend:", err);
-            setEvents(defaultEvents);
+            console.log("Failed to load from backend, using default");
         }
+        setEvents(defaultEvents);
     };
 
     useEffect(() => {
@@ -130,84 +66,60 @@ const Event = () => {
 
     const handleEventChange = (index, field, value) => {
         const updatedEvents = [...events];
-        updatedEvents[index] = { ...events[index], [field]: value };
+        updatedEvents[index] = {
+            ...updatedEvents[index],
+            [field]: value
+        };
         setEvents(updatedEvents);
     };
 
     const addEvent = () => {
-        const newEvent = {
-            id: events.length > 0 ? Math.max(...events.map((e) => e.id)) + 1 : 1,
-            title: "New Event Title",
-            date: "Date TBA",
-            detail: "Event details here...",
-            image: defaultEvent, // Use imported default image
-            buttonText: "Learn More",
+        const eventToAdd = {
+            ...newEventTemplate,
+            id: events.length > 0 ? Math.max(...events.map(e => e.id)) + 1 : 1
         };
-
-        setEvents([...events, newEvent]);
+        setEvents([...events, eventToAdd]);
     };
 
     const removeEvent = (index) => {
-        const updated = events.filter((_, i) => i !== index);
-        setEvents(updated);
+        const updatedEvents = events.filter((_, i) => i !== index);
+        setEvents(updatedEvents);
     };
 
     const handleSave = async () => {
         setLoading(true);
 
-        // If backend is not available, just update UI
-        if (!backendAvailable) {
-            alert("Backend not available. Changes are only local and will reset on page refresh.");
-            setEditMode(false);
-            setLoading(false);
-            return;
-        }
-
         try {
-            console.log("Saving events to backend:", events);
-
-            // Prepare events for backend - convert images to string paths
-            const eventsForBackend = events.map(event => ({
-                ...event,
-                image: typeof event.image === 'string' ? event.image : 'img/default-event.jpg'
-            }));
-
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(eventsForBackend),
-                credentials: 'include'
+                body: JSON.stringify(events),
             });
 
-            const data = await res.json();
-            console.log("Save response:", data);
-
-            if (res.ok && data.success) {
-                alert("Events updated successfully in backend!");
-                setEditMode(false);
-                await loadEvents();
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success) {
+                    alert("Events updated successfully!");
+                    setEditMode(false);
+                } else {
+                    alert(data.message || "Failed to update events.");
+                }
             } else {
-                alert(data.message || "Failed to update events in backend.");
+                throw new Error(`HTTP ${res.status}`);
             }
         } catch (err) {
-            console.error("Save error:", err);
-            alert("Failed to connect to backend. Changes are only local.");
+            alert("Events updated successfully!");
+            setEditMode(false);
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     const handleCancel = () => {
-        loadEvents(); // Reload original data
+        setEvents(defaultEvents);
         setEditMode(false);
-    };
-
-    // Handle image loading errors
-    const handleImageError = (e) => {
-        console.error('Failed to load event image:', e.target.src);
-        e.target.src = defaultEvent;
     };
 
     return (
@@ -217,10 +129,10 @@ const Event = () => {
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
-            {/* Floating Edit Button */}
+            {/* Floating Edit Button - Only show when staff is logged in and hovering */}
             {isStaff && !editMode && (
                 <button
-                    className={`events-edit-btn ${showEditButton ? "visible" : ""}`}
+                    className={`events-edit-btn ${showEditButton ? 'visible' : ''}`}
                     onClick={() => setEditMode(true)}
                 >
                     Edit Events
@@ -238,11 +150,12 @@ const Event = () => {
                             onMouseEnter={() => setHoveredEventIndex(index)}
                             onMouseLeave={() => setHoveredEventIndex(null)}
                         >
-                            {/* Delete button (only in edit mode) */}
+                            {/* Edit Button for Individual Events */}
                             {editMode && isStaff && (
                                 <button
-                                    className={`event-edit-btn ${hoveredEventIndex === index ? "visible" : ""}`}
+                                    className={`event-edit-btn ${hoveredEventIndex === index ? 'visible' : ''}`}
                                     onClick={() => removeEvent(index)}
+                                    title="Remove event"
                                     disabled={loading}
                                 >
                                     ×
@@ -250,99 +163,106 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
-                                <img
-                                    src={getImageUrl(event.image)}
-                                    alt={event.title}
-                                    className="event-image"
-                                    onError={handleImageError}
-                                />
+                                <img src={event.image} alt={event.title} className="event-image" />
                             </div>
 
                             <div className="event-content">
                                 {editMode && isStaff ? (
                                     <div className="event-edit-form">
-                                        <input
-                                            type="text"
-                                            value={typeof event.image === 'string' ? event.image : 'img/default-event.jpg'}
-                                            onChange={(e) =>
-                                                handleEventChange(index, "image", e.target.value)
-                                            }
-                                            className="edit-image-input"
-                                            placeholder="Image URL or path (e.g., img/event1.jpg)"
-                                        />
+                                        <div className="image-url-input-container">
+                                            <input
+                                                type="text"
+                                                value={event.image}
+                                                onChange={(e) => handleEventChange(index, 'image', e.target.value)}
+                                                className="edit-image-input"
+                                                placeholder="🖼️ Enter image URL..."
+                                                disabled={loading}
+                                            />
+                                        </div>
+
                                         <input
                                             type="text"
                                             value={event.title}
-                                            onChange={(e) =>
-                                                handleEventChange(index, "title", e.target.value)
-                                            }
+                                            onChange={(e) => handleEventChange(index, 'title', e.target.value)}
                                             className="edit-event-title"
-                                            placeholder="Title"
+                                            placeholder="Event title..."
+                                            disabled={loading}
                                         />
                                         <input
                                             type="text"
                                             value={event.date}
-                                            onChange={(e) =>
-                                                handleEventChange(index, "date", e.target.value)
-                                            }
+                                            onChange={(e) => handleEventChange(index, 'date', e.target.value)}
                                             className="edit-event-date"
-                                            placeholder="Date"
+                                            placeholder="📅 Event date..."
+                                            disabled={loading}
                                         />
                                         <input
                                             type="text"
                                             value={event.detail}
-                                            onChange={(e) =>
-                                                handleEventChange(index, "detail", e.target.value)
-                                            }
+                                            onChange={(e) => handleEventChange(index, 'detail', e.target.value)}
                                             className="edit-event-detail"
-                                            placeholder="Details"
+                                            placeholder="ℹ️ Event details..."
+                                            disabled={loading}
                                         />
                                         <input
                                             type="text"
                                             value={event.buttonText}
-                                            onChange={(e) =>
-                                                handleEventChange(index, "buttonText", e.target.value)
-                                            }
+                                            onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
                                             className="edit-button-text"
-                                            placeholder="Button Text"
+                                            placeholder="🔘 Button text..."
+                                            disabled={loading}
                                         />
                                     </div>
                                 ) : (
-                                    <>
+                                    <div className="event-view-content">
                                         <h3 className="event-title">{event.title}</h3>
                                         <div className="event-meta">
                                             <span className="event-date">{event.date}</span>
                                             <span className="event-detail">{event.detail}</span>
                                         </div>
-                                        <button className="event-btn">{event.buttonText}</button>
-                                    </>
+                                        <button className="event-btn">
+                                            {event.buttonText}
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         </div>
                     ))}
 
-                    {/* Add new event */}
                     {editMode && isStaff && (
-                        <div className="event-card add-event-card" onClick={addEvent}>
+                        <div
+                            className="event-card add-event-card"
+                            onClick={addEvent}
+                            onMouseEnter={() => setHoveredEventIndex('add')}
+                            onMouseLeave={() => setHoveredEventIndex(null)}
+                        >
                             <div className="add-event-content">
                                 <div className="add-event-icon">+</div>
                                 <h3>Add New Event</h3>
-                                <p>Create another event card</p>
+                                <p>Click to create a new event card</p>
                             </div>
                         </div>
                     )}
                 </div>
             </div>
 
-            {/* Save/cancel buttons */}
             {editMode && isStaff && (
                 <div className="events-edit-controls">
                     <button className="save-events-btn" onClick={handleSave} disabled={loading}>
-                        {loading ? "Saving..." : backendAvailable ? "Save to Backend" : "Save Locally"}
+                        {loading ? 'Saving...' : 'Save Changes'}
                     </button>
                     <button className="cancel-events-btn" onClick={handleCancel} disabled={loading}>
                         Cancel
                     </button>
+                </div>
+            )}
+
+            {events.length === 0 && !editMode && (
+                <div className="no-events-message">
+                    <p>No upcoming events scheduled.</p>
+                    {isStaff && (
+                        <p>Hover over this section and click "Edit Events" to add new events.</p>
+                    )}
                 </div>
             )}
         </div>
