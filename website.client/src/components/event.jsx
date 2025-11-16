@@ -4,7 +4,7 @@ import "../App.css";
 // Import images directly from src/img folder
 import event1Image from "../img/event1.jpg";
 import event2Image from "../img/event2.jpg";
-import defaultEventImage from "../img/default-event.jpg";
+import defaultEventImage from "../img/banner.jpg"; // Changed to use your banner.jpg
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -26,7 +26,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1Image,
+            image: event1Image, // Direct imported image
             buttonText: 'Learn More'
         },
         {
@@ -34,7 +34,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2Image,
+            image: event2Image, // Direct imported image
             buttonText: 'Learn More'
         }
     ];
@@ -44,7 +44,7 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: defaultEventImage,
+        image: defaultEventImage, // Uses your banner.jpg directly
         buttonText: 'Learn More'
     };
 
@@ -63,31 +63,50 @@ const Event = () => {
 
             if (data && data.length > 0) {
                 const mappedEvents = data.map(event => {
-                    // Use imported images for default events, URLs for custom ones
-                    let imageToUse;
+                    // Use imported images directly, no URL conversion for default images
                     const eventImage = event.Image || event.image;
 
-                    if (eventImage === '/img/event1.jpg') {
-                        imageToUse = event1Image;
-                    } else if (eventImage === '/img/event2.jpg') {
-                        imageToUse = event2Image;
-                    } else if (eventImage === '/img/default-event.jpg') {
-                        imageToUse = defaultEventImage;
+                    // Map specific image paths to imported images
+                    if (eventImage === '/img/event1.jpg' || eventImage === event1Image) {
+                        return {
+                            id: event.Id || event.id,
+                            title: event.Title || event.title,
+                            date: event.Date || event.date,
+                            detail: event.Detail || event.detail,
+                            image: event1Image, // Use imported image directly
+                            buttonText: event.ButtonText || event.buttonText
+                        };
+                    } else if (eventImage === '/img/event2.jpg' || eventImage === event2Image) {
+                        return {
+                            id: event.Id || event.id,
+                            title: event.Title || event.title,
+                            date: event.Date || event.date,
+                            detail: event.Detail || event.detail,
+                            image: event2Image, // Use imported image directly
+                            buttonText: event.ButtonText || event.buttonText
+                        };
+                    } else if (eventImage === '/img/banner.jpg' || eventImage === defaultEventImage) {
+                        return {
+                            id: event.Id || event.id,
+                            title: event.Title || event.title,
+                            date: event.Date || event.date,
+                            detail: event.Detail || event.detail,
+                            image: defaultEventImage, // Use your banner.jpg directly
+                            buttonText: event.ButtonText || event.buttonText
+                        };
                     } else {
                         // For custom uploaded images, use the URL
-                        imageToUse = eventImage.startsWith('http')
-                            ? eventImage
-                            : `${import.meta.env.VITE_API_URL || "http://localhost:8080"}${eventImage.startsWith('/') ? '' : '/'}${eventImage}`;
+                        return {
+                            id: event.Id || event.id,
+                            title: event.Title || event.title,
+                            date: event.Date || event.date,
+                            detail: event.Detail || event.detail,
+                            image: eventImage.startsWith('http')
+                                ? eventImage
+                                : `${import.meta.env.VITE_API_URL || "http://localhost:8080"}${eventImage.startsWith('/') ? '' : '/'}${eventImage}`,
+                            buttonText: event.ButtonText || event.buttonText
+                        };
                     }
-
-                    return {
-                        id: event.Id || event.id,
-                        title: event.Title || event.title,
-                        date: event.Date || event.date,
-                        detail: event.Detail || event.detail,
-                        image: imageToUse,
-                        buttonText: event.ButtonText || event.buttonText
-                    };
                 });
                 setEvents(mappedEvents);
                 return;
@@ -136,7 +155,7 @@ const Event = () => {
                 Title: event.title,
                 Date: event.date,
                 Detail: event.detail,
-                Image: event.image, // This will be the imported image object, we need to convert to path
+                Image: event.image, // This will be the imported image object
                 ButtonText: event.buttonText,
                 CreatedAt: new Date().toISOString(),
                 UpdatedAt: new Date().toISOString()
@@ -152,7 +171,6 @@ const Event = () => {
 
             console.log("Save response status:", res.status);
 
-            // Handle response
             if (!res.ok) {
                 const errorText = await res.text();
                 console.error("Save error response:", errorText);
@@ -165,8 +183,6 @@ const Event = () => {
             if (data.success) {
                 alert("Events updated successfully!");
                 setEditMode(false);
-
-                // Reload the events to get fresh data
                 await loadEvents();
             } else {
                 alert(data.message || "Failed to update events.");
@@ -191,7 +207,6 @@ const Event = () => {
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
-            {/* Floating Edit Button - Only show when staff is logged in and hovering */}
             {isStaff && !editMode && (
                 <button
                     className={`events-edit-btn ${showEditButton ? 'visible' : ''}`}
@@ -212,7 +227,6 @@ const Event = () => {
                             onMouseEnter={() => setHoveredEventIndex(index)}
                             onMouseLeave={() => setHoveredEventIndex(null)}
                         >
-                            {/* Edit Button for Individual Events */}
                             {editMode && isStaff && (
                                 <button
                                     className={`event-edit-btn ${hoveredEventIndex === index ? 'visible' : ''}`}
