@@ -1,6 +1,11 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 
+// Import images directly
+import event1Image from "../img/event1.jpg";
+import event2Image from "../img/event2.jpg";
+import defaultEventImage from "../img/default-event.jpg";
+
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
     : "http://localhost:8080/api/events";
@@ -21,7 +26,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: '/img/event1.jpg',
+            image: event1Image, // Use imported image directly
             buttonText: 'Learn More'
         },
         {
@@ -29,7 +34,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: '/img/event2.jpg',
+            image: event2Image, // Use imported image directly
             buttonText: 'Learn More'
         }
     ];
@@ -39,19 +44,11 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: '/img/default-event.jpg',
+        image: defaultEventImage, // Use imported image directly
         buttonText: 'Learn More'
     };
 
-    // Function to get correct image URL (same style as Banner component)
-    const getImageUrl = (imagePath) => {
-        if (!imagePath) return '/img/default-event.jpg';
-
-        // Use the imagePath directly from the response (same as Banner)
-        return imagePath;
-    };
-
-    // Load events from backend (same style as Banner component)
+    // Load events from backend
     const loadEvents = async () => {
         try {
             console.log("Loading events from:", API_BASE);
@@ -71,7 +68,7 @@ const Event = () => {
                     title: event.Title || event.title,
                     date: event.Date || event.date,
                     detail: event.Detail || event.detail,
-                    image: event.Image || event.image,
+                    image: event.Image || event.image, // Use image directly
                     buttonText: event.ButtonText || event.buttonText
                 }));
                 setEvents(mappedEvents);
@@ -121,7 +118,7 @@ const Event = () => {
                 Title: event.title,
                 Date: event.date,
                 Detail: event.detail,
-                Image: event.image,
+                Image: event.image, // Save image path directly
                 ButtonText: event.buttonText,
                 CreatedAt: new Date().toISOString(),
                 UpdatedAt: new Date().toISOString()
@@ -137,7 +134,6 @@ const Event = () => {
 
             console.log("Save response status:", res.status);
 
-            // Handle response (same style as Banner component)
             if (!res.ok) {
                 const errorText = await res.text();
                 console.error("Save error response:", errorText);
@@ -150,8 +146,6 @@ const Event = () => {
             if (data.success) {
                 alert("Events updated successfully!");
                 setEditMode(false);
-
-                // Reload the events to get fresh data (same as Banner)
                 await loadEvents();
             } else {
                 alert(data.message || "Failed to update events.");
@@ -166,7 +160,7 @@ const Event = () => {
 
     const handleCancel = () => {
         setEditMode(false);
-        loadEvents(); // Reload original events (same as Banner)
+        loadEvents();
     };
 
     return (
@@ -176,7 +170,6 @@ const Event = () => {
             onMouseEnter={() => isStaff && setShowEditButton(true)}
             onMouseLeave={() => isStaff && setShowEditButton(false)}
         >
-            {/* Floating Edit Button - Only show when staff is logged in and hovering */}
             {isStaff && !editMode && (
                 <button
                     className={`events-edit-btn ${showEditButton ? 'visible' : ''}`}
@@ -197,7 +190,6 @@ const Event = () => {
                             onMouseEnter={() => setHoveredEventIndex(index)}
                             onMouseLeave={() => setHoveredEventIndex(null)}
                         >
-                            {/* Edit Button for Individual Events */}
                             {editMode && isStaff && (
                                 <button
                                     className={`event-edit-btn ${hoveredEventIndex === index ? 'visible' : ''}`}
@@ -210,8 +202,9 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
+                                {/* Use image directly - no URL conversion */}
                                 <img
-                                    src={getImageUrl(event.image)}
+                                    src={event.image || defaultEventImage}
                                     alt={event.title}
                                     className="event-image"
                                 />
@@ -226,7 +219,7 @@ const Event = () => {
                                                 value={event.image}
                                                 onChange={(e) => handleEventChange(index, 'image', e.target.value)}
                                                 className="edit-image-input"
-                                                placeholder="🖼️ Enter image URL..."
+                                                placeholder="🖼️ Enter image path (e.g., ../img/your-image.jpg)"
                                                 disabled={loading}
                                             />
                                         </div>
