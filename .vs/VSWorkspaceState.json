@@ -3,15 +3,14 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\public",
-    "\\website.client\\src\\public\\img",
+    "\\website.client\\src\\components",
     "\\website.Server",
-    "\\website.Server\\Controllers",
-    "\\website.Server\\Data",
-    "\\website.Server\\Models",
     "\\website.Server\\publish",
     "\\website.Server\\publish\\wwwroot",
-    "\\website.Server\\publish\\wwwroot\\uploads"
+    "\\website.Server\\publish\\wwwroot\\uploads",
+    "\\website.Server\\wwwroot",
+    "\\website.Server\\wwwroot\\uploads"
   ],
+  "SelectedNode": "\\website.client\\src\\components\\event.jsx",
   "PreviewInSolutionExplorer": false
 }
