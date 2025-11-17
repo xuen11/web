@@ -1,5 +1,4 @@
-﻿// In App.jsx
-import './App.css';
+﻿import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/header';
 import Banner from './components/banner';

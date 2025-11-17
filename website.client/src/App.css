@@ -2079,13 +2079,9 @@
     }
 }
 
-/* Form Groups - Add these styles */
 
 
-   
-
-/* File Upload - Ensure it stays within bounds */
-.file-upload {
+  .file-upload {
     position: relative;
     width: 100%;
 }

@@ -61,7 +61,6 @@ const Services = () => {
                 const newSection = Math.round(scrollTop / sectionHeight);
                 setCurrentSection(newSection);
 
-                // Show navigation dots only in first, service, or last sections
                 if (newSection === 0 || newSection === services.length + 1 || (newSection >= 1 && newSection <= services.length)) {
                     setShowNavDots(true);
                 } else {

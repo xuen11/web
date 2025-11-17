@@ -2,7 +2,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../App.css';
 
-// Import images directly
 import logoImg from '../img/logo.jpg';
 import profileImg from '../img/profile.jpg';
 

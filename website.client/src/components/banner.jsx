@@ -8,7 +8,7 @@ const API_BASE = import.meta.env.VITE_API_URL
 const Banner = () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     const token = localStorage.getItem("authToken");
-    const isStaff = user.role === "staff";
+    const isStaff = user.role === "staff" || user.role === "admin";
 
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
@@ -35,7 +35,6 @@ const Banner = () => {
             setTitle(data.title || "");
             setSubtitle(data.subtitle || "");
 
-            // Use the imagePath directly from the response
             if (data.imagePath) {
                 setBgImage(data.imagePath);
             } else {
@@ -105,7 +104,6 @@ const Banner = () => {
 
             console.log("Save response status:", res.status);
 
-            // Handle response
             if (!res.ok) {
                 const errorText = await res.text();
                 console.error("Save error response:", errorText);
@@ -121,12 +119,10 @@ const Banner = () => {
                 setFile(null);
                 setPreviewImage(null);
 
-                // Update the background image with the new URL from response
                 if (data.banner?.imagePath) {
                     setBgImage(data.banner.imagePath);
                 }
 
-                // Reload the banner to get fresh data
                 await loadBanner();
             } else {
                 alert(data.message || "Failed to update banner.");

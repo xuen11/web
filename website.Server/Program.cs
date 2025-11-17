@@ -18,7 +18,6 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrWhiteSpace(connectionString))
 {
-    // Fallback to environment variable
     connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
 }
 
@@ -29,13 +28,11 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 Console.WriteLine($"Using MySQL connection: {connectionString}");
 
-// Add DbContext with MySQL
 builder.Services.AddDbContext<AdminDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-// Configure CORS - ADD YOUR ACTUAL VERCEL DOMAIN
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", policy =>
@@ -43,7 +40,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "https://web-kohl-three-21.vercel.app",
             "http://localhost:5173",
-            "https://your-actual-vercel-domain.vercel.app" // ADD THIS
+            "https://your-actual-vercel-domain.vercel.app"
         )
         .AllowAnyHeader()
         .AllowAnyMethod()
@@ -53,27 +50,22 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Swagger UI in Development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Middleware - CORRECT ORDER
 app.UseRouting();
 app.UseCors("FrontendPolicy");
 app.UseAuthorization();
 app.UseStaticFiles();
 
-// Map API controllers
 app.MapControllers();
 
-// Health check endpoints
 app.MapGet("/", () => "Backend API is running!");
 app.MapGet("/health", () => Results.Json(new { status = "Healthy", timestamp = DateTime.UtcNow }));
 
-// Debug endpoint to list tables
 app.MapGet("/debug/tables", async (HttpContext httpContext) =>
 {
     try

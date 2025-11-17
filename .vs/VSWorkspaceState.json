@@ -5,11 +5,11 @@
     "\\website.client\\src",
     "\\website.client\\src\\components",
     "\\website.Server",
-    "\\website.Server\\publish",
-    "\\website.Server\\publish\\wwwroot",
-    "\\website.Server\\publish\\wwwroot\\uploads",
-    "\\website.Server\\wwwroot",
-    "\\website.Server\\wwwroot\\uploads"
+    "\\website.Server\\Controllers",
+    "\\website.Server\\Data",
+    "\\website.Server\\Models",
+    "\\website.Server\\Properties"
   ],
+  "SelectedNode": "\\website.client\\src\\components\\AuthContext.jsx",
   "PreviewInSolutionExplorer": false
 }

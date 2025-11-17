@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("website.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2577e542069bc1a553f189029fccac6922ddb083")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed997cfb80e59236d7f6d70da789d891a9c621f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("website.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("website.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

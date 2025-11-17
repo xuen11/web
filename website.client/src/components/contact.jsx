@@ -25,7 +25,6 @@ export default function Contact() {
         setMessage("");
 
         try {
-            // Use environment variable or fallback to correct port
             const API_BASE = import.meta.env.VITE_API_URL
                 ? `${import.meta.env.VITE_API_URL}/api/contact`
                 : "http://localhost:8080/api/contact";

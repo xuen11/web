@@ -24,7 +24,6 @@ namespace website.Server.Controllers
             {
                 var events = await _context.Events.ToListAsync();
 
-                // Return events with camelCase properties for frontend
                 var response = events.Select(e => new
                 {
                     id = e.Id,
@@ -39,7 +38,6 @@ namespace website.Server.Controllers
             }
             catch (Exception ex)
             {
-                // Return empty array if table doesn't exist yet
                 return Ok(new List<object>());
             }
         }
@@ -55,11 +53,9 @@ namespace website.Server.Controllers
                     return BadRequest(new { success = false, message = "Events data is required" });
                 }
 
-                // Clear existing events
                 var existingEvents = await _context.Events.ToListAsync();
                 _context.Events.RemoveRange(existingEvents);
 
-                // Add new events
                 foreach (var eventItem in events)
                 {
                     var newEvent = new Event
@@ -78,7 +74,6 @@ namespace website.Server.Controllers
 
                 await _context.SaveChangesAsync();
 
-                // Return the updated events with camelCase
                 var updatedEvents = await _context.Events.ToListAsync();
                 var response = updatedEvents.Select(e => new
                 {
@@ -108,7 +103,6 @@ namespace website.Server.Controllers
         }
     }
 
-    // Input model for events with camelCase properties
     public class EventInputModel
     {
         public int id { get; set; }

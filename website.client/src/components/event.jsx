@@ -1,10 +1,9 @@
 ﻿import React, { useState, useEffect } from "react";
 import "../App.css";
 
-// Import images directly from src/img folder
 import event1Image from "../img/event1.jpg";
 import event2Image from "../img/event2.jpg";
-import defaultEventImage from "../img/banner.jpg"; // Changed to use your banner.jpg
+import defaultEventImage from "../img/banner.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -18,7 +17,7 @@ const Event = () => {
     const [loading, setLoading] = useState(false);
 
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const isStaff = user.role === "staff";
+    const isStaff = user.role === "staff" || user.role === "admin";
 
     const defaultEvents = [
         {
@@ -26,7 +25,7 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1Image, // Direct imported image
+            image: event1Image,
             buttonText: 'Learn More'
         },
         {
@@ -34,7 +33,7 @@ const Event = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2Image, // Direct imported image
+            image: event2Image, 
             buttonText: 'Learn More'
         }
     ];
@@ -44,7 +43,7 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: defaultEventImage, // Uses your banner.jpg directly
+        image: defaultEventImage,
         buttonText: 'Learn More'
     };
 
@@ -63,17 +62,15 @@ const Event = () => {
 
             if (data && data.length > 0) {
                 const mappedEvents = data.map(event => {
-                    // Use imported images directly, no URL conversion for default images
                     const eventImage = event.Image || event.image;
 
-                    // Map specific image paths to imported images
                     if (eventImage === '/img/event1.jpg' || eventImage === event1Image) {
                         return {
                             id: event.Id || event.id,
                             title: event.Title || event.title,
                             date: event.Date || event.date,
                             detail: event.Detail || event.detail,
-                            image: event1Image, // Use imported image directly
+                            image: event1Image, 
                             buttonText: event.ButtonText || event.buttonText
                         };
                     } else if (eventImage === '/img/event2.jpg' || eventImage === event2Image) {
@@ -82,7 +79,7 @@ const Event = () => {
                             title: event.Title || event.title,
                             date: event.Date || event.date,
                             detail: event.Detail || event.detail,
-                            image: event2Image, // Use imported image directly
+                            image: event2Image,
                             buttonText: event.ButtonText || event.buttonText
                         };
                     } else if (eventImage === '/img/banner.jpg' || eventImage === defaultEventImage) {
@@ -91,11 +88,10 @@ const Event = () => {
                             title: event.Title || event.title,
                             date: event.Date || event.date,
                             detail: event.Detail || event.detail,
-                            image: defaultEventImage, // Use your banner.jpg directly
+                            image: defaultEventImage, 
                             buttonText: event.ButtonText || event.buttonText
                         };
                     } else {
-                        // For custom uploaded images, use the URL
                         return {
                             id: event.Id || event.id,
                             title: event.Title || event.title,
@@ -149,13 +145,12 @@ const Event = () => {
         try {
             console.log("Saving events with:", events);
 
-            // Map frontend properties to backend properties
             const eventsToSave = events.map(event => ({
                 Id: event.id,
                 Title: event.title,
                 Date: event.date,
                 Detail: event.detail,
-                Image: event.image, // This will be the imported image object
+                Image: event.image, 
                 ButtonText: event.buttonText,
                 CreatedAt: new Date().toISOString(),
                 UpdatedAt: new Date().toISOString()
