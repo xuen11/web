@@ -1,21 +1,36 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
 import "/src/App.css";
 import banner from "/src/img/event12.jpg";
+import service from "/src/img/fastService.jpg";
+import team from "/src/img/team.jpg";
+import price from "/src/img/price.jpg";
 import aboutVideo from "/src/public/about.mp4"; 
+import wedding from "/src/img/wedding.jpg";
+import seminar from "/src/img/seminar.jpg";
+import concert from "/src/img/concert.jpg";
+import launching from "/src/img/launching.jpg";
+import festival from "/src/img/festival.jpg";
+import annualDinner from "/src/img/annualDinner.jpg";
+import openHouse from "/src/img/openHouse.jpg";
+import competition from "/src/img/competition.jpg";
+import meeting from "/src/img/meeting.jpg";
+import birthday from "/src/img/birthday.jpg";
+import party from "/src/img/party.jpg";
+
 
 const stats = [
     {
-        icon: "/src/img/fastService.jpg",
+        icon: { service },
         label: "Fast Services",
         description: "Quick setup and professional execution",
     },
     {
-        icon: "/src/img/team.jpg",
+        icon: {team},
         label: "Professional Team",
         description: "Experienced and skilled event specialists",
     },
     {
-        icon: "/src/img/price.jpg",
+        icon: {price},
         label: "Affordable Price",
         description: "Quality services at competitive rates",
     },
@@ -23,47 +38,47 @@ const stats = [
 
 const features = [
     {
-        image: "/src/img/wedding.jpg",
+        image: { wedding },
         title: "Wedding",
     },
     {
-        image: "/src/img/seminar.jpg",
+        image: { seminar },
         title: "Seminar",
     },
     {
-        image: "/src/img/concert.jpg",
+        image: { concert },
         title: "Concerts",
     },
     {
-        image: "/src/img/launching.jpg",
+        image: { launching },
         title: "Product Launches",
     },
     {
-        image: "/src/img/festival.jpg",
+        image: { festival },
         title: "Festivals",
     },
     {
-        image: "/src/img/annualDinner.jpg",
+        image: { annualDinner },
         title: "Annual Dinner",
     },
     {
-        image: "/src/img/openHouse.jpg",
+        image: { openHouse },
         title: "Open House",
     },
     {
-        image: "/src/img/competition.jpg",
+        image: { competition},
         title: "Competition",
     },
     {
-        image: "/src/img/meeting.jpg",
+        image: { meeting },
         title: "Meeting",
     },
     {
-        image: "/src/img/birthday.jpg",
+        image: { birthday },
         title: "Birthday Parties",
     },
     {
-        image: "/src/img/party.jpg",
+        image: {party},
         title: "Party",
     },
 ];

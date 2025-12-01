@@ -1,6 +1,16 @@
 ﻿import React, { useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import '/src/App.css';
+import sound from "../img/soundSystem.jpg";
+import karaoke from "../img/karaoke.jpg";
+import lighting from "../img/lighting.jpg";
+import led from "../img/LED.jpg";
+import visual from "../img/visual.jpg";
+import projection from "../img/projection.jpg";
+import band from "../img/liveBand.jpg";
+import artist from "../img/artist.jpg";
+import installation from "../img/installation.jpg";
+
 
 const ServicePage = () => {
     const navigate = useNavigate();
@@ -8,15 +18,15 @@ const ServicePage = () => {
     const cardRefs = useRef([]);
 
     const audioServices = [
-        { image: "/src/img/soundSystem.jpg", title: 'Sound System' },
-        { image: "/src/img/karaoke.jpg", title: 'Karaoke Service' },
-        { image: "/src/img/lighting.jpg", title: 'Lighting System' },
-        { image: "/src/img/LED.jpg", title: 'LED Screen' },
-        { image: "/src/img/visual.jpg", title: 'Visual System' },
-        { image: "/src/img/projection.jpg", title: 'Projection System' },
-        { image: "/src/img/liveBand.jpg", title: 'Live Band' },
-        { image: "/src/img/artist.jpg", title: 'Local Artist' },
-        { image: "/src/img/installation.jpg", title: 'Installation Service' }
+        { image: {sound}, title: 'Sound System' },
+        { image: { karaoke }, title: 'Karaoke Service' },
+        { image: { lighting }, title: 'Lighting System' },
+        { image: {led }, title: 'LED Screen' },
+        { image: { visual }, title: 'Visual System' },
+        { image: { projection }, title: 'Projection System' },
+        { image: { band }, title: 'Live Band' },
+        { image: { artist }, title: 'Local Artist' },
+        { image: { installation }, title: 'Installation Service' }
     ];
 
     const handleLearnMore = () => {
