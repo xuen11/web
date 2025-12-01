@@ -1,8 +1,8 @@
 ﻿import React, { useState } from "react";
 import { Lock, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
-import Header from "./header";
+import "/src/App.css";
+import Header from "./Header1";
 import Footer from "./footer";
 import { useAuth } from "./AuthContext";
 

@@ -3,13 +3,11 @@
     "",
     "\\website.client",
     "\\website.client\\src",
+    "\\website.client\\src\\assets",
     "\\website.client\\src\\components",
-    "\\website.Server",
-    "\\website.Server\\Controllers",
-    "\\website.Server\\Data",
-    "\\website.Server\\Models",
-    "\\website.Server\\Properties"
+    "\\website.client\\src\\pages",
+    "\\website.client\\src\\public"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\AuthContext.jsx",
+  "SelectedNode": "\\website.client\\src\\components\\login.jsx",
   "PreviewInSolutionExplorer": false
 }

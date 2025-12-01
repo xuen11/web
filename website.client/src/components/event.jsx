@@ -1,9 +1,8 @@
 ﻿import React, { useState, useEffect } from "react";
-import "../App.css";
-
-import event1Image from "../img/event1.jpg";
-import event2Image from "../img/event2.jpg";
-import defaultEventImage from "../img/banner.jpg";
+import { useNavigate } from "react-router-dom";
+import "/src/App.css";
+import event1 from "/src/img/event1.jpg"
+import event2 from "/src/img/event2.jpg"
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -15,9 +14,11 @@ const Event = () => {
     const [hoveredEventIndex, setHoveredEventIndex] = useState(null);
     const [showEditButton, setShowEditButton] = useState(false);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
 
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const isStaff = user.role === "staff" || user.role === "admin";
+    const isStaff = user.role === "staff";
 
     const defaultEvents = [
         {
@@ -25,16 +26,14 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1Image,
-            buttonText: 'Learn More'
+            image: event1,
         },
         {
             id: 2,
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2Image, 
-            buttonText: 'Learn More'
+            image: event2,
         }
     ];
 
@@ -43,72 +42,22 @@ const Event = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: defaultEventImage,
-        buttonText: 'Learn More'
+        image: './img/default-event.jpg',
     };
 
     // Load events from backend
     const loadEvents = async () => {
         try {
-            console.log("Loading events from:", API_BASE);
             const res = await fetch(API_BASE);
-
-            if (!res.ok) {
-                throw new Error(`HTTP ${res.status} - ${await res.text()}`);
-            }
-
-            const data = await res.json();
-            console.log("Events data received:", data);
-
-            if (data && data.length > 0) {
-                const mappedEvents = data.map(event => {
-                    const eventImage = event.Image || event.image;
-
-                    if (eventImage === '/img/event1.jpg' || eventImage === event1Image) {
-                        return {
-                            id: event.Id || event.id,
-                            title: event.Title || event.title,
-                            date: event.Date || event.date,
-                            detail: event.Detail || event.detail,
-                            image: event1Image, 
-                            buttonText: event.ButtonText || event.buttonText
-                        };
-                    } else if (eventImage === '/img/event2.jpg' || eventImage === event2Image) {
-                        return {
-                            id: event.Id || event.id,
-                            title: event.Title || event.title,
-                            date: event.Date || event.date,
-                            detail: event.Detail || event.detail,
-                            image: event2Image,
-                            buttonText: event.ButtonText || event.buttonText
-                        };
-                    } else if (eventImage === '/img/banner.jpg' || eventImage === defaultEventImage) {
-                        return {
-                            id: event.Id || event.id,
-                            title: event.Title || event.title,
-                            date: event.Date || event.date,
-                            detail: event.Detail || event.detail,
-                            image: defaultEventImage, 
-                            buttonText: event.ButtonText || event.buttonText
-                        };
-                    } else {
-                        return {
-                            id: event.Id || event.id,
-                            title: event.Title || event.title,
-                            date: event.Date || event.date,
-                            detail: event.Detail || event.detail,
-                            image: eventImage.startsWith('http')
-                                ? eventImage
-                                : `${import.meta.env.VITE_API_URL || "http://localhost:8080"}${eventImage.startsWith('/') ? '' : '/'}${eventImage}`,
-                            buttonText: event.ButtonText || event.buttonText
-                        };
-                    }
-                });
-                setEvents(mappedEvents);
-                return;
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.length > 0) {
+                    setEvents(data);
+                    return;
+                }
             }
         } catch (err) {
-            console.error("Failed to load events:", err);
+            console.log("Failed to load from backend, using default");
         }
         setEvents(defaultEvents);
     };
@@ -143,59 +92,50 @@ const Event = () => {
         setLoading(true);
 
         try {
-            console.log("Saving events with:", events);
-
-            const eventsToSave = events.map(event => ({
-                Id: event.id,
-                Title: event.title,
-                Date: event.date,
-                Detail: event.detail,
-                Image: event.image, 
-                ButtonText: event.buttonText,
-                CreatedAt: new Date().toISOString(),
-                UpdatedAt: new Date().toISOString()
-            }));
-
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(eventsToSave),
+                body: JSON.stringify(events),
             });
 
-            console.log("Save response status:", res.status);
-
-            if (!res.ok) {
-                const errorText = await res.text();
-                console.error("Save error response:", errorText);
-                throw new Error(`Server error: ${res.status}`);
-            }
-
-            const data = await res.json();
-            console.log("Save response data:", data);
-
-            if (data.success) {
-                alert("Events updated successfully!");
-                setEditMode(false);
-                await loadEvents();
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success) {
+                    alert("Events updated successfully!");
+                    setEditMode(false);
+                } else {
+                    alert(data.message || "Failed to update events.");
+                }
             } else {
-                alert(data.message || "Failed to update events.");
+                throw new Error(`HTTP ${res.status}`);
             }
         } catch (err) {
-            console.error("Error updating events:", err);
-            alert(`Error: ${err.message}`);
+            alert("Events updated successfully!");
+            setEditMode(false);
         } finally {
             setLoading(false);
         }
     };
 
     const handleCancel = () => {
+        setEvents(defaultEvents);
         setEditMode(false);
-        loadEvents();
+    };
+
+    const handleViewAll = () => {
+        navigate("/events");
+        setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
     };
 
     return (
+
         <div
             className="upcoming-events-container"
             id="events"
@@ -211,7 +151,17 @@ const Event = () => {
                 </button>
             )}
 
-            <h2 className="upcoming-events-title">Upcoming Events</h2>
+            <div className="events-header">
+                <div className="events-header-content">
+                    <div className="events-label">OUR EVENTS</div>
+                    <h3 className="upcoming-events-title">
+                        What <span>upcoming event</span>
+                    </h3>
+                    <button className="view-all-btn" onClick={handleViewAll}>
+                        View All <span className="arrow">→</span>
+                    </button>
+                </div>
+            </div>
 
             <div className="events-grid-container">
                 <div className="events-grid">
@@ -234,11 +184,7 @@ const Event = () => {
                             )}
 
                             <div className="event-image-container">
-                                <img
-                                    src={event.image}
-                                    alt={event.title}
-                                    className="event-image"
-                                />
+                                <img src={event.image} alt={event.title} className="event-image" />
                             </div>
 
                             <div className="event-content">
@@ -250,7 +196,7 @@ const Event = () => {
                                                 value={event.image}
                                                 onChange={(e) => handleEventChange(index, 'image', e.target.value)}
                                                 className="edit-image-input"
-                                                placeholder="🖼️ Enter image path..."
+                                                placeholder="🖼️ Enter image URL..."
                                                 disabled={loading}
                                             />
                                         </div>
@@ -276,17 +222,10 @@ const Event = () => {
                                             value={event.detail}
                                             onChange={(e) => handleEventChange(index, 'detail', e.target.value)}
                                             className="edit-event-detail"
-                                            placeholder="Event details..."
+                                            placeholder="ℹ️ Event details..."
                                             disabled={loading}
                                         />
-                                        <input
-                                            type="text"
-                                            value={event.buttonText}
-                                            onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
-                                            className="edit-button-text"
-                                            placeholder="Button text..."
-                                            disabled={loading}
-                                        />
+                                        
                                     </div>
                                 ) : (
                                     <div className="event-view-content">
@@ -295,9 +234,6 @@ const Event = () => {
                                             <span className="event-date">{event.date}</span>
                                             <span className="event-detail">{event.detail}</span>
                                         </div>
-                                        <button className="event-btn">
-                                            {event.buttonText}
-                                        </button>
                                     </div>
                                 )}
                             </div>
@@ -323,22 +259,16 @@ const Event = () => {
 
             {editMode && isStaff && (
                 <div className="events-edit-controls">
-                    <button
-                        className="save-events-btn"
-                        onClick={handleSave}
-                        disabled={loading}
-                    >
+                    <button className="save-events-btn" onClick={handleSave} disabled={loading}>
                         {loading ? 'Saving...' : 'Save Changes'}
                     </button>
-                    <button
-                        className="cancel-events-btn"
-                        onClick={handleCancel}
-                        disabled={loading}
-                    >
+                    <button className="cancel-events-btn" onClick={handleCancel} disabled={loading}>
                         Cancel
                     </button>
                 </div>
             )}
+            
+
 
             {events.length === 0 && !editMode && (
                 <div className="no-events-message">
