@@ -1,20 +1,24 @@
+# Use .NET 8.0 SDK for building
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src/website.Server
+WORKDIR /src
 
-# copy csproj and restore
-COPY website.Server/*.csproj ./
-RUN dotnet restore
+# Copy project file and restore dependencies
+COPY ["website.Server/website.Server.csproj", "website.Server/"]
+RUN dotnet restore "website.Server/website.Server.csproj"
 
-# copy all source files and publish
-COPY website.Server/. ./
-RUN dotnet publish -c Release -o /app
+# Copy everything else and build
+COPY . .
+WORKDIR "/src/website.Server"
+RUN dotnet build "website.Server.csproj" -c Release -o /app/build
 
-# runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Publish
+FROM build AS publish
+RUN dotnet publish "website.Server.csproj" -c Release -o /app/publish
+
+# Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=build /app ./
-
-ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+COPY --from=publish /app/publish .
 EXPOSE 8080
-
+ENV ASPNETCORE_URLS=http://*:8080
 ENTRYPOINT ["dotnet", "website.Server.dll"]
