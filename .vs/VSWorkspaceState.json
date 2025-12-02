@@ -3,8 +3,9 @@
     "",
     "\\website.client",
     "\\website.client\\src",
+    "\\website.client\\src\\components",
     "\\website.client\\src\\public"
   ],
-  "SelectedNode": "\\website.client\\src\\public\\vite.svg",
+  "SelectedNode": "\\website.client\\src\\components\\AuthContext.jsx",
   "PreviewInSolutionExplorer": false
 }
