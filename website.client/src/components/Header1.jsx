@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '/src/App.css';
-import logoImg from '/img/logo.jpg';
+import logoImg from '../img/logo.jpg';
 
 const Header = () => {
     const [activePage, setActivePage] = useState('home');

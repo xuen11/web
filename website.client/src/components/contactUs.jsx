@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import '/src/App.css';
-import contact from "/src/img/contact.jpg";
+import contact from "../img/contact.jpg";
 
 const Contact = () => {
     const navigate = useNavigate();

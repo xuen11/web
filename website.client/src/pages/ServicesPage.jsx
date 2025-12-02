@@ -3,18 +3,18 @@ import "/src/App.css";
 import bg from "/src/img/bg1.jpg";
 
 // Default images
-import img1 from "/img/sound1.jpg";
-import img2 from "/img/karaokeService.jpg";
-import img3 from "/img/lightingSystem.jpg";
-import img4 from "/img/ledScreen.jpg";
-import img5 from "/img/visualSystem.jpg";
-import img6 from "/img/projectionSystem.jpg";
-import img7 from "/img/liveBand2.jpg";
-import img8 from "/img/localArtist.jpg";
-import img9 from "/img/installationService.jpg";
-import img10 from "/img/truss.jpg";
-import img11 from "/img/stage.jpg";
-import img12 from "/img/emcee.jpg";
+import img1 from "../img/sound1.jpg";
+import img2 from "../img/karaokeService.jpg";
+import img3 from "../img/lightingSystem.jpg";
+import img4 from "../img/ledScreen.jpg";
+import img5 from "../img/visualSystem.jpg";
+import img6 from "../img/projectionSystem.jpg";
+import img7 from "../img/liveBand2.jpg";
+import img8 from "../img/localArtist.jpg";
+import img9 from "../img/installationService.jpg";
+import img10 from "../img/truss.jpg";
+import img11 from "../img/stage.jpg";
+import img12 from "../img/emcee.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/service`

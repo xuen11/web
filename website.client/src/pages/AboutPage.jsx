@@ -1,21 +1,21 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
 import "/src/App.css";
-import banner from "/img/event12.jpg";
-import service from "/img/fastService.jpg";
-import team from "/img/team.jpg";
-import price from "/img/price.jpg";
-import aboutVideo from "/public/about.mp4"; 
-import wedding from "/img/wedding.jpg";
-import seminar from "/img/seminar.jpg";
-import concert from "/img/concert.jpg";
-import launching from "/img/launching.jpg";
-import festival from "/img/festival.jpg";
-import annualDinner from "/img/annualDinner.jpg";
-import openHouse from "/img/openHouse.jpg";
-import competition from "/img/competition.jpg";
-import meeting from "/img/meeting.jpg";
-import birthday from "/img/birthday.jpg";
-import party from "/img/party.jpg";
+import banner from "../img/event12.jpg";
+import service from "../img/fastService.jpg";
+import team from "../img/team.jpg";
+import price from "../img/price.jpg";
+import aboutVideo from "../public/about.mp4"; 
+import wedding from "../img/wedding.jpg";
+import seminar from "../img/seminar.jpg";
+import concert from "../img/concert.jpg";
+import launching from "../img/launching.jpg";
+import festival from "../img/festival.jpg";
+import annualDinner from "../img/annualDinner.jpg";
+import openHouse from "../img/openHouse.jpg";
+import competition from "../img/competition.jpg";
+import meeting from "../img/meeting.jpg";
+import birthday from "../img/birthday.jpg";
+import party from "../img/party.jpg";
 
 
 const stats = [

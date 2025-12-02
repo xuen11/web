@@ -1,12 +1,12 @@
 ﻿import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "/src/App.css";
-import img1 from "/src/img/banner.jpg";
-import img2 from "/src/img/event4.jpg";
-import img3 from "/src/img/event5.jpg";
-import img4 from "/src/img/event6.jpg";
-import img5 from "/src/img/event7.jpg";
-import img6 from "/src/img/event8.jpg";
+import img1 from "../img/banner.jpg";
+import img2 from "../img/event4.jpg";
+import img3 from "../img/event5.jpg";
+import img4 from "../img/event6.jpg";
+import img5 from "../img/event7.jpg";
+import img6 from "../img/event8.jpg";
 
 const Portfolio = () => {
     const navigate = useNavigate();

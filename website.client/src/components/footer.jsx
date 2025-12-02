@@ -2,7 +2,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 import '/src/App.css';
-import logoImg from '/img/logo.jpg';
+import logoImg from '../img/logo.jpg';
 
 const Footer = () => {
     const navigate = useNavigate();
