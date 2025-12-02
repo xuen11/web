@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "/src/App.css";
-import banner from "../img/sound1.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/portfolio`
@@ -104,7 +103,7 @@ const PortfolioPage = () => {
     return (
         <div>
             <div className="portfolio-top-header">
-                <img src={banner} alt="Portfolio Banner" className="portfolio-top-image" />
+                <img src="/img/sound1.jpg" alt="Portfolio Banner" className="portfolio-top-image" />
                 <h1 className="portfolio-top-title fade-in-up">
                     Our <span>Portfolio</span>
                 </h1>

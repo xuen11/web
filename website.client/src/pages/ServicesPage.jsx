@@ -1,39 +1,24 @@
 ﻿import React, { useEffect, useState } from "react";
 import "/src/App.css";
-import bg from "../img/bg1.jpg";
-
-// Default images
-import img1 from "../img/sound1.jpg";
-import img2 from "../img/karaokeService.jpg";
-import img3 from "../img/lightingSystem.jpg";
-import img4 from "../img/ledScreen.jpg";
-import img5 from "../img/visualSystem.jpg";
-import img6 from "../img/projectionSystem.jpg";
-import img7 from "../img/liveBand2.jpg";
-import img8 from "../img/localArtist.jpg";
-import img9 from "../img/installationService.jpg";
-import img10 from "../img/truss.jpg";
-import img11 from "../img/stage.jpg";
-import img12 from "../img/emcee.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/service`
     : "http://localhost:8080/api/service";
 
-// Default services
+// Default services with direct image links
 const defaultServices = [
-    { id: 0, img: img1, title: "Sound System" },
-    { id: 0, img: img2, title: "Karaoke Service" },
-    { id: 0, img: img3, title: "Lighting System" },
-    { id: 0, img: img4, title: "LED Screen" },
-    { id: 0, img: img5, title: "Visual System" },
-    { id: 0, img: img6, title: "Projection System" },
-    { id: 0, img: img7, title: "Live Band" },
-    { id: 0, img: img8, title: "Local Artist" },
-    { id: 0, img: img9, title: "Installation Service" },
-    { id: 0, img: img10, title: "Truss System" },
-    { id: 0, img: img11, title: "Stage" },
-    { id: 0, img: img12, title: "Emcee Service" },
+    { id: 0, img: "/img/sound1.jpg", title: "Sound System" },
+    { id: 0, img: "/img/karaokeService.jpg", title: "Karaoke Service" },
+    { id: 0, img: "/img/lightingSystem.jpg", title: "Lighting System" },
+    { id: 0, img: "/img/ledScreen.jpg", title: "LED Screen" },
+    { id: 0, img: "/img/visualSystem.jpg", title: "Visual System" },
+    { id: 0, img: "/img/projectionSystem.jpg", title: "Projection System" },
+    { id: 0, img: "/img/liveBand2.jpg", title: "Live Band" },
+    { id: 0, img: "/img/localArtist.jpg", title: "Local Artist" },
+    { id: 0, img: "/img/installationService.jpg", title: "Installation Service" },
+    { id: 0, img: "/img/truss.jpg", title: "Truss System" },
+    { id: 0, img: "/img/stage.jpg", title: "Stage" },
+    { id: 0, img: "/img/emcee.jpg", title: "Emcee Service" },
 ];
 
 const Services = () => {
@@ -101,7 +86,11 @@ const Services = () => {
         <>
             <section className="service-hero">
                 <div className="service-hero-background">
-                    <img src={bg} alt="Services" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img
+                        src="/img/bg1.jpg"
+                        alt="Services"
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
                 </div>
                 <div className="service-hero-content">
                     <h2 className="service-hero-title fade-in-up">Our <span>Services</span></h2>

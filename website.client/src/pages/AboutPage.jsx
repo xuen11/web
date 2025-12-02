@@ -1,36 +1,19 @@
 ﻿import React, { useEffect, useRef, useState } from 'react';
 import "/src/App.css";
-import banner from "../img/event12.jpg";
-import service from "../img/fastService.jpg";
-import team from "../img/team.jpg";
-import price from "../img/price.jpg";
-import aboutVideo from "../public/about.mp4"; 
-import wedding from "../img/wedding.jpg";
-import seminar from "../img/seminar.jpg";
-import concert from "../img/concert.jpg";
-import launching from "../img/launching.jpg";
-import festival from "../img/festival.jpg";
-import annualDinner from "../img/annualDinner.jpg";
-import openHouse from "../img/openHouse.jpg";
-import competition from "../img/competition.jpg";
-import meeting from "../img/meeting.jpg";
-import birthday from "../img/birthday.jpg";
-import party from "../img/party.jpg";
-
 
 const stats = [
     {
-        icon: { service },
+        icon: "/img/fastService.jpg",
         label: "Fast Services",
         description: "Quick setup and professional execution",
     },
     {
-        icon: {team},
+        icon: "/img/team.jpg",
         label: "Professional Team",
         description: "Experienced and skilled event specialists",
     },
     {
-        icon: {price},
+        icon: "/img/price.jpg",
         label: "Affordable Price",
         description: "Quality services at competitive rates",
     },
@@ -38,57 +21,56 @@ const stats = [
 
 const features = [
     {
-        image: { wedding },
+        image: "/img/wedding.jpg",
         title: "Wedding",
     },
     {
-        image: { seminar },
+        image: "/img/seminar.jpg",
         title: "Seminar",
     },
     {
-        image: { concert },
+        image: "/img/concert.jpg",
         title: "Concerts",
     },
     {
-        image: { launching },
+        image: "/img/launching.jpg",
         title: "Product Launches",
     },
     {
-        image: { festival },
+        image: "/img/festival.jpg",
         title: "Festivals",
     },
     {
-        image: { annualDinner },
+        image: "/img/annualDinner.jpg",
         title: "Annual Dinner",
     },
     {
-        image: { openHouse },
+        image: "/img/openHouse.jpg",
         title: "Open House",
     },
     {
-        image: { competition},
+        image: "/img/competition.jpg",
         title: "Competition",
     },
     {
-        image: { meeting },
+        image: "/img/meeting.jpg",
         title: "Meeting",
     },
     {
-        image: { birthday },
+        image: "/img/birthday.jpg",
         title: "Birthday Parties",
     },
     {
-        image: {party},
+        image: "/img/party.jpg",
         title: "Party",
     },
 ];
-
 
 const AboutPage = () => {
     const statsRef = useRef(null);
     const featuresRef = useRef(null);
     const videoInfoRef = useRef(null);
-    const [showVideo, setShowVideo] = useState(false); 
+    const [showVideo, setShowVideo] = useState(false);
 
     useEffect(() => {
         const observers = [];
@@ -141,7 +123,7 @@ const AboutPage = () => {
         <div className="about-page">
             <div className="about-top-header">
                 <img
-                    src={banner}
+                    src="/img/event12.jpg"
                     alt="About Banner"
                     className="about-top-image"
                 />
@@ -244,7 +226,7 @@ const AboutPage = () => {
                             )}
                         </div>
 
-                       
+
                     </div>
 
                     <div className="video-wrapper">
@@ -263,7 +245,7 @@ const AboutPage = () => {
                                     controls
                                     autoPlay
                                 >
-                                    <source src={aboutVideo} type="video/mp4" />
+                                    <source src="/about.mp4" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
                             )}

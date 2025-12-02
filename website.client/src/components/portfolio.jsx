@@ -1,12 +1,6 @@
 ﻿import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "/src/App.css";
-import img1 from "../img/banner.jpg";
-import img2 from "../img/event4.jpg";
-import img3 from "../img/event5.jpg";
-import img4 from "../img/event6.jpg";
-import img5 from "../img/event7.jpg";
-import img6 from "../img/event8.jpg";
 
 const Portfolio = () => {
     const navigate = useNavigate();
@@ -15,12 +9,12 @@ const Portfolio = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     const portfolioItems = [
-        { id: 1, image: img1, title: "Wedding" },
-        { id: 2, image: img5, title: "Suriagroup Kaamatan Raya" },
-        { id: 3, image: img3, title: "IEM Dinner" },
-        { id: 4, image: img4, title: "Desa Appreciation Night" },
-        { id: 5, image: img2, title: "Cultural Celebration" },
-        { id: 6, image: img6, title: "Majlis Apresiasi Ko-Nelayan 2024" }
+        { id: 1, image: "/img/banner.jpg", title: "Wedding" },
+        { id: 2, image: "/img/event7.jpg", title: "Suriagroup Kaamatan Raya" },
+        { id: 3, image: "/img/event5.jpg", title: "IEM Dinner" },
+        { id: 4, image: "/img/event6.jpg", title: "Desa Appreciation Night" },
+        { id: 5, image: "/img/event4.jpg", title: "Cultural Celebration" },
+        { id: 6, image: "/img/event6.jpg", title: "Majlis Apresiasi Ko-Nelayan 2024" }
     ];
 
     // Check if mobile

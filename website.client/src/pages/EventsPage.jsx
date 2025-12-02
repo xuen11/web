@@ -1,6 +1,5 @@
 ﻿import React, { useState, useEffect } from "react";
 import "/src/App.css";
-import banner from "../img/bg3.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -22,7 +21,7 @@ const EventsPage = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: "../img/event1.jpg",
+            image: "/img/event1.jpg",
             buttonText: 'Learn More'
         },
         {
@@ -30,7 +29,7 @@ const EventsPage = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: "../img/event2.jpg",
+            image: "/img/event2.jpg",
             buttonText: 'Learn More'
         }
     ];
@@ -40,7 +39,7 @@ const EventsPage = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: '../img/default-event.jpg',
+        image: '/img/default-event.jpg',
         buttonText: 'Learn More'
     };
 
@@ -124,7 +123,7 @@ const EventsPage = () => {
         <div className="events-page-container">
             <section className="events-hero">
                 <div className="events-hero-background">
-                    <img src={banner} alt="Events Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src="/img/bg3.jpg" alt="Events Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <div className="services-hero-content">
                     <h2 className="events-hero-title fade-in-up">Our <span>Events</span></h2>

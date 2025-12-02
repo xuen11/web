@@ -1,6 +1,5 @@
 ﻿import React, { useState, useEffect, useRef } from "react";
 import "/src/App.css";
-import contactBgImage from '../img/services.jpg';
 import {
     Phone,
     Mail,
@@ -155,7 +154,7 @@ function ContactUsPage() {
             <div className="cp-hero-zone" ref={heroRef}>
                 <div
                     className="cp-hero-visual"
-                    style={{ backgroundImage: `url(${contactBgImage})` }}
+                    style={{ backgroundImage: `url('/img/services.jpg')` }}
                 ></div>
                 <h1 className="cp-hero-headline" ref={titleRef}>
                     Contact <span>Us</span>

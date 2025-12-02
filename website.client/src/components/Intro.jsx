@@ -1,7 +1,6 @@
 import React from "react";
 import "/src/App.css";
 
-import heroVideo from "../public/bgVideo.mp4"; 
 
 const Intro = () => {
     return (
@@ -22,7 +21,7 @@ const Intro = () => {
                 <div className="hero-right">
                     <video
                         className="hero-video full-img"
-                        src={heroVideo}
+                        src="../bgVideo.mp4"
                         autoPlay
                         loop
                         muted

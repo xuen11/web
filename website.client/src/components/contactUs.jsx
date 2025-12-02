@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import '/src/App.css';
-import contact from "/img/contact.jpg";
 
 const Contact = () => {
     const navigate = useNavigate();
@@ -32,7 +31,7 @@ const Contact = () => {
                 <div className="image-container">
                     <div className="placeholder-img">
                         
-                        <img src={contact} alt="Contact" />
+                        <img src="/img/contact.jpg" alt="Contact" />
                         
                     </div>
                 </div>

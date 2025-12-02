@@ -2,7 +2,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 import '/src/App.css';
-import logoImg from '/img/logo.jpg';
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -80,7 +79,7 @@ const Footer = () => {
                 <div className="footer-content">
                     <div className="footer-main">
                         <div className="footer-logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
-                            <img src={logoImg} alt="Sam Sound & Light" />
+                            <img src='/img/logo.jpg' alt="Sam Sound & Light" />
                             <div className="logo-text">
                                 <h2>Sam Sound and Light</h2>
                             </div>

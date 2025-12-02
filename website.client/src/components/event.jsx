@@ -1,8 +1,6 @@
 ﻿import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "/src/App.css";
-import event1 from "/img/event1.jpg"
-import event2 from "/img/event2.jpg"
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/events`
@@ -26,14 +24,14 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: event1,
+            image: "/img/event1.jpg",
         },
         {
             id: 2,
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: event2,
+            image: "/img/event2.jpg",
         }
     ];
 
