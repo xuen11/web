@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Ignore Windows fallback folders -->
+    <RestoreAdditionalProjectFallbackFolders />
+  </PropertyGroup>
+</Project>

@@ -229,3 +229,4 @@ C:\app\build\website.Server.deps.json
 C:\app\build\website.Server.runtimeconfig.json
 C:\app\build\website.Server.dll
 C:\app\build\website.Server.pdb
+C:\Users\asus\source\repos\website\website.Server\bin\Release\net8.0\railway.json

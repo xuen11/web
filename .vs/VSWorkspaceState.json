@@ -7,8 +7,9 @@
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
     "\\website.Server\\Migrations",
-    "\\website.Server\\Models"
+    "\\website.Server\\Models",
+    "\\website.Server\\obj"
   ],
-  "SelectedNode": "\\website.sln",
+  "SelectedNode": "\\website.Server\\obj\\website.Server.csproj.nuget.g.props",
   "PreviewInSolutionExplorer": false
 }
