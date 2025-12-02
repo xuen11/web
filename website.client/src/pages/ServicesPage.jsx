@@ -7,11 +7,11 @@ const API_BASE = import.meta.env.VITE_API_URL
 
 // Default services with direct image links
 const defaultServices = [
-    { id: 0, img: "/img/sound1.jpg", title: "Sound System" },
-    { id: 0, img: "/img/karaokeService.jpg", title: "Karaoke Service" },
-    { id: 0, img: "/img/lightingSystem.jpg", title: "Lighting System" },
-    { id: 0, img: "/img/ledScreen.jpg", title: "LED Screen" },
-    { id: 0, img: "/img/visualSystem.jpg", title: "Visual System" },
+    { id: 0, img: "../img/sound1.jpg", title: "Sound System" },
+    { id: 0, img: "../img/karaokeService.jpg", title: "Karaoke Service" },
+    { id: 0, img: "../img/lightingSystem.jpg", title: "Lighting System" },
+    { id: 0, img: "../img/ledScreen.jpg", title: "LED Screen" },
+    { id: 0, img: "../img/visualSystem.jpg", title: "Visual System" },
     { id: 0, img: "/img/projectionSystem.jpg", title: "Projection System" },
     { id: 0, img: "/img/liveBand2.jpg", title: "Live Band" },
     { id: 0, img: "/img/localArtist.jpg", title: "Local Artist" },
