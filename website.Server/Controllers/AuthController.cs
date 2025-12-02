@@ -101,7 +101,7 @@ namespace website.Server.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"🚨 LOGIN ERROR: {ex.Message}");
+                Console.WriteLine($"LOGIN ERROR: {ex.Message}");
                 Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                 return StatusCode(500, new LoginResponse
                 {
