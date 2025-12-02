@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\website.client",
+    "\\website.client\\src",
+    "\\website.client\\src\\pages",
+    "\\website.client\\src\\public",
+    "\\website.Server\\publish"
   ],
+  "SelectedNode": "\\website.client\\src\\public",
   "PreviewInSolutionExplorer": false
 }
