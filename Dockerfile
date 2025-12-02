@@ -1,15 +1,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
+WORKDIR /src/website.Server
 
-COPY *.csproj .
+# copy csproj and restore
+COPY website.Server/*.csproj ./
 RUN dotnet restore
 
-COPY . .
+# copy all source files and publish
+COPY website.Server/. ./
 RUN dotnet publish -c Release -o /app
 
+# runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app .
+COPY --from=build /app ./
+
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 EXPOSE 8080
+
 ENTRYPOINT ["dotnet", "website.Server.dll"]
