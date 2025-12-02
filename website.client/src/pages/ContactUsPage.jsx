@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect, useRef } from "react";
 import "/src/App.css";
-import contactBgImage from '/src/img/services.jpg';
+import contactBgImage from '/img/services.jpg';
 import {
     Phone,
     Mail,

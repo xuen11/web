@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "/src/App.css";
-import banner from "/src/img/sound1.jpg";
+import banner from "/img/sound1.jpg";
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/portfolio`
