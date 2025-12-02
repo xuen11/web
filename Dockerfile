@@ -1,24 +1,15 @@
-# Stage 1: Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy csproj and restore dependencies
-COPY website.Server/website.Server.csproj ./website.Server/
-RUN dotnet restore ./website.Server/website.Server.csproj
+COPY *.csproj .
+RUN dotnet restore
 
-# Copy everything else and build
 COPY . .
-WORKDIR /src/website.Server
-RUN dotnet publish -c Release -o /app/out
+RUN dotnet publish -c Release -o /app
 
-# Stage 2: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out ./
-
-# Expose port (adjust if your app uses a different port)
-EXPOSE 80
-EXPOSE 443
-
-# Run the app
+COPY --from=build /app .
+ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "website.Server.dll"]
