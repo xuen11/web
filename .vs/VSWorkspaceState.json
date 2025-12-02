@@ -1,8 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\website.client",
-    "\\website.Server",
     "\\website.Server\\bin",
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
@@ -10,6 +8,6 @@
     "\\website.Server\\Models",
     "\\website.Server\\obj"
   ],
-  "SelectedNode": "\\website.Server\\website.Server.csproj",
+  "SelectedNode": "\\Dockerfile",
   "PreviewInSolutionExplorer": false
 }
