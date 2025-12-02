@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY website.Server.csproj .
+COPY website.Server.csproj ./
 RUN dotnet restore
 
 COPY . .
