@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from "react";
 import "/src/App.css";
-import bg from "/src/img/bg1.jpg";
+import bg from "../img/bg1.jpg";
 
 // Default images
 import img1 from "../img/sound1.jpg";

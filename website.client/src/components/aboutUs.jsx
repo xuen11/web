@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import '/src/App.css';
-import aboutImg1 from '../img/banner2.jpg';
-import aboutImg2 from '../img/banner3.jpg';
-import aboutImg3 from '../img/banner4.jpg';
+import aboutImg1 from '/img/banner2.jpg';
+import aboutImg2 from '/img/banner3.jpg';
+import aboutImg3 from '/img/banner4.jpg';
 
 const About = () => {
     const sectionRef = useRef(null);
