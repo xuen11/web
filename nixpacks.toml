@@ -1,0 +1,11 @@
+# nixpacks.toml
+[phases]
+setup = "dotnet-sdk-8_0"
+install = "dotnet restore"
+build = "dotnet publish -c Release -o /app/publish"
+
+[start]
+cmd = "dotnet website.Server.dll"
+
+[build.args]
+DOTNET_VERSION = "8.0"
