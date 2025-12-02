@@ -1,17 +1,21 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy csproj and restore
-COPY *.csproj ./
-RUN dotnet restore
+# 1. CLEAR NuGet cache to remove Windows paths
+RUN dotnet nuget locals all --clear
 
-# 2. RESTORE PROPERLY (no --no-restore flag)
-RUN dotnet restore website.sln
+# 2. Copy solution and project files
+COPY website.sln ./
+COPY website.Server/website.Server.csproj ./website.Server/
+COPY website.client/website.client.csproj ./website.client/
 
-# 3. Copy everything else
+# 3. Restore WITHOUT any cached settings
+RUN dotnet restore --force --ignore-failed-sources
+
+# 4. Copy everything else
 COPY . .
 
-# 4. PUBLISH WITHOUT --no-restore
+# 5. Publish
 WORKDIR /src/website.Server
 RUN dotnet publish -c Release -o /app/publish
 
