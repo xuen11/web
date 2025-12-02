@@ -25,11 +25,7 @@ namespace website.Server.Data
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
             });
 
-            modelBuilder.Entity<Banner>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-            });
+           
 
             modelBuilder.Entity<Contact>(entity =>
             {
@@ -73,16 +69,6 @@ namespace website.Server.Data
                 }
             );
 
-            modelBuilder.Entity<Banner>().HasData(
-                new Banner
-                {
-                    Id = 1,
-                    Title = "Elevate Your Event Experience",
-                    Subtitle = "Explore our exclusive Golden and Platinum Packages designed to make your event truly unforgettable.",
-                    ImagePath = "uploads/default-banner.jpg",
-                    UpdatedAt = DateTime.UtcNow
-                }
-            );
 
 
             base.OnModelCreating(modelBuilder);
