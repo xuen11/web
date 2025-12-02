@@ -3,11 +3,16 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\components",
-    "\\website.client\\src\\pages",
     "\\website.client\\src\\public",
-    "\\website.Server"
+    "\\website.Server",
+    "\\website.Server\\Controllers",
+    "\\website.Server\\Data",
+    "\\website.Server\\Migrations",
+    "\\website.Server\\Models",
+    "\\website.Server\\Properties",
+    "\\website.Server\\publish",
+    "\\website.Server\\publish\\wwwroot\\uploads"
   ],
-  "SelectedNode": "\\Dockerfile",
+  "SelectedNode": "\\website.client\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
