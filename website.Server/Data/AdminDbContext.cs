@@ -10,9 +10,12 @@ namespace website.Server.Data
         }
 
         public DbSet<StaffAccount> StaffAccounts { get; set; }
-        public DbSet<Banner> Banners { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<PortfolioImage> PortfolioImages { get; set; }
+        public DbSet<Service> Services { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -80,8 +83,18 @@ namespace website.Server.Data
                     UpdatedAt = DateTime.UtcNow
                 }
             );
-            
-        
+
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<PortfolioImage>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.ImagePath).IsRequired().HasMaxLength(500);
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+            });
+
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿import React, { useEffect } from "react";
-import "/src/App.css"; 
+﻿import React, { useEffect, useState } from "react";
+import "/src/App.css";
 import bg from "/src/img/bg1.jpg";
+
+// Default images
 import img1 from "/src/img/sound1.jpg";
 import img2 from "/src/img/karaokeService.jpg";
 import img3 from "/src/img/lightingSystem.jpg";
@@ -14,118 +16,148 @@ import img10 from "/src/img/truss.jpg";
 import img11 from "/src/img/stage.jpg";
 import img12 from "/src/img/emcee.jpg";
 
+const API_BASE = import.meta.env.VITE_API_URL
+    ? `${import.meta.env.VITE_API_URL}/api/service`
+    : "http://localhost:8080/api/service";
+
+// Default services
+const defaultServices = [
+    { id: 0, img: img1, title: "Sound System" },
+    { id: 0, img: img2, title: "Karaoke Service" },
+    { id: 0, img: img3, title: "Lighting System" },
+    { id: 0, img: img4, title: "LED Screen" },
+    { id: 0, img: img5, title: "Visual System" },
+    { id: 0, img: img6, title: "Projection System" },
+    { id: 0, img: img7, title: "Live Band" },
+    { id: 0, img: img8, title: "Local Artist" },
+    { id: 0, img: img9, title: "Installation Service" },
+    { id: 0, img: img10, title: "Truss System" },
+    { id: 0, img: img11, title: "Stage" },
+    { id: 0, img: img12, title: "Emcee Service" },
+];
+
 const Services = () => {
-    const serviceList = [
-        {
-            img: img1,
-            title: "Sound System",
-        },
-        {
-            img: img2,
-            title: "Karaoke Service",
-        },
-        {
-            img: img3,
-            title: "Lighting System",
-        },
-        {
-            img: img4,
-            title: "LED Screen",
-        },
-        {
-            img: img5,
-            title: "Visual System",
-        },
-        {
-            img: img6,
-            title: "Projection System",
-        },
-        {
-            img: img7,
-            title: "Live Band",
-        },
-        {
-            img: img8,
-            title: "Local Artist",
-        },
-        {
-            img: img9,
-            title: "Installation Service",
-        },
-        {
-            img: img10,
-            title: "Truss System",
-        },
-        {
-            img: img11,
-            title: "Stage",
-        },
-     
-        {
-            img: img12,
-            title: "Emcee Service",
-        },
+    const [services, setServices] = useState([]);
+    const [editMode, setEditMode] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-        
-    ];
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const isStaff = user.role === "staff";
 
-    useEffect(() => {
-        const cards = document.querySelectorAll(".sv-card");
+    // Load services from backend
+    const loadServices = async () => {
+        try {
+            const res = await fetch(API_BASE);
+            const data = await res.json();
+            if (data && data.length > 0) setServices(data);
+            else setServices(defaultServices);
+        } catch (err) {
+            console.log("Failed to fetch services, using default", err);
+            setServices(defaultServices);
+        }
+    };
 
-        const observer = new IntersectionObserver(
-            entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-                    }
+    useEffect(() => { loadServices(); }, []);
+
+    const addService = () => {
+        setServices([...services, { id: 0, title: "", img: "" }]);
+        setEditMode(true);
+    };
+
+    const removeService = async (id) => {
+        if (id !== 0) await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+        setServices(services.filter(s => s.id !== id));
+    };
+
+    const handleChange = (index, field, value) => {
+        const updated = [...services];
+        updated[index][field] = value;
+        setServices(updated);
+    };
+
+    const saveServices = async () => {
+        setLoading(true);
+        for (let service of services) {
+            if (service.id === 0) {
+                await fetch(API_BASE, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(service),
                 });
-            },
-            { threshold: 0.2 }
-        );
-
-        cards.forEach(card => observer.observe(card));
-    }, []);
+            } else {
+                await fetch(`${API_BASE}/${service.id}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(service),
+                });
+            }
+        }
+        setLoading(false);
+        setEditMode(false);
+        loadServices();
+    };
 
     return (
         <>
             <section className="service-hero">
                 <div className="service-hero-background">
-                    <div className="placeholder-bg"></div>
-                    <img src={bg} alt="Services" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> 
+                    <img src={bg} alt="Services" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
-
                 <div className="service-hero-content">
                     <h2 className="service-hero-title fade-in-up">Our <span>Services</span></h2>
                     <h3 className="fade-in-up" style={{ animationDelay: "0.5s" }}>What we offer</h3>
+                    {isStaff && (
+                        <button onClick={() => setEditMode(!editMode)} className="portfolio-edit-btn">
+                            {editMode ? "Exit Edit Mode" : "Edit Services"}
+                        </button>
+                    )}
                 </div>
-
-
             </section>
 
             <section className="services-content">
-                <div className="services-content-card">
-                        <h2 className="services-content-title">
-                        Leave it to us at Sam Sound & Lights, for a one-stop service to help you get everything settle!
-                        </h2>
-
-                        <div className="sv-grid">
-                            {serviceList.map((service, index) => (
-                                <div key={index} className="sv-card">
-                                    <img src={service.img} alt={service.title} className="sv-card-img" />
-                                    <div className="sv-card-overlay"></div>
-
-                                    <div className="sv-card-text">
-                                        <h3>{service.title}</h3>
-                                        <p>{service.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-
-                    </div>
-
-                    
-                    </div>
+                <div className="services-grid">
+                    {services.map((service, index) => (
+                        <div key={index} className="sv-card">
+                            <img src={service.img} alt={service.title} className="sv-card-img" />
+                            {editMode && (
+                                <button onClick={() => removeService(service.id)} className="portfolio-delete-btn">×</button>
+                            )}
+                            <div className="sv-card-text">
+                                {editMode ? (
+                                    <>
+                                        <input
+                                            type="text"
+                                            value={service.title}
+                                            onChange={(e) => handleChange(index, "title", e.target.value)}
+                                            placeholder="Title"
+                                        />
+                                        <input
+                                            type="text"
+                                            value={service.img}
+                                            onChange={(e) => handleChange(index, "img", e.target.value)}
+                                            placeholder="Image URL"
+                                        />
+                                    </>
+                                ) : (
+                                    <h3>{service.title}</h3>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                    {editMode && (
+                        <div className="sv-card add-event-card" onClick={addService}>
+                            <div className="add-event-content">
+                                <div className="add-event-icon">+</div>
+                                <h3>Add New Service</h3>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                {editMode && (
+                    <button onClick={saveServices} disabled={loading} className="save-events-btn">
+                        {loading ? "Saving..." : "Save Changes"}
+                    </button>
+                )}
             </section>
         </>
     );
