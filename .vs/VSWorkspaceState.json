@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\publish",
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
     "\\website.client\\src\\public"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\Intro.jsx",
+  "SelectedNode": "\\publish\\web.config",
   "PreviewInSolutionExplorer": false
 }

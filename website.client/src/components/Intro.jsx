@@ -1,6 +1,6 @@
 import React from "react";
 import "/src/App.css";
-import { intro } from "/public/bgVideo.mp4";
+import { intro } from "../public/bgVideo.mp4";
 
 
 const Intro = () => {
