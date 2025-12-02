@@ -1,8 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import '/src/App.css';
-import aboutImg1 from '/img/banner2.jpg';
-import aboutImg2 from '/img/banner3.jpg';
-import aboutImg3 from '/img/banner4.jpg';
 
 const About = () => {
     const sectionRef = useRef(null);
@@ -58,13 +55,13 @@ const About = () => {
                         <div className="collage-frame">
                             <div className="collage-grid">
                                 <div className="collage-item large">
-                                    <img src={aboutImg1} alt="Project Img" />
+                                    <img src='/img/banner2.jpg' alt="Project Img" />
                                 </div>
                                 <div className="collage-item small">
-                                    <img src={aboutImg2} alt="Project Img" />
+                                    <img src='/img/banner3.jpg' alt="Project Img" />
                                 </div>
                                 <div className="collage-item small">
-                                    <img src={aboutImg3} alt="Project Img" />
+                                    <img src='/img/banner4.jpg' alt="Project Img" />
                                 </div>
                             </div>
                         </div>
