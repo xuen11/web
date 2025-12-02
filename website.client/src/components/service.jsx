@@ -1,15 +1,15 @@
 ﻿import React, { useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import '/src/App.css';
-import sound from "../img/soundSystem.jpg";
-import karaoke from "../img/karaoke.jpg";
-import lighting from "../img/lighting.jpg";
-import led from "../img/LED.jpg";
-import visual from "../img/visual.jpg";
-import projection from "../img/projection.jpg";
-import band from "../img/liveBand.jpg";
-import artist from "../img/artist.jpg";
-import installation from "../img/installation.jpg";
+import sound from "/src/img/soundSystem.jpg";
+import karaoke from "/src/img/karaoke.jpg";
+import lighting from "/src/img/lighting.jpg";
+import led from "/src/img/LED.jpg";
+import visual from "/src/img/visual.jpg";
+import projection from "/src/img/projection.jpg";
+import band from "/src/img/liveBand.jpg";
+import artist from "/src/img/artist.jpg";
+import installation from "/src/img/installation.jpg";
 
 
 const ServicePage = () => {

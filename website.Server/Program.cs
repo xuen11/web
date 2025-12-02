@@ -39,9 +39,9 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "https://web-kohl-three-21.vercel.app",
-            "http://localhost:5173",
-            "https://your-actual-vercel-domain.vercel.app"
-        )
+            "http://localhost:5173"
+            
+            )
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();

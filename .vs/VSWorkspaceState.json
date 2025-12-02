@@ -4,13 +4,13 @@
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
-    "\\website.client\\src\\pages",
     "\\website.client\\src\\public",
     "\\website.Server",
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
-    "\\website.Server\\Models"
+    "\\website.Server\\Models",
+    "\\website.Server\\obj"
   ],
-  "SelectedNode": "\\website.client\\src\\pages\\ServicesPage.jsx",
+  "SelectedNode": "\\website.Server\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
