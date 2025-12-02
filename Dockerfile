@@ -5,12 +5,19 @@ WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy everything else and build
+# 2. RESTORE PROPERLY (no --no-restore flag)
+RUN dotnet restore website.sln
+
+# 3. Copy everything else
 COPY . .
-RUN dotnet publish -c Release -o out
+
+# 4. PUBLISH WITHOUT --no-restore
+WORKDIR /src/website.Server
+RUN dotnet publish -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=build /app/publish .
 EXPOSE 8080
+ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 ENTRYPOINT ["dotnet", "website.Server.dll"]
