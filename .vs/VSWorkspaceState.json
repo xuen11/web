@@ -10,6 +10,6 @@
     "\\website.Server\\Models",
     "\\website.Server\\obj"
   ],
-  "SelectedNode": "\\website.Server\\obj\\website.Server.csproj.nuget.g.props",
+  "SelectedNode": "\\website.Server\\website.Server.csproj",
   "PreviewInSolutionExplorer": false
 }
