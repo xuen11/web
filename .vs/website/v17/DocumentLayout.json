@@ -444,7 +444,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -496,6 +496,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Intro.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\components\\Intro.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
+              "RelativeToolTip": "website.client\\src\\components\\Intro.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-20T07:31:16.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
               "Title": "ContactUsPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ContactUsPage.jsx",
@@ -540,8 +553,7 @@
               "RelativeToolTip": "website.client\\src\\pages\\ServicesPage.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-24T02:40:21.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T02:40:21.971Z"
             },
             {
               "$type": "Document",
@@ -553,21 +565,7 @@
               "RelativeToolTip": "website.client\\src\\components\\aboutUs.jsx",
               "ViewState": "AgIAACoAAAAAAAAAAAAAADkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-23T07:00:48.052Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Intro.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\components\\Intro.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
-              "RelativeToolTip": "website.client\\src\\components\\Intro.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-20T07:31:16.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T07:00:48.052Z"
             },
             {
               "$type": "Document",

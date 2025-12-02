@@ -3,10 +3,8 @@
     "",
     "\\website.client",
     "\\website.client\\src",
-    "\\website.client\\src\\components",
-    "\\website.client\\src\\pages",
     "\\website.client\\src\\public"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\Intro.jsx",
+  "SelectedNode": "\\website.client\\src\\public",
   "PreviewInSolutionExplorer": false
 }
