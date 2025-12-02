@@ -7,9 +7,8 @@
     "\\website.Server\\Controllers",
     "\\website.Server\\Data",
     "\\website.Server\\Migrations",
-    "\\website.Server\\Models",
-    "\\website.Server\\obj\\Release"
+    "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.Server\\Models\\Portfolio.cs",
+  "SelectedNode": "\\website.sln",
   "PreviewInSolutionExplorer": false
 }

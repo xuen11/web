@@ -1,4 +1,3 @@
-// Controllers/ServiceController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using website.Server.Data;
