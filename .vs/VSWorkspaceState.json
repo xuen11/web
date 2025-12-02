@@ -1,15 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\publish",
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
     "\\website.client\\src\\pages",
-    "\\website.client\\src\\public",
-    "\\website.Server\\Models",
-    "\\website.Server\\Properties",
-    "\\website.Server\\publish"
+    "\\website.client\\src\\public"
   ],
   "SelectedNode": "\\website.client\\src\\App.jsx",
   "PreviewInSolutionExplorer": false
