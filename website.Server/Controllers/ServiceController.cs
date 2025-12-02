@@ -1,3 +1,4 @@
+// Controllers/ServiceController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using website.Server.Data;
@@ -10,78 +11,91 @@ namespace website.Server.Controllers
     public class ServiceController : ControllerBase
     {
         private readonly AdminDbContext _context;
-        private readonly IWebHostEnvironment _env;
 
-        public ServiceController(AdminDbContext context, IWebHostEnvironment env)
+        public ServiceController(AdminDbContext context)
         {
             _context = context;
-            _env = env;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetServices()
+        public async Task<ActionResult<IEnumerable<Service>>> GetServices()
         {
-            var services = await _context.Services.OrderBy(s => s.Id).ToListAsync();
-            return Ok(services);
+            return await _context.Services.ToListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Service>> GetService(int id)
+        {
+            var service = await _context.Services.FindAsync(id);
+
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            return service;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddService([FromBody] Service service)
+        public async Task<ActionResult<Service>> PostService(Service service)
         {
             service.CreatedAt = DateTime.UtcNow;
             service.UpdatedAt = DateTime.UtcNow;
+
             _context.Services.Add(service);
             await _context.SaveChangesAsync();
-            return Ok(new { success = true, message = "Service added successfully." });
+
+            return CreatedAtAction("GetService", new { id = service.Id }, service);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateService(int id, [FromBody] Service updatedService)
+        public async Task<IActionResult> PutService(int id, Service service)
         {
-            var service = await _context.Services.FindAsync(id);
-            if (service == null) return NotFound();
+            if (id != service.Id)
+            {
+                return BadRequest();
+            }
 
-            service.Title = updatedService.Title;
-            service.Description = updatedService.Description;
-            service.Image = updatedService.Image;
             service.UpdatedAt = DateTime.UtcNow;
+            _context.Entry(service).State = EntityState.Modified;
 
-            await _context.SaveChangesAsync();
-            return Ok(new { success = true, message = "Service updated successfully." });
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ServiceExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
             var service = await _context.Services.FindAsync(id);
-            if (service == null) return NotFound();
+            if (service == null)
+            {
+                return NotFound();
+            }
 
             _context.Services.Remove(service);
             await _context.SaveChangesAsync();
-            return Ok(new { success = true, message = "Service deleted successfully." });
+
+            return NoContent();
         }
 
-        [HttpPost("upload-image")]
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+        private bool ServiceExists(int id)
         {
-            if (file == null || file.Length == 0)
-                return BadRequest(new { success = false, message = "No file selected" });
-
-            var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
-            if (!Directory.Exists(uploadsFolder))
-                Directory.CreateDirectory(uploadsFolder);
-
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-            var filePath = Path.Combine(uploadsFolder, fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            // Return relative path for frontend
-            var relativePath = $"uploads/{fileName}";
-            return Ok(new { success = true, path = relativePath });
+            return _context.Services.Any(e => e.Id == id);
         }
     }
 }

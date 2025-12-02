@@ -1,3 +1,4 @@
+// Controllers/PortfolioController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using website.Server.Data;
@@ -10,91 +11,91 @@ namespace website.Server.Controllers
     public class PortfolioController : ControllerBase
     {
         private readonly AdminDbContext _context;
-        private readonly IWebHostEnvironment _env;
 
-        public PortfolioController(AdminDbContext context, IWebHostEnvironment env)
+        public PortfolioController(AdminDbContext context)
         {
             _context = context;
-            _env = env;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllImages()
+        public async Task<ActionResult<IEnumerable<Portfolio>>> GetPortfolios()
         {
-            try
-            {
-                var images = await _context.PortfolioImages
-                    .OrderByDescending(p => p.CreatedAt)
-                    .ToListAsync();
-                return Ok(images);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { success = false, message = ex.Message });
-            }
+            return await _context.Portfolios.ToListAsync();  // Changed from PortfolioImages
         }
 
-        [HttpPost("upload")]
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile image)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Portfolio>> GetPortfolio(int id)
         {
-            if (image == null || image.Length == 0)
-                return BadRequest(new { success = false, message = "No file uploaded" });
+            var portfolio = await _context.Portfolios.FindAsync(id);  // Changed from PortfolioImages
+
+            if (portfolio == null)
+            {
+                return NotFound();
+            }
+
+            return portfolio;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Portfolio>> PostPortfolio(Portfolio portfolio)
+        {
+            portfolio.CreatedAt = DateTime.UtcNow;
+            portfolio.UpdatedAt = DateTime.UtcNow;
+
+            _context.Portfolios.Add(portfolio);  // Changed from PortfolioImages
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetPortfolio", new { id = portfolio.Id }, portfolio);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutPortfolio(int id, Portfolio portfolio)
+        {
+            if (id != portfolio.Id)
+            {
+                return BadRequest();
+            }
+
+            portfolio.UpdatedAt = DateTime.UtcNow;
+            _context.Entry(portfolio).State = EntityState.Modified;
 
             try
             {
-                var uploadsFolder = Path.Combine(_env.WebRootPath ?? "wwwroot", "uploads");
-                if (!Directory.Exists(uploadsFolder))
-                    Directory.CreateDirectory(uploadsFolder);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(image.FileName)}";
-                var filePath = Path.Combine(uploadsFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PortfolioExists(id))
                 {
-                    await image.CopyToAsync(stream);
+                    return NotFound();
                 }
-
-                var portfolioImage = new PortfolioImage
+                else
                 {
-                    ImagePath = $"/uploads/{fileName}"
-                };
-
-                _context.PortfolioImages.Add(portfolioImage);
-                await _context.SaveChangesAsync();
-
-                return Ok(new { success = true, data = portfolioImage });
+                    throw;
+                }
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { success = false, message = ex.Message });
-            }
+
+            return NoContent();
         }
 
-        // Delete portfolio image
-        [HttpDelete("delete/{id}")]
-        public async Task<IActionResult> DeleteImage(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePortfolio(int id)
         {
-            var image = await _context.PortfolioImages.FindAsync(id);
-            if (image == null)
-                return NotFound(new { success = false, message = "Image not found" });
-
-            try
+            var portfolio = await _context.Portfolios.FindAsync(id);  // Changed from PortfolioImages
+            if (portfolio == null)
             {
-                // Delete file from server
-                var filePath = Path.Combine(_env.WebRootPath ?? "wwwroot", image.ImagePath.TrimStart('/'));
-                if (System.IO.File.Exists(filePath))
-                    System.IO.File.Delete(filePath);
-
-                // Delete from database
-                _context.PortfolioImages.Remove(image);
-                await _context.SaveChangesAsync();
-
-                return Ok(new { success = true, message = "Image deleted successfully" });
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { success = false, message = ex.Message });
-            }
+
+            _context.Portfolios.Remove(portfolio);  // Changed from PortfolioImages
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool PortfolioExists(int id)
+        {
+            return _context.Portfolios.Any(e => e.Id == id);  // Changed from PortfolioImages
         }
     }
 }

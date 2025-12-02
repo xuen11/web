@@ -40,7 +40,6 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
             "https://web-kohl-three-21.vercel.app",
             "http://localhost:5173"
-            
             )
         .AllowAnyHeader()
         .AllowAnyMethod()
@@ -115,40 +114,12 @@ app.MapGet("/debug/events", async (HttpContext httpContext) =>
     }
 });
 
-// ADD THIS: Simple contact endpoint for testing
-app.MapPost("/api/contact", async (HttpContext httpContext, Contact contact) =>
-{
-    try
-    {
-        using var scope = httpContext.RequestServices.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<AdminDbContext>();
-
-        contact.CreatedDate = DateTime.UtcNow;
-        context.Contacts.Add(contact);
-        await context.SaveChangesAsync();
-
-        return Results.Ok(new
-        {
-            success = true,
-            message = "Thank you! Your message has been sent successfully."
-        });
-    }
-    catch (Exception ex)
-    {
-        return Results.BadRequest(new
-        {
-            success = false,
-            message = $"Error: {ex.Message}"
-        });
-    }
-});
-
 // Database initialization
 async Task InitializeDatabase(AdminDbContext context)
 {
     try
     {
-        // Create tables if they don't exist
+        // Check if tables exist
         await context.Database.EnsureCreatedAsync();
         Console.WriteLine("Database initialized successfully!");
     }
@@ -158,20 +129,21 @@ async Task InitializeDatabase(AdminDbContext context)
     }
 }
 
-// Seed data - ADD CONTACTS TABLE CHECK
+// Seed data
 async Task SeedDataAsync(AdminDbContext context)
 {
-    // Check if Contacts table exists and is accessible
+    // Check if Events table is accessible
     try
     {
-        var contactsCount = await context.Contacts.CountAsync();
-        Console.WriteLine($"Contacts table exists with {contactsCount} records");
+        var eventsExist = await context.Events.AnyAsync();
+        Console.WriteLine($"Events table check: {eventsExist}");
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Contacts table error: {ex.Message}");
+        Console.WriteLine($"Events table error: {ex.Message}");
     }
 
+    // Seed Events if empty
     if (!context.Events.Any())
     {
         context.Events.AddRange(
@@ -181,7 +153,6 @@ async Task SeedDataAsync(AdminDbContext context)
                 Date = "Sat, 29 June",
                 Detail = "Event by Sam Sound & Lights",
                 Image = "/img/event1.jpg",
-                ButtonText = "Learn More",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             },
@@ -191,7 +162,6 @@ async Task SeedDataAsync(AdminDbContext context)
                 Date = "Sat, 19 Nov",
                 Detail = "Event by Karabaw Martial Arts & Fitness Centre",
                 Image = "/img/event2.jpg",
-                ButtonText = "Learn More",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             }
@@ -199,6 +169,50 @@ async Task SeedDataAsync(AdminDbContext context)
 
         await context.SaveChangesAsync();
         Console.WriteLine("Events seeded!");
+    }
+
+    // Check and seed Services (NO DESCRIPTION)
+    if (!context.Services.Any())
+    {
+        context.Services.AddRange(
+            new Service
+            {
+                Title = "Sound System",
+                ImagePath = "/img/sound1.jpg",  // NO Description property
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Service
+            {
+                Title = "Lighting System",
+                ImagePath = "/img/lightingSystem.jpg",  // NO Description property
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+        await context.SaveChangesAsync();
+        Console.WriteLine("Services seeded!");
+    }
+
+    // Check and seed Portfolio (ADD Title property)
+    if (!context.Portfolios.Any())
+    {
+        context.Portfolios.AddRange(
+            new Portfolio
+            {
+                ImagePath = "/img/portfolio1.jpg",
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            new Portfolio
+            {
+                ImagePath = "/img/portfolio2.jpg",
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            }
+        );
+        await context.SaveChangesAsync();
+        Console.WriteLine("Portfolio seeded!");
     }
 }
 

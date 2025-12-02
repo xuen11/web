@@ -132,7 +132,6 @@ namespace website.Server.Migrations
                         new
                         {
                             Id = 1,
-                            ButtonText = "Learn More",
                             CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9487),
                             Date = "Sat, 29 June",
                             Detail = "Event by Sam Sound & Lights",
@@ -143,7 +142,6 @@ namespace website.Server.Migrations
                         new
                         {
                             Id = 2,
-                            ButtonText = "Learn More",
                             CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9489),
                             Date = "Sat, 19 Nov",
                             Detail = "Event by Karabaw Martial Arts & Fitness Centre",

@@ -12,8 +12,8 @@ namespace website.Server.Data
         public DbSet<StaffAccount> StaffAccounts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Event> Events { get; set; }
-        public DbSet<PortfolioImage> PortfolioImages { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
 
 
 
@@ -23,6 +23,9 @@ namespace website.Server.Data
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Email).IsRequired();
+                entity.Property(e => e.Password).IsRequired();
+                entity.Property(e => e.Role).IsRequired();
             });
 
            
@@ -45,7 +48,8 @@ namespace website.Server.Data
                 entity.Property(e => e.Date).HasMaxLength(100);
                 entity.Property(e => e.Detail).HasMaxLength(500);
                 entity.Property(e => e.Image).HasMaxLength(500);
-                entity.Property(e => e.ButtonText).HasMaxLength(100);
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
 
             modelBuilder.Entity<StaffAccount>().HasData(
@@ -73,12 +77,24 @@ namespace website.Server.Data
 
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<PortfolioImage>(entity =>
+            modelBuilder.Entity<Portfolio>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.ImagePath).IsRequired().HasMaxLength(500);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            });
+
+
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.ImagePath).HasMaxLength(500);
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
 
         }

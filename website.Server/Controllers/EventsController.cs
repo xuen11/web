@@ -31,7 +31,6 @@ namespace website.Server.Controllers
                     date = e.Date,
                     detail = e.Detail,
                     image = e.Image,
-                    buttonText = e.ButtonText
                 }).ToList();
 
                 return Ok(response);
@@ -64,7 +63,6 @@ namespace website.Server.Controllers
                         Date = eventItem.date,
                         Detail = eventItem.detail,
                         Image = eventItem.image,
-                        ButtonText = eventItem.buttonText,
                         CreatedAt = DateTime.UtcNow,
                         UpdatedAt = DateTime.UtcNow
                     };
@@ -82,7 +80,6 @@ namespace website.Server.Controllers
                     date = e.Date,
                     detail = e.Detail,
                     image = e.Image,
-                    buttonText = e.ButtonText
                 }).ToList();
 
                 return Ok(new
