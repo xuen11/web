@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\source\\repos\\website\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\service.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\AboutPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\AboutPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\website.Server.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -29,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\Directory.Build.props||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Directory.Build.props||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\railway.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -297,14 +301,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\EventsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\service.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Header1.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\Header1.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -448,7 +444,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -464,33 +460,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "service.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\components\\service.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx",
+              "RelativeToolTip": "website.client\\src\\components\\service.jsx",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-12-01T07:19:49.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
               "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\Dockerfile",
               "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-11-08T06:19:43.083Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.css",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css",
-              "RelativeDocumentMoniker": "website.client\\src\\App.css",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css",
-              "RelativeToolTip": "website.client\\src\\App.css",
-              "ViewState": "AgIAANkZAAAAAAAAAADwv9IZAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-05T04:29:14.338Z",
+              "DocumentIndex": 2,
+              "Title": "ServicesPage.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\pages\\ServicesPage.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx",
+              "RelativeToolTip": "website.client\\src\\pages\\ServicesPage.jsx",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-24T02:40:21.971Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "AboutPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\AboutPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\AboutPage.jsx",
@@ -503,7 +512,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
+              "Title": "App.css",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css",
+              "RelativeDocumentMoniker": "website.client\\src\\App.css",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css",
+              "RelativeToolTip": "website.client\\src\\App.css",
+              "ViewState": "AgIAANkZAAAAAAAAAADwv9IZAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-05T04:29:14.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "website.Server.csproj",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\website.Server.csproj",
               "RelativeDocumentMoniker": "website.Server\\website.Server.csproj",
@@ -515,7 +536,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "website.Server.csproj.nuget.g.props",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\obj\\website.Server.csproj.nuget.g.props",
               "RelativeDocumentMoniker": "website.Server\\obj\\website.Server.csproj.nuget.g.props",
@@ -527,7 +548,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Directory.Build.props",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\Directory.Build.props",
               "RelativeDocumentMoniker": "Directory.Build.props",
@@ -539,7 +560,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "nuget.config",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\nuget.config",
               "RelativeDocumentMoniker": "website.client\\nuget.config",
@@ -551,7 +572,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\AuthController.cs",
@@ -563,19 +584,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Dockerfile",
-              "RelativeDocumentMoniker": "website.Server\\Dockerfile",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Dockerfile",
-              "RelativeToolTip": "website.Server\\Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-02T04:38:26.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "website.client.esproj",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\website.client.esproj",
               "RelativeDocumentMoniker": "website.client\\website.client.esproj",
@@ -587,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "ServiceController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ServiceController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\ServiceController.cs",
@@ -599,7 +608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "PortfolioController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\PortfolioController.cs",
@@ -611,7 +620,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "EventsController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\EventsController.cs",
@@ -623,7 +632,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "ContactController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ContactController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\ContactController.cs",
@@ -635,7 +644,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "website.Server.csproj",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\website.Server.csproj",
               "RelativeDocumentMoniker": "website.Server\\website.Server.csproj",
@@ -646,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Program.cs",
               "RelativeDocumentMoniker": "website.Server\\Program.cs",
@@ -658,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "railway.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\railway.json",
               "RelativeDocumentMoniker": "website.Server\\railway.json",
@@ -670,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "website.Server.http",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\website.Server.http",
               "RelativeDocumentMoniker": "website.Server\\website.Server.http",
@@ -682,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": ".env",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\.env",
               "RelativeDocumentMoniker": "website.Server\\.env",
@@ -694,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "railway.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\railway.json",
               "RelativeDocumentMoniker": "railway.json",
@@ -706,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "vite.config.js",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\vite.config.js",
               "RelativeDocumentMoniker": "website.client\\vite.config.js",
@@ -718,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "Portfolio.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\Portfolio.cs",
@@ -730,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "Service.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Service.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\Service.cs",
@@ -742,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "AdminDbContext.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
               "RelativeDocumentMoniker": "website.Server\\Data\\AdminDbContext.cs",
@@ -754,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "Event.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Event.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\Event.cs",
@@ -766,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "Contact.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Contact.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\Contact.cs",
@@ -778,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "AdminDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Migrations\\AdminDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "website.Server\\Migrations\\AdminDbContextModelSnapshot.cs",
@@ -790,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "package-lock.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\package-lock.json",
               "RelativeDocumentMoniker": "website.client\\package-lock.json",
@@ -802,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 65,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "website.Server\\Properties\\launchSettings.json",
@@ -814,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 66,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\package.json",
               "RelativeDocumentMoniker": "website.client\\package.json",
@@ -826,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 67,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\index.html",
               "RelativeDocumentMoniker": "website.client\\index.html",
@@ -838,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 68,
               "Title": "eslint.config.js",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\eslint.config.js",
               "RelativeDocumentMoniker": "website.client\\eslint.config.js",
@@ -850,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 69,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\.gitignore",
               "RelativeDocumentMoniker": "website.client\\.gitignore",
@@ -862,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 70,
               "Title": "website.Server.staticwebassets.endpoints.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\publish\\website.Server.staticwebassets.endpoints.json",
               "RelativeDocumentMoniker": "website.Server\\publish\\website.Server.staticwebassets.endpoints.json",
@@ -874,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 71,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\appsettings.Development.json",
               "RelativeDocumentMoniker": "website.Server\\appsettings.Development.json",
@@ -886,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 72,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\appsettings.json",
               "RelativeDocumentMoniker": "website.Server\\appsettings.json",
@@ -898,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "website.Server.csproj.user",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\website.Server.csproj.user",
               "RelativeDocumentMoniker": "website.Server\\website.Server.csproj.user",
@@ -910,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Microsoft.VisualStudio.FallbackLocation.config",
               "DocumentMoniker": "C:\\Program Files (x86)\\Nuget\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files (x86)\\Nuget\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
@@ -922,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "project.assets.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\obj\\project.assets.json",
               "RelativeDocumentMoniker": "website.Server\\obj\\project.assets.json",
@@ -934,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 73,
               "Title": "LoginRequest.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\LoginRequest.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\LoginRequest.cs",
@@ -946,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 74,
               "Title": "StaffAccount.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\StaffAccount.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\StaffAccount.cs",
@@ -958,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 75,
               "Title": "EventsPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\EventsPage.jsx",
@@ -970,31 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "ServicesPage.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\pages\\ServicesPage.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx",
-              "RelativeToolTip": "website.client\\src\\pages\\ServicesPage.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-24T02:40:21.971Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 76,
-              "Title": "service.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\components\\service.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx",
-              "RelativeToolTip": "website.client\\src\\components\\service.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-12-01T07:19:49.1Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 77,
               "Title": "Header1.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Header1.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Header1.jsx",
@@ -1006,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 77,
               "Title": "event.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\event.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\event.jsx",
@@ -1018,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 78,
               "Title": "contactUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\contactUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\contactUs.jsx",
@@ -1030,7 +1015,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 79,
               "Title": "ContactUsPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ContactUsPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\ContactUsPage.jsx",
@@ -1042,7 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 80,
               "Title": "footer.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\footer.jsx",
@@ -1054,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 81,
               "Title": "PortfolioPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\PortfolioPage.jsx",
@@ -1066,7 +1051,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 82,
               "Title": "portfolio.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\portfolio.jsx",
@@ -1078,7 +1063,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 83,
               "Title": "aboutUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\aboutUs.jsx",
@@ -1090,7 +1075,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 84,
               "Title": "login.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\login.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\login.jsx",
@@ -1102,7 +1087,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "aboutPage.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\aboutPage.css",
               "RelativeDocumentMoniker": "website.client\\style\\aboutPage.css",
@@ -1113,7 +1098,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "portfolioPage.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\portfolioPage.css",
               "RelativeDocumentMoniker": "website.client\\style\\portfolioPage.css",
@@ -1124,7 +1109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "servicePage.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\servicePage.css",
               "RelativeDocumentMoniker": "website.client\\style\\servicePage.css",
@@ -1135,7 +1120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "contactPage.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\contactPage.css",
               "RelativeDocumentMoniker": "website.client\\style\\contactPage.css",
@@ -1146,7 +1131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "login.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\login.css",
               "RelativeDocumentMoniker": "website.client\\style\\login.css",
@@ -1157,7 +1142,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "footer.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\footer.css",
               "RelativeDocumentMoniker": "website.client\\style\\footer.css",
@@ -1168,7 +1153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "service.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\service.css",
               "RelativeDocumentMoniker": "website.client\\style\\service.css",
@@ -1179,7 +1164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "eventPage.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\eventPage.css",
               "RelativeDocumentMoniker": "website.client\\style\\eventPage.css",
@@ -1190,7 +1175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "contactStyle.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\contactStyle.css",
               "RelativeDocumentMoniker": "website.client\\style\\contactStyle.css",
@@ -1201,7 +1186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "portfolio.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\portfolio.css",
               "RelativeDocumentMoniker": "website.client\\style\\portfolio.css",
@@ -1212,7 +1197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "header.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\header.css",
               "RelativeDocumentMoniker": "website.client\\style\\header.css",
@@ -1223,7 +1208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "event.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\event.css",
               "RelativeDocumentMoniker": "website.client\\style\\event.css",
@@ -1234,7 +1219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 85,
               "Title": "Intro.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Intro.jsx",
@@ -1246,7 +1231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "intro.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\intro.css",
               "RelativeDocumentMoniker": "website.client\\style\\intro.css",
@@ -1257,7 +1242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "about.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\about.css",
               "RelativeDocumentMoniker": "website.client\\style\\about.css",
@@ -1268,7 +1253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 86,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\App.jsx",
@@ -1280,7 +1265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 87,
               "Title": "AuthContext.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\AuthContext.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\AuthContext.jsx",
@@ -1292,7 +1277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 88,
               "Title": "react.svg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\assets\\react.svg",
               "RelativeDocumentMoniker": "website.client\\src\\assets\\react.svg",
@@ -1304,7 +1289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "services.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\services.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\services.jsx",
@@ -1315,7 +1300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Contact1.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Contact1.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Contact1.jsx",
@@ -1326,7 +1311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "serviceStyle.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\style\\serviceStyle.css",
               "RelativeDocumentMoniker": "website.client\\style\\serviceStyle.css",
@@ -1337,7 +1322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "header.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\header.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\header.jsx",
@@ -1348,7 +1333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "service2.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service2.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\service2.jsx",
@@ -1359,7 +1344,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "home.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\home.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\home.jsx",
@@ -1370,7 +1355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "Banner1.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Banner1.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Banner1.jsx",
@@ -1381,7 +1366,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "contact.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\unuse\\contact.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\unuse\\contact.jsx",
@@ -1392,7 +1377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 89,
               "Title": "index.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\index.css",
               "RelativeDocumentMoniker": "website.client\\src\\index.css",
@@ -1404,7 +1389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "about.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\unuse\\about.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\unuse\\about.jsx",
@@ -1415,7 +1400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "banner.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\banner.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\banner.jsx",
@@ -1426,7 +1411,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 90,
               "Title": "vd.mp4",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\public\\vd.mp4",
               "RelativeDocumentMoniker": "website.client\\src\\public\\vd.mp4",
@@ -1437,7 +1422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 91,
               "Title": "bgVideo.mp4",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\public\\bgVideo.mp4",
               "RelativeDocumentMoniker": "website.client\\src\\public\\bgVideo.mp4",
@@ -1448,7 +1433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 92,
               "Title": "event1.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\img\\event1.jpg",
               "RelativeDocumentMoniker": "website.client\\src\\img\\event1.jpg",
@@ -1459,7 +1444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 93,
               "Title": "event2.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\img\\event2.jpg",
               "RelativeDocumentMoniker": "website.client\\src\\img\\event2.jpg",
@@ -1470,7 +1455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 94,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\User.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\User.cs",
@@ -1482,7 +1467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 95,
               "Title": "LoginResponse.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\LoginResponse.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\LoginResponse.cs",
@@ -1494,7 +1479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "BannerUpdateModel.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\BannerUpdateModel.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\BannerUpdateModel.cs",
@@ -1505,7 +1490,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 96,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\main.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\main.jsx",
@@ -1517,7 +1502,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "website.Server.csproj.nuget.g.targets",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\obj\\website.Server.csproj.nuget.g.targets",
               "RelativeDocumentMoniker": "website.Server\\obj\\website.Server.csproj.nuget.g.targets",
@@ -1529,7 +1514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 97,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\publish\\appsettings.Development.json",
               "RelativeDocumentMoniker": "website.Server\\publish\\appsettings.Development.json",
@@ -1541,7 +1526,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 98,
               "Title": "20251114151857_InitialCreate.Designer.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Migrations\\20251114151857_InitialCreate.Designer.cs",
               "RelativeDocumentMoniker": "website.Server\\Migrations\\20251114151857_InitialCreate.Designer.cs",
@@ -1553,7 +1538,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 99,
               "Title": "20251114151857_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Migrations\\20251114151857_InitialCreate.cs",
               "RelativeDocumentMoniker": "website.Server\\Migrations\\20251114151857_InitialCreate.cs",
@@ -1565,7 +1550,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 100,
               "Title": "vite.svg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\public\\vite.svg",
               "RelativeDocumentMoniker": "website.client\\src\\public\\vite.svg",
@@ -1577,7 +1562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "20251114151642_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Migrations\\20251114151642_InitialCreate.cs",
               "RelativeDocumentMoniker": "website.Server\\Migrations\\20251114151642_InitialCreate.cs",
@@ -1588,7 +1573,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 101,
               "Title": ".env",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\.env",
               "RelativeDocumentMoniker": "website.client\\.env",
@@ -1600,7 +1585,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 102,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\README.md",
               "RelativeDocumentMoniker": "website.client\\README.md",
@@ -1612,7 +1597,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "banner.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\AppData\\Local\\Temp\\aa5510a7-9b1a-4d36-a646-db71b05f0729_website (4).zip.729\\website\\website.client\\src\\components\\banner.jsx",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\aa5510a7-9b1a-4d36-a646-db71b05f0729_website (4).zip.729\\website\\website.client\\src\\components\\banner.jsx",
@@ -1623,7 +1608,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "banner.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\AppData\\Local\\Temp\\63712bbb-58d2-4598-88f7-4223a3e7496b_website (4).zip.96b\\website\\website.client\\src\\components\\banner.jsx",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\63712bbb-58d2-4598-88f7-4223a3e7496b_website (4).zip.96b\\website\\website.client\\src\\components\\banner.jsx",
@@ -1634,7 +1619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 103,
               "Title": "5ec744fd-abfb-4004-8a77-0147db79cb4a_about.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\wwwroot\\uploads\\5ec744fd-abfb-4004-8a77-0147db79cb4a_about.jpg",
               "RelativeDocumentMoniker": "website.Server\\wwwroot\\uploads\\5ec744fd-abfb-4004-8a77-0147db79cb4a_about.jpg",
@@ -1645,7 +1630,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 104,
               "Title": "5ee4a394-ee56-41de-85bd-6553ee533c60_about.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\wwwroot\\uploads\\5ee4a394-ee56-41de-85bd-6553ee533c60_about.jpg",
               "RelativeDocumentMoniker": "website.Server\\wwwroot\\uploads\\5ee4a394-ee56-41de-85bd-6553ee533c60_about.jpg",
@@ -1656,7 +1641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
+              "DocumentIndex": 105,
               "Title": "6c1457af-9403-4688-b0b8-b91a3bc2bab7_services.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\wwwroot\\uploads\\6c1457af-9403-4688-b0b8-b91a3bc2bab7_services.jpg",
               "RelativeDocumentMoniker": "website.Server\\wwwroot\\uploads\\6c1457af-9403-4688-b0b8-b91a3bc2bab7_services.jpg",
@@ -1667,7 +1652,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "login.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\AppData\\Local\\Temp\\0c8b88fc-e1e9-4bfd-82e9-d6d85dfc8c92_website.zip.c92\\website\\website.client\\src\\components\\login.jsx",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\0c8b88fc-e1e9-4bfd-82e9-d6d85dfc8c92_website.zip.c92\\website\\website.client\\src\\components\\login.jsx",
@@ -1678,7 +1663,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "DbContext.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\DbContext.cs",
               "RelativeDocumentMoniker": "website.Server\\Data\\DbContext.cs",
@@ -1689,7 +1674,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\AddressBookSystem\\addressbooksystem.client\\src\\main.jsx",
               "RelativeDocumentMoniker": "..\\AddressBookSystem\\addressbooksystem.client\\src\\main.jsx",
@@ -1701,7 +1686,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 106,
               "Title": "banner.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\img\\banner.jpg",
               "RelativeDocumentMoniker": "website.client\\src\\img\\banner.jpg",
@@ -1712,7 +1697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 108,
+              "DocumentIndex": 107,
               "Title": "banner2.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\img\\banner2.jpg",
               "RelativeDocumentMoniker": "website.client\\src\\img\\banner2.jpg",
@@ -1723,7 +1708,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 109,
+              "DocumentIndex": 108,
               "Title": "logo.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\img\\logo.jpg",
               "RelativeDocumentMoniker": "website.client\\src\\img\\logo.jpg",
@@ -1734,7 +1719,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 110,
+              "DocumentIndex": 109,
               "Title": "background.jpg",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\img\\background.jpg",
               "RelativeDocumentMoniker": "website.client\\src\\img\\background.jpg",
@@ -1745,7 +1730,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "ContactsController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\AddressBookSystem\\AddressBookSystem.Server\\Controllers\\ContactsController.cs",
               "RelativeDocumentMoniker": "..\\AddressBookSystem\\AddressBookSystem.Server\\Controllers\\ContactsController.cs",

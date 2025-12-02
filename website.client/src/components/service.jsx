@@ -1,7 +1,7 @@
 ﻿import React, { useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import '/src/App.css';
-import sound from "/src/img/soundSystem.jpg";
+import sound from "../img/soundSystem.jpg";
 import karaoke from "/src/img/karaoke.jpg";
 import lighting from "/src/img/lighting.jpg";
 import led from "/src/img/LED.jpg";
