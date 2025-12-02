@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\source\\repos\\website\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\aboutUs.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\AuthContext.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\AuthContext.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\aboutUs.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -461,19 +461,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "footer.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\components\\footer.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
-              "RelativeToolTip": "website.client\\src\\components\\footer.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-05T07:10:33.729Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Header1.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Header1.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Header1.jsx",
@@ -481,12 +468,11 @@
               "RelativeToolTip": "website.client\\src\\components\\Header1.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-20T05:57:07.488Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-20T05:57:07.488Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Intro.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Intro.jsx",
@@ -494,12 +480,11 @@
               "RelativeToolTip": "website.client\\src\\components\\Intro.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-20T07:31:16.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-20T07:31:16.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "login.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\login.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\login.jsx",
@@ -512,7 +497,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "aboutUs.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\components\\aboutUs.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
+              "RelativeToolTip": "website.client\\src\\components\\aboutUs.jsx",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-23T07:00:48.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "footer.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\components\\footer.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
+              "RelativeToolTip": "website.client\\src\\components\\footer.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-05T07:10:33.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "event.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\event.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\event.jsx",
@@ -520,12 +530,11 @@
               "RelativeToolTip": "website.client\\src\\components\\event.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-12-01T07:16:00.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-01T07:16:00.57Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "contactUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\contactUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\contactUs.jsx",
@@ -533,12 +542,11 @@
               "RelativeToolTip": "website.client\\src\\components\\contactUs.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-23T10:20:22.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T10:20:22.313Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AuthContext.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\AuthContext.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\AuthContext.jsx",
@@ -546,21 +554,7 @@
               "RelativeToolTip": "website.client\\src\\components\\AuthContext.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-07T01:37:05.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "aboutUs.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\components\\aboutUs.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
-              "RelativeToolTip": "website.client\\src\\components\\aboutUs.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-23T07:00:48.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T01:37:05.485Z"
             },
             {
               "$type": "Document",
@@ -572,8 +566,7 @@
               "RelativeToolTip": "website.client\\src\\pages\\ServicesPage.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-24T02:40:21.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T02:40:21.971Z"
             },
             {
               "$type": "Document",

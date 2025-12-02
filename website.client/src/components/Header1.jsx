@@ -1,7 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '/src/App.css';
-import logoImg from '/img/logo.jpg';
 
 const Header = () => {
     const [activePage, setActivePage] = useState('home');
@@ -147,7 +146,7 @@ const Header = () => {
                 {/* LOGO */}
                 <div className="logo-container" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
                     <img
-                        src={logoImg}
+                        src='/img/logo.jpg'
                         className="logo-img"
                         alt="Logo"
                         onError={handleImageError}
