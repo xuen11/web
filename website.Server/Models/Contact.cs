@@ -26,6 +26,6 @@ namespace website.Server.Models
         [Column(TypeName = "text")]
         public string EventDetails { get; set; } = string.Empty;
 
-        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

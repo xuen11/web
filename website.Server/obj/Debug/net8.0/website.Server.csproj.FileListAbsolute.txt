@@ -56,7 +56,6 @@ C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\publish\publi
 C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\publish\website.Server.deps.json
 C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\publish\website.Server.runtimeconfig.json
 C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\publish\website.Server.staticwebassets.endpoints.json
-C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\railway.json
 C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\website.Server.staticwebassets.runtime.json
 C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\website.Server.staticwebassets.endpoints.json
 C:\Users\asus\source\repos\website\website.Server\bin\Debug\net8.0\website.Server.exe

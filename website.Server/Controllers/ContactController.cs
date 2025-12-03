@@ -35,7 +35,7 @@ namespace website.Server.Controllers
 
             try
             {
-                contact.CreatedDate = DateTime.Now;
+                contact.CreatedAt = DateTime.Now;
 
                 Console.WriteLine("Attempting to save contact to database...");
 
@@ -78,7 +78,7 @@ namespace website.Server.Controllers
             try
             {
                 var contacts = await _context.Contacts
-                    .OrderByDescending(c => c.CreatedDate)
+                    .OrderByDescending(c => c.CreatedAt)
                     .ToListAsync();
                 return Ok(contacts);
             }

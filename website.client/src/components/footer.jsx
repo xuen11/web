@@ -79,7 +79,7 @@ const Footer = () => {
                 <div className="footer-content">
                     <div className="footer-main">
                         <div className="footer-logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
-                            <img src='/img/logo.jpg' alt="Sam Sound & Light" />
+                            <img src='src/public/img/logo.jpg' alt="Sam Sound & Light" />
                             <div className="logo-text">
                                 <h2>Sam Sound and Light</h2>
                             </div>

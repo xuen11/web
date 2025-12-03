@@ -2,239 +2,84 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 using website.Server.Data;
-using website.Server.Models;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add controllers
-builder.Services.AddControllers();
+// Create necessary directories
+var wwwrootPath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot");
+Directory.CreateDirectory(wwwrootPath);
+Directory.CreateDirectory(Path.Combine(wwwrootPath, "uploads", "portfolio"));
+Directory.CreateDirectory(Path.Combine(wwwrootPath, "uploads", "services"));
 
-// Swagger for API documentation
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Get connection string
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-if (string.IsNullOrWhiteSpace(connectionString))
+// Configure form options for file uploads
+builder.Services.Configure<FormOptions>(o =>
 {
-    connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
-}
-
-if (string.IsNullOrWhiteSpace(connectionString))
-{
-    throw new Exception("No database connection found. Please set DefaultConnection.");
-}
-
-Console.WriteLine($"Using MySQL connection: {connectionString}");
-
-builder.Services.AddDbContext<AdminDbContext>(options =>
-{
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+    o.MultipartBodyLengthLimit = 1024L * 1024L * 20; // 20MB
 });
 
+
+// Disable all API validation that causes 415 errors
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressConsumesConstraintForFormFileParameters = true;
+    options.SuppressInferBindingSourcesForParameters = true;
+    options.SuppressModelStateInvalidFilter = true;
+});
+
+// Add controllers with minimal configuration
+builder.Services.AddControllers();
+
+// Database
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? Environment.GetEnvironmentVariable("DefaultConnection");
+builder.Services.AddDbContext<AdminDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+// CORS - Allow everything
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("FrontendPolicy", policy =>
-    {
-        policy.WithOrigins(
-            "https://web-kohl-three-21.vercel.app",
-            "http://localhost:5173"
-            )
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials();
-    });
+    options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 });
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+// Middleware - minimal and in correct order
+app.UseCors();
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    FileProvider = new PhysicalFileProvider(Path.Combine(wwwrootPath, "uploads")),
+    RequestPath = "/uploads"
+});
 
 app.UseRouting();
-app.UseCors("FrontendPolicy");
-app.UseAuthorization();
-app.UseStaticFiles();
-
 app.MapControllers();
 
-app.MapGet("/", () => "Backend API is running!");
-app.MapGet("/health", () => Results.Json(new { status = "Healthy", timestamp = DateTime.UtcNow }));
-
-app.MapGet("/debug/tables", async (HttpContext httpContext) =>
+// Serve React app
+var clientBuildPath = Path.Combine(Directory.GetCurrentDirectory(), "../website.client/build");
+if (Directory.Exists(clientBuildPath))
 {
-    try
+    app.UseStaticFiles(new StaticFileOptions
     {
-        using var scope = httpContext.RequestServices.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<AdminDbContext>();
-        var connection = context.Database.GetDbConnection();
-        await connection.OpenAsync();
-
-        var command = connection.CreateCommand();
-        command.CommandText = "SHOW TABLES";
-
-        var tables = new List<string>();
-        using var reader = await command.ExecuteReaderAsync();
-        while (await reader.ReadAsync())
-        {
-            tables.Add(reader.GetString(0));
-        }
-
-        return Results.Json(new { success = true, tables, tableCount = tables.Count });
-    }
-    catch (Exception ex)
+        FileProvider = new PhysicalFileProvider(clientBuildPath),
+        RequestPath = ""
+    });
+    app.MapFallbackToFile("index.html", new StaticFileOptions
     {
-        return Results.Json(new { success = false, error = ex.Message });
-    }
-});
-
-// Debug endpoint to check events
-app.MapGet("/debug/events", async (HttpContext httpContext) =>
-{
-    try
-    {
-        using var scope = httpContext.RequestServices.CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<AdminDbContext>();
-        var events = await context.Events.ToListAsync();
-
-        return Results.Json(new
-        {
-            success = true,
-            count = events.Count,
-            events = events.Select(e => new { e.Id, e.Title, e.Date, e.Image })
-        });
-    }
-    catch (Exception ex)
-    {
-        return Results.Json(new { success = false, error = ex.Message });
-    }
-});
-
-// Database initialization
-async Task InitializeDatabase(AdminDbContext context)
-{
-    try
-    {
-        // Check if tables exist
-        await context.Database.EnsureCreatedAsync();
-        Console.WriteLine("Database initialized successfully!");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Database initialization error: {ex.Message}");
-    }
+        FileProvider = new PhysicalFileProvider(clientBuildPath)
+    });
 }
 
-// Seed data
-async Task SeedDataAsync(AdminDbContext context)
-{
-    // Check if Events table is accessible
-    try
-    {
-        var eventsExist = await context.Events.AnyAsync();
-        Console.WriteLine($"Events table check: {eventsExist}");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Events table error: {ex.Message}");
-    }
-
-    // Seed Events if empty
-    if (!context.Events.Any())
-    {
-        context.Events.AddRange(
-            new Event
-            {
-                Title = "Lets plan your memorable moment at Sam Sound & Light",
-                Date = "Sat, 29 June",
-                Detail = "Event by Sam Sound & Lights",
-                Image = "/img/event1.jpg",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            },
-            new Event
-            {
-                Title = "Steppin Out 1st Anniversary Competition",
-                Date = "Sat, 19 Nov",
-                Detail = "Event by Karabaw Martial Arts & Fitness Centre",
-                Image = "/img/event2.jpg",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            }
-        );
-
-        await context.SaveChangesAsync();
-        Console.WriteLine("Events seeded!");
-    }
-
-    // Check and seed Services (NO DESCRIPTION)
-    if (!context.Services.Any())
-    {
-        context.Services.AddRange(
-            new Service
-            {
-                Title = "Sound System",
-                ImagePath = "/img/sound1.jpg",  // NO Description property
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            },
-            new Service
-            {
-                Title = "Lighting System",
-                ImagePath = "/img/lightingSystem.jpg",  // NO Description property
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            }
-        );
-        await context.SaveChangesAsync();
-        Console.WriteLine("Services seeded!");
-    }
-
-    // Check and seed Portfolio (ADD Title property)
-    if (!context.Portfolios.Any())
-    {
-        context.Portfolios.AddRange(
-            new Portfolio
-            {
-                ImagePath = "/img/portfolio1.jpg",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            },
-            new Portfolio
-            {
-                ImagePath = "/img/portfolio2.jpg",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            }
-        );
-        await context.SaveChangesAsync();
-        Console.WriteLine("Portfolio seeded!");
-    }
-}
-
-// Apply database initialization
+// Initialize database
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<AdminDbContext>();
-    try
-    {
-        Console.WriteLine("Initializing database...");
-        await InitializeDatabase(dbContext);
-        await SeedDataAsync(dbContext);
-        Console.WriteLine("Database initialization completed!");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Database error: {ex.Message}");
-    }
+    var db = scope.ServiceProvider.GetRequiredService<AdminDbContext>();
+    await db.Database.EnsureCreatedAsync();
 }
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Urls.Add($"http://0.0.0.0:{port}");
-Console.WriteLine($"Application starting on port: {port}");
-
-app.Run();
+app.Run($"http://0.0.0.0:{Environment.GetEnvironmentVariable("PORT") ?? "8080"}");

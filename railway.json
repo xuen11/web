@@ -1,20 +1,16 @@
 {
-  "$schema": "https://railway.com/railway.schema.json",
   "build": {
-    "builder": "DOCKERFILE",
-    "dockerfilePath": "Dockerfile"
+    "builder": "NIXPACKS",
+    "buildCommand": "cd website.client && npm install && npm run build && cd ../website.server && dotnet restore && dotnet publish -c Release -o out"
   },
   "deploy": {
-    "runtime": "V2",
-    "numReplicas": 1,
-    "sleepApplication": true,
-    "useLegacyStacker": false,
-    "multiRegionConfig": {
-      "asia-southeast1-eqsg3a": {
-        "numReplicas": 1
+    "startCommand": "cd website.server && dotnet out/website.Server.dll",
+    "healthcheckPath": "/health",
+    "ports": [
+      {
+        "port": 10000,
+        "protocol": "http"
       }
-    },
-    "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 10
+    ]
   }
 }

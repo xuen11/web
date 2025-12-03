@@ -55,11 +55,9 @@ const Header = () => {
         setActivePage(pageId);
         setIsMobileMenuOpen(false);
 
-        // Handle navigation to different pages
         switch (pageId) {
             case 'home':
                 if (location.pathname === '/') {
-                    // Already on home page - scroll to top
                     scrollToTop();
                 } else {
                     // Navigate to home and scroll to top after navigation
@@ -146,7 +144,7 @@ const Header = () => {
                 {/* LOGO */}
                 <div className="logo-container" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
                     <img
-                        src='/img/logo.jpg'
+                        src='src/public/img/logo.jpg'
                         className="logo-img"
                         alt="Logo"
                         onError={handleImageError}

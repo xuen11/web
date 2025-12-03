@@ -15,21 +15,58 @@ namespace website.Server.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
 
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+            // Configure StaffAccount
             modelBuilder.Entity<StaffAccount>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-                entity.Property(e => e.Email).IsRequired();
-                entity.Property(e => e.Password).IsRequired();
-                entity.Property(e => e.Role).IsRequired();
+                entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Password).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Role).IsRequired().HasMaxLength(20);
+
+                // FIX: Use MySQL 8+ compatible syntax
+                entity.Property(e => e.CreatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
             });
 
-           
+            // Configure Service
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.ImagePath).HasMaxLength(500);
 
+                // FIX: Use MySQL 8+ compatible syntax
+                entity.Property(e => e.CreatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+            });
+
+            // Configure Portfolio
+            modelBuilder.Entity<Portfolio>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.ImagePath).IsRequired().HasMaxLength(500);
+
+                // FIX: Use MySQL 8+ compatible syntax
+                entity.Property(e => e.CreatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+            });
+
+            // Configure Contact - FIX THE CreatedAt ISSUE
             modelBuilder.Entity<Contact>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -38,8 +75,14 @@ namespace website.Server.Data
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.Phone).HasMaxLength(20);
                 entity.Property(e => e.EventDetails).IsRequired();
+
+                // FIX: Add explicit column type and default value
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnType("datetime(6)")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
             });
 
+            // Configure Event
             modelBuilder.Entity<Event>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -48,10 +91,16 @@ namespace website.Server.Data
                 entity.Property(e => e.Date).HasMaxLength(100);
                 entity.Property(e => e.Detail).HasMaxLength(500);
                 entity.Property(e => e.Image).HasMaxLength(500);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                // FIX: Use MySQL 8+ compatible syntax
+                entity.Property(e => e.CreatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
             });
 
+            // Seed data
             modelBuilder.Entity<StaffAccount>().HasData(
                 new StaffAccount
                 {
@@ -73,30 +122,7 @@ namespace website.Server.Data
                 }
             );
 
-
-
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Portfolio>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-                entity.Property(e => e.ImagePath).IsRequired().HasMaxLength(500);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
-            });
-
-
-            modelBuilder.Entity<Service>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-                entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
-                entity.Property(e => e.ImagePath).HasMaxLength(500);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
-                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
-            });
-
         }
     }
 }

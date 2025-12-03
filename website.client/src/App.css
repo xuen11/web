@@ -120,7 +120,7 @@
     color: var(--text-dark);
     border: none;
     padding: 0.5rem 2.4rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1443,7 +1443,7 @@ body {
 .upcoming-events-container {
     position: relative;
     padding: 50px 8%;
-    background: url("/src/img/bg4.jpg") no-repeat fixed;
+    background: url("src/public/img/bg4.jpg") no-repeat fixed;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1935,7 +1935,7 @@ body {
     left: 0;
     width: 100%;
     height: 40%;
-    background: url('/src/img/sound1.jpg') center/cover no-repeat;
+    background: url('/src/public/img/sound1.jpg') center/cover no-repeat;
     z-index: 1;
 }
 
@@ -4193,184 +4193,161 @@ body {
 .portfolio-top-header {
     position: relative;
     width: 100%;
-    height: 310px;
+    height: 380px;
     overflow: hidden;
-    text-align: center;
 }
 
 .portfolio-top-image {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
-    display: block;
+    filter: brightness(60%) blur(0px);
 }
 
 .portfolio-top-title {
     position: absolute;
-    top: 55%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 3.2rem;
-    font-weight: 700;
+    font-size: 3.8rem;
+    font-weight: 800;
     color: white;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.5);
     letter-spacing: 2px;
-    z-index: 2;
-    text-align: center;
 }
 
     .portfolio-top-title span {
         color: #F8BC4C;
     }
 
-.portfolio-top-header h3 {
+.portfolio-subtitle {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    z-index: 2;
-    text-align: center;
-    font-weight: 400;
+    font-size: 1.3rem;
+    color: #eaeaea;
+    letter-spacing: 1px;
 }
 
-.portfolio-content {
-    background: white;
-    padding: 50px 20px;
-}
-
-
-.portfolio-top-header::after {
-    content: "";
+/* Add Portfolio Button */
+.portfolio-add-btn {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: 1;
-}
-
-.portfolio-item {
-    overflow: hidden;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 35px;
+    background: linear-gradient(45deg, #007bff, #00a8ff);
+    color: white;
+    border: none;
     border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transition: 0.25s ease-in-out;
+    flex:3;
 }
 
-    .portfolio-item img {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.3s ease;
+    .portfolio-add-btn:hover {
+        transform: translateX(-50%) scale(1.05);
+        background: linear-gradient(45deg, #006ae4, #0092dd);
     }
 
-    .portfolio-item:hover img {
-        transform: scale(1.05);
-    }
-
-    .portfolio-item:hover {
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-/* Responsive Grid */
-@media (max-width: 1200px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* Flip animation */
-.flip-in {
-    transform: rotateY(90deg);
-    opacity: 0;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-}
-
-    .flip-in.show {
-        transform: rotateY(0deg);
-        opacity: 1;
-    }
-
-
-.portfolio-top-title.fade-in-up {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(30px);
-    animation: portfolioFade 0.8s forwards;
-}
-
-@keyframes portfolioFade {
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) translateY(0);
-    }
-}
-
-.portfolio-top-header h3.fade-in-up {
-    opacity: 0;
-    transform: translate(-50%, -50%) translateY(30px);
-    animation: portfolioFadeH3 0.8s forwards;
-    animation-delay: 0.5s;
-}
-
-@keyframes portfolioFadeH3 {
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) translateY(0);
-    }
-}
-
+/* ---------------------------------------------------
+   GRID WRAPPER
+--------------------------------------------------- */
 .portfolio-page-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 28px;
+    padding: 40px 20px;
     max-width: 1300px;
-    margin: 0 auto 80px auto;
-    padding: 20px;
-    background: white;
-    z-index: 2;
-    position: relative;
-    border-radius: 8px;
+    margin: 60px auto;
 }
 
+.portfolio-edit-btn {
+    z-index: 5;
+}
+
+
+/* ---------------------------------------------------
+   PORTFOLIO CARD
+--------------------------------------------------- */
 .portfolio-page-item {
+    position: relative;
     overflow: hidden;
-    border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 14px;
+    background: #000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s ease-in-out;
 }
 
     .portfolio-page-item img {
         width: 100%;
-        height: 220px;
+        height: 230px;
         object-fit: cover;
-        display: block;
-        transition: transform 0.3s ease;
+        transition: 0.4s ease-in-out;
     }
 
     .portfolio-page-item:hover img {
-        transform: scale(1.05);
+        transform: scale(1.15);
+        opacity: 0.9;
     }
 
-    .portfolio-page-item:hover {
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
+/* ---------------------------------------------------
+   TITLE OVERLAY
+--------------------------------------------------- */
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 18px 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s ease-in-out;
+}
 
+.portfolio-page-item:hover .portfolio-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------------------------------------------------
+   DELETE BUTTON
+--------------------------------------------------- */
+.cancel-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,0,0,0.7);
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.25s;
+}
+
+.portfolio-page-item:hover .cancel-btn {
+    opacity: 1;
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+
+/* Large Tablets */
 @media (max-width: 1200px) {
     .portfolio-page-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
     }
 }
 
@@ -4378,50 +4355,22 @@ body {
 @media (max-width: 900px) {
     .portfolio-page-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 15px;
-    }
-
-    .portfolio-page-item img {
-        height: 240px;
     }
 }
 
-/* Mobile Phones */
+/* Mobile */
 @media (max-width: 600px) {
+    .portfolio-top-title {
+        font-size: 2.2rem;
+    }
+
     .portfolio-page-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .portfolio-page-item img {
-        height: 250px;
+        padding: 20px;
+        gap: 22px;
     }
 }
 
-/* Small Mobile Phones */
-@media (max-width: 480px) {
-    .portfolio-page-grid {
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .portfolio-page-item img {
-        height: 220px;
-    }
-}
-
-.portfolio-carousel-grid {
-    display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    padding: 20px 10px;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
-}
 
 
 
@@ -4433,6 +4382,7 @@ body {
 
 
 /*Contact Page*/
+/* Contact Page */
 .cp-page-wrapper {
     width: 100%;
     min-height: 90vh;
@@ -4460,7 +4410,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('src/img/services.jpg');
+    background-image: url('src/public/img/services.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -4561,6 +4511,8 @@ body {
     gap: 0px;
     background: #f8f8f8;
     order: 1;
+    position: relative;
+    overflow: visible;
 }
 
 .cp-input-group {
@@ -4585,8 +4537,6 @@ body {
     transition: all 0.3s ease;
     color: #374151;
 }
-
-
 
     .cp-form-control:focus {
         outline: none;
@@ -4618,17 +4568,21 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    position: relative;
+    z-index: 100;
+    overflow: hidden;
+    transform: translateZ(0);
 }
 
     .cp-action-button:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
     }
 
     .cp-action-button:disabled {
         opacity: 0.7;
         cursor: not-allowed;
-        transform: none;
+        transform: none !important;
     }
 
 /* Right Side - Contact Info */
@@ -4749,12 +4703,16 @@ body {
         box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
     }
 
-/* Map Section */
+/* Map Section - FIXED */
 .cp-map-viewer {
     width: 100%;
     height: 400px;
     margin-top: 60px;
-    overflow: hidden;
+    position: relative;
+    background: #f5f5f5;
+    z-index: 1;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .cp-map-frame {
@@ -4762,6 +4720,13 @@ body {
     height: 100%;
     border: none;
     filter: grayscale(30%);
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    z-index: 1;
+    transform: translateZ(0);
+    pointer-events: auto;
 }
 
 /* Responsive Design */
@@ -4772,6 +4737,7 @@ body {
 
     .cp-form-panel {
         order: 2;
+        width: 100%;
     }
 
     .cp-info-panel {
@@ -4807,10 +4773,6 @@ body {
 
     .cp-info-title {
         font-size: 2rem;
-    }
-
-    .cp-form-panel {
-        width: 100%;
     }
 
     .cp-map-viewer {
@@ -4983,7 +4945,6 @@ body {
     animation: cpFadeSlideUp 0.6s ease-out 1.0s forwards;
 }
 
-
 .cp-detail-entry {
     opacity: 0;
     transform: translateX(20px);
@@ -5032,6 +4993,7 @@ body {
 
 .cp-map-viewer.animate-map {
     animation: cpMapReveal 0.8s ease-out 2.2s forwards;
+    animation-fill-mode: forwards !important;
 }
 
 .cp-feedback-alert {
@@ -5171,28 +5133,6 @@ body {
     }
 }
 
-.cp-social-icon:hover {
-    animation: cpIconHover 0.3s ease-out forwards;
-}
-
-@keyframes cpIconHover {
-    to {
-        transform: translateY(-3px) rotate(5deg);
-        box-shadow: 0 8px 25px rgba(212, 165, 116, 0.5);
-    }
-}
-
-.cp-action-button:hover:not(:disabled) {
-    animation: cpButtonHover 0.3s ease-out forwards;
-}
-
-@keyframes cpButtonHover {
-    to {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
-    }
-}
-
 .cp-form-control:focus {
     animation: cpInputFocus 0.3s ease-out;
 }
@@ -5211,6 +5151,22 @@ body {
     }
 }
 
+
+.cp-map-viewer,
+.cp-map-frame {
+    animation: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: none !important;
+}
+
+    .cp-map-viewer.animate-map {
+        animation: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
 @media (prefers-reduced-motion: reduce) {
     .cp-hero-zone,
     .cp-hero-headline,
@@ -5223,7 +5179,6 @@ body {
     .cp-detail-entry,
     .cp-social-zone,
     .cp-social-icon,
-    .cp-action-button,
     .cp-feedback-alert {
         animation: none !important;
         transition: none !important;
@@ -5234,6 +5189,25 @@ body {
     .cp-form-control:focus {
         animation: none !important;
     }
+}
+
+/* Add this to fix disappearing issues */
+.cp-action-button,
+.cp-map-frame,
+.cp-map-viewer {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+}
+
+/* Force map to stay visible */
+iframe.cp-map-frame {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 
@@ -6707,7 +6681,7 @@ body {
 .placeholder-bg {
     width: 100%;
     height: auto;
-    background: url("/src/img/event8.jpg") fixed no-repeat;
+    background: url("src/public/img/event8.jpg") fixed no-repeat;
 }
 
 .service-hero-content {

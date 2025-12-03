@@ -11,8 +11,8 @@ using website.Server.Data;
 namespace website.Server.Migrations
 {
     [DbContext(typeof(AdminDbContext))]
-    [Migration("20251114151857_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251203070517_AddTitleToService")]
+    partial class AddTitleToService
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,50 +22,16 @@ namespace website.Server.Migrations
                 .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("website.Server.Models.Banner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Subtitle")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Banners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImagePath = "uploads/default-banner.jpg",
-                            Subtitle = "Explore our exclusive Golden and Platinum Packages designed to make your event truly unforgettable.",
-                            Title = "Elevate Your Event Experience",
-                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9472)
-                        });
-                });
-
             modelBuilder.Entity("website.Server.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -96,13 +62,10 @@ namespace website.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("ButtonText")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<string>("Date")
                         .IsRequired()
@@ -112,7 +75,7 @@ namespace website.Server.Migrations
                     b.Property<string>("Detail")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Image")
                         .IsRequired()
@@ -125,35 +88,70 @@ namespace website.Server.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Events");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ButtonText = "Learn More",
-                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9487),
-                            Date = "Sat, 29 June",
-                            Detail = "Event by Sam Sound & Lights",
-                            Image = "/img/event1.jpg",
-                            Title = "Lets plan your memorable moment at Sam Sound & Light",
-                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9487)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ButtonText = "Learn More",
-                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9489),
-                            Date = "Sat, 19 Nov",
-                            Detail = "Event by Karabaw Martial Arts & Fitness Centre",
-                            Image = "/img/event2.jpg",
-                            Title = "Steppin Out 1st Anniversary Competition",
-                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9490)
-                        });
+            modelBuilder.Entity("website.Server.Models.Portfolio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Portfolios");
+                });
+
+            modelBuilder.Entity("website.Server.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("website.Server.Models.StaffAccount", b =>
@@ -163,22 +161,29 @@ namespace website.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.HasKey("Id");
 
@@ -188,20 +193,20 @@ namespace website.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9364),
+                            CreatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4649),
                             Email = "staff@gmail.com",
                             Password = "staff123",
                             Role = "staff",
-                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9365)
+                            UpdatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4652)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9367),
+                            CreatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4654),
                             Email = "admin@gmail.com",
                             Password = "admin123",
                             Role = "admin",
-                            UpdatedAt = new DateTime(2025, 11, 14, 15, 18, 57, 447, DateTimeKind.Utc).AddTicks(9368)
+                            UpdatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4654)
                         });
                 });
 #pragma warning restore 612, 618

@@ -21,7 +21,7 @@ const EventsPage = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: "/img/event1.jpg",
+            image: './img/event1.jpg',
             buttonText: 'Learn More'
         },
         {
@@ -29,7 +29,7 @@ const EventsPage = () => {
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: "/img/event2.jpg",
+            image: './img/event2.jpg',
             buttonText: 'Learn More'
         }
     ];
@@ -39,10 +39,11 @@ const EventsPage = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: '/img/default-event.jpg',
+        image: './img/default-event.jpg',
         buttonText: 'Learn More'
     };
 
+    // Load events from backend
     const loadEvents = async () => {
         try {
             const res = await fetch(API_BASE);
@@ -87,6 +88,7 @@ const EventsPage = () => {
 
     const handleSave = async () => {
         setLoading(true);
+
         try {
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
@@ -95,6 +97,7 @@ const EventsPage = () => {
                 },
                 body: JSON.stringify(events),
             });
+
             if (res.ok) {
                 const data = await res.json();
                 if (data.success) {
@@ -115,7 +118,7 @@ const EventsPage = () => {
     };
 
     const handleCancel = () => {
-        loadEvents();
+        setEvents(defaultEvents);
         setEditMode(false);
     };
 
@@ -123,7 +126,7 @@ const EventsPage = () => {
         <div className="events-page-container">
             <section className="events-hero">
                 <div className="events-hero-background">
-                    <img src="/img/bg3.jpg" alt="Events Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src="src/public/img/bg3.jpg" alt="Events Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <div className="services-hero-content">
                     <h2 className="events-hero-title fade-in-up">Our <span>Events</span></h2>

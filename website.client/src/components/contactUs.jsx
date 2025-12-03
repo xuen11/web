@@ -31,7 +31,7 @@ const Contact = () => {
                 <div className="image-container">
                     <div className="placeholder-img">
                         
-                        <img src="/img/contact.jpg" alt="Contact" />
+                        <img src="src/public/img/contact.jpg" alt="Contact" />
                         
                     </div>
                 </div>

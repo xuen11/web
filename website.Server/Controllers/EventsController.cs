@@ -107,6 +107,5 @@ namespace website.Server.Controllers
         public string date { get; set; } = string.Empty;
         public string detail { get; set; } = string.Empty;
         public string image { get; set; } = string.Empty;
-        public string buttonText { get; set; } = string.Empty;
     }
 }

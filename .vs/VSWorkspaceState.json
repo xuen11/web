@@ -1,12 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\publish",
     "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
-    "\\website.client\\src\\public"
+    "\\website.client\\src\\pages",
+    "\\website.Server",
+    "\\website.Server\\Controllers",
+    "\\website.Server\\Data",
+    "\\website.Server\\Migrations",
+    "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\publish\\web.config",
+  "SelectedNode": "\\website.client\\src\\pages\\ServicesPage.jsx",
   "PreviewInSolutionExplorer": false
 }
