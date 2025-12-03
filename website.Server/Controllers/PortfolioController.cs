@@ -26,32 +26,34 @@ namespace website.Server.Controllers
 
         // POST: api/portfolio
         [HttpPost]
-        [DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload([FromForm] IFormFile image)
+        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
         {
-            if (image == null || image.Length == 0)
+            if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
 
-            var uploadsDir = Path.Combine(_env.WebRootPath, "uploads");
+            string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads/services");
 
-            if (!Directory.Exists(uploadsDir))
-                Directory.CreateDirectory(uploadsDir);
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
 
-            string fileName = $"{Guid.NewGuid()}_{image.FileName}";
-            string filePath = Path.Combine(uploadsDir, fileName);
+            // KEEP ORIGINAL FILENAME
+            var originalFileName = Path.GetFileName(file.FileName);
 
-            // Save file
+            // SAFE FILENAME (remove dangerous chars)
+            originalFileName = originalFileName.Replace(" ", "_");
+
+            string filePath = Path.Combine(uploadsFolder, originalFileName);
+
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await image.CopyToAsync(stream);
+                await file.CopyToAsync(stream);
             }
 
-            // Create DB record
             var portfolio = new Portfolio
             {
-                ImagePath = $"/uploads/{fileName}",
-                CreatedBy = "system",
-                UpdatedBy = "system",
+                ImagePath = $"/uploads/services/{originalFileName}",
+                CreatedBy = "admin",
+                UpdatedBy = "admin",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -61,6 +63,7 @@ namespace website.Server.Controllers
 
             return Ok(portfolio);
         }
+
 
         // DELETE: api/portfolio/{id}
         [HttpDelete("{id}")]
