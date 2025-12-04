@@ -1,14 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\website.client\\src",
-    "\\website.client\\src\\components",
-    "\\website.client\\src\\pages",
     "\\website.Server",
-    "\\website.Server\\Data",
-    "\\website.Server\\Migrations",
-    "\\website.Server\\Models"
+    "\\website.Server\\wwwroot"
   ],
-  "SelectedNode": "\\website.Server\\Program.cs",
+  "SelectedNode": "\\website.Server\\wwwroot\\portfolio",
   "PreviewInSolutionExplorer": false
 }

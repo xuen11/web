@@ -46,51 +46,34 @@ namespace website.Server.Controllers
 
         // POST: api/portfolio (optional - if you want to add single items via form)
         [HttpPost]
-        public async Task<ActionResult> AddPortfolio([FromBody] PortfolioInputModel portfolioInput)
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload([FromForm] IFormFile image)
         {
-            try
+            if (image == null || image.Length == 0)
+                return BadRequest("No file uploaded");
+
+            var fileName = Path.GetFileName(image.FileName);
+            var savePath = Path.Combine("wwwroot/portfolio", fileName);
+
+            Directory.CreateDirectory("wwwroot/portfolio");
+
+            using (var stream = new FileStream(savePath, FileMode.Create))
             {
-                if (portfolioInput == null || string.IsNullOrEmpty(portfolioInput.imagePath))
-                {
-                    return BadRequest(new { success = false, message = "Image URL is required" });
-                }
-
-                var portfolio = new Portfolio
-                {
-                    ImagePath = portfolioInput.imagePath,
-                   
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
-                };
-
-                _context.Portfolios.Add(portfolio);
-                await _context.SaveChangesAsync();
-
-                var response = new
-                {
-                    success = true,
-                    message = "Portfolio item added successfully",
-                    portfolio = new
-                    {
-                        id = portfolio.Id,
-                        imagePath = portfolio.ImagePath,
-                       
-                        createdAt = portfolio.CreatedAt,
-                        updatedAt = portfolio.UpdatedAt
-                    }
-                };
-
-                return Ok(response);
+                await image.CopyToAsync(stream);
             }
-            catch (Exception ex)
+
+            // Save image path like: /portfolio/filename.jpg
+            var portfolio = new Portfolio
             {
-                return StatusCode(500, new
-                {
-                    success = false,
-                    message = $"Error adding portfolio item: {ex.Message}"
-                });
-            }
+                ImagePath = "/portfolio/" + fileName
+            };
+
+            _context.Portfolios.Add(portfolio);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { success = true, path = portfolio.ImagePath });
         }
+
 
         // DELETE: api/portfolio/{id}
         [HttpDelete("{id}")]
