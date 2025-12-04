@@ -11,6 +11,6 @@
     "\\website.Server\\Migrations",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.Server\\Migrations\\20251204083050_AddTitleDescriptionToPortfolio.cs",
+  "SelectedNode": "\\website.client\\src\\components\\Header1.jsx",
   "PreviewInSolutionExplorer": false
 }

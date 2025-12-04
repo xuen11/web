@@ -11,10 +11,6 @@ namespace website.Server.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
-
-            
-
             migrationBuilder.UpdateData(
                 table: "StaffAccounts",
                 keyColumn: "Id",
