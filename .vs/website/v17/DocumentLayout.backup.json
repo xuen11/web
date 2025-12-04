@@ -11,16 +11,28 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ServiceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\ServiceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\EventsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\EventsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Models\\Portfolio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ServiceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\ServiceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -29,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\EventsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ContactUsPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -82,20 +90,12 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\Redesign\\unuse\\banner.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\EventsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ContactController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\ContactController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Models\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -500,15 +500,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Portfolio.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
-              "RelativeDocumentMoniker": "website.Server\\Models\\Portfolio.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
-              "RelativeToolTip": "website.Server\\Models\\Portfolio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "PortfolioController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
+              "RelativeDocumentMoniker": "website.Server\\Controllers\\PortfolioController.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
+              "RelativeToolTip": "website.Server\\Controllers\\PortfolioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAkwPUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T16:00:57.149Z"
+              "WhenOpened": "2025-12-01T15:58:55.35Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -518,39 +519,39 @@
               "RelativeDocumentMoniker": "website.client\\src\\pages\\PortfolioPage.jsx",
               "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
               "RelativeToolTip": "website.client\\src\\pages\\PortfolioPage.jsx",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAADkAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAAAC4BAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2025-11-26T01:20:01.504Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PortfolioController.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
-              "RelativeDocumentMoniker": "website.Server\\Controllers\\PortfolioController.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
-              "RelativeToolTip": "website.Server\\Controllers\\PortfolioController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "AdminDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
+              "RelativeDocumentMoniker": "website.Server\\Data\\AdminDbContext.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
+              "RelativeToolTip": "website.Server\\Data\\AdminDbContext.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAiwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T15:58:55.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T07:19:41.245Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "EventsPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\EventsPage.jsx",
               "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
               "RelativeToolTip": "website.client\\src\\pages\\EventsPage.jsx",
-              "ViewState": "AgIAAO0AAAAAAAAAAAAwwHwAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAAwA0BAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-29T08:01:57.663Z"
+              "WhenOpened": "2025-11-29T08:01:57.663Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "portfolio.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\portfolio.jsx",
@@ -562,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "ContactUsPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ContactUsPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\ContactUsPage.jsx",
@@ -574,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "ServicesPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\ServicesPage.jsx",
@@ -586,7 +587,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 3,
+              "Title": "EventsController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs",
+              "RelativeDocumentMoniker": "website.Server\\Controllers\\EventsController.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs",
+              "RelativeToolTip": "website.Server\\Controllers\\EventsController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAIwFcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T14:33:53.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Portfolio.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
+              "RelativeDocumentMoniker": "website.Server\\Models\\Portfolio.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
+              "RelativeToolTip": "website.Server\\Models\\Portfolio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:00:57.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "Header1.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Header1.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Header1.jsx",
@@ -598,7 +624,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css",
               "RelativeDocumentMoniker": "website.client\\src\\App.css",
@@ -610,7 +636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "AboutPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\AboutPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\AboutPage.jsx",
@@ -622,7 +648,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "login.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\login.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\login.jsx",
@@ -634,7 +660,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Intro.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Intro.jsx",
@@ -646,7 +672,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "service.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\service.jsx",
@@ -658,7 +684,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "footer.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\footer.jsx",
@@ -670,7 +696,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "event.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\event.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\event.jsx",
@@ -682,7 +708,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "contactUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\contactUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\contactUs.jsx",
@@ -694,7 +720,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "AuthContext.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\AuthContext.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\AuthContext.jsx",
@@ -706,7 +732,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "aboutUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\aboutUs.jsx",
@@ -718,19 +744,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "EventsController.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs",
-              "RelativeDocumentMoniker": "website.Server\\Controllers\\EventsController.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs",
-              "RelativeToolTip": "website.Server\\Controllers\\EventsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T14:33:53.449Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "banner.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\Redesign\\unuse\\banner.jsx",
               "RelativeDocumentMoniker": "..\\Redesign\\unuse\\banner.jsx",
@@ -742,7 +756,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "ContactController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ContactController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\ContactController.cs",
@@ -754,7 +768,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Event.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Event.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\Event.cs",
@@ -763,18 +777,6 @@
               "ViewState": "AgIAAAUAAAAAAAAAAAAwwA0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-05T07:18:58.885Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "AdminDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
-              "RelativeDocumentMoniker": "website.Server\\Data\\AdminDbContext.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
-              "RelativeToolTip": "website.Server\\Data\\AdminDbContext.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwH8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T07:19:41.245Z"
             },
             {
               "$type": "Document",
@@ -1942,7 +1944,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ServiceController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ServiceController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\ServiceController.cs",

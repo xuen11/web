@@ -8,9 +8,8 @@
     "\\website.Server",
     "\\website.Server\\Controllers",
     "\\website.Server\\Migrations",
-    "\\website.Server\\Models",
-    "\\website.Server\\wwwroot\\uploads"
+    "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.Server\\Models\\Portfolio.cs",
+  "SelectedNode": "\\website.Server\\Controllers\\PortfolioController.cs",
   "PreviewInSolutionExplorer": false
 }
