@@ -6,8 +6,10 @@
     "\\website.client\\src\\pages",
     "\\website.Server",
     "\\website.Server\\Controllers",
+    "\\website.Server\\Data",
     "\\website.Server\\wwwroot",
     "\\website.Server\\wwwroot\\portfolio"
   ],
+  "SelectedNode": "\\website.Server\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

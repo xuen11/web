@@ -140,22 +140,13 @@ const ServicePage = () => {
 
     const handleEdit = (service) => {
         setEditingService(service);
-        setTitle(service.title || service.Title || ""); // Handle both cases
+        setTitle(service.title || service.Title || "");
 
-        // FIX: Use correct property name - it's imagePath (lowercase) from your backend
         const currentImage = service.imagePath || service.ImagePath || "";
 
         if (currentImage) {
-            // Construct the full URL for preview
-            const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
-
-            // If it's already a full URL or starts with /, use as-is
-            // Otherwise prepend the base URL
-            if (currentImage.startsWith("http") || currentImage.startsWith("/")) {
-                setPreviewImage(currentImage);
-            } else {
-                setPreviewImage(`${baseUrl}/${currentImage}`);
-            }
+            // If it's already a relative path like ./img/filename.jpg, use as-is
+            setPreviewImage(currentImage);
         } else {
             setPreviewImage(null);
         }
@@ -410,13 +401,8 @@ const ServicePage = () => {
                                         const serviceId = service.id;
                                         const serviceTitle = service.title;
 
-                                        const imagePath = service.imagePath;
-                                        let fullImagePath = imagePath;
-                                        if (imagePath) {
-                                            // Since images are stored in wwwroot with just filename, prepend with base URL
-                                            const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
-                                            fullImagePath = `${baseUrl}/${imagePath}`;
-                                        }
+                                        const imagePath = service.imagePath; // This will be "./img/filename.jpg"
+                                        let fullImagePath = imagePath;                                       
 
                                         const animationDelay = `${(rowIndex * 3 + colIndex) * 0.1}s`;
 
