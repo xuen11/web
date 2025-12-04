@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\website.client",
     "\\website.client\\src",
     "\\website.client\\src\\components",
     "\\website.client\\src\\pages",
     "\\website.Server",
-    "\\website.Server\\Controllers",
     "\\website.Server\\Data",
     "\\website.Server\\Migrations",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.client\\src\\App.css",
+  "SelectedNode": "\\website.Server\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

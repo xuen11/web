@@ -51,11 +51,7 @@ var app = builder.Build();
 // Middleware - minimal and in correct order
 app.UseCors();
 app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(wwwrootPath, "uploads")),
-    RequestPath = "/uploads"
-});
+
 
 app.UseRouting();
 app.MapControllers();
