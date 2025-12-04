@@ -55,13 +55,13 @@ const About = () => {
                         <div className="collage-frame">
                             <div className="collage-grid">
                                 <div className="collage-item large">
-                                    <img src="src/public/img/banner2.jpg" alt="Project Img" />
+                                    <img src="/img/banner2.jpg" alt="Project Img" />
                                 </div>
                                 <div className="collage-item small">
-                                    <img src="src/public/img/banner3.jpg" alt="Project Img" />
+                                    <img src="/img/banner3.jpg" alt="Project Img" />
                                 </div>
                                 <div className="collage-item small">
-                                    <img src="/src/public/img/banner4.jpg" alt="Project Img" />
+                                    <img src="/img/banner4.jpg" alt="Project Img" />
                                 </div>
                             </div>
                         </div>

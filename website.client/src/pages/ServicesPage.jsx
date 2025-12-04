@@ -338,24 +338,23 @@ const ServicePage = () => {
                         </div>
                     )}
 
-                    {/* Current image for edit */}
-                    {/* Current image for edit */}
-                    {showEditForm && !previewImage && editingService && (
-                        <div className="services-current-image-container">
-                            <h4 className="services-current-image-title">Current Image:</h4>
-                            <div className="services-current-image-box">
-                                <img
-                                    src={editingService.imagePath || editingService.ImagePath} // FIXED
-                                    alt="Current"
-                                    className="services-current-image"
-                                    onError={(e) => {
-                                        e.target.style.display = "none";
-                                        e.target.parentElement.innerHTML = '<p style="color: #999; padding: 20px; text-align: center; font-size: 0.9rem;">No image available</p>';
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    )}
+                    
+                    {/*{showEditForm && !previewImage && editingService && (*/}
+                    {/*    <div className="services-current-image-container">*/}
+                    {/*        <h4 className="services-current-image-title">Current Image:</h4>*/}
+                    {/*        <div className="services-current-image-box">*/}
+                    {/*            <img*/}
+                    {/*                src={editingService.imagePath || editingService.ImagePath} // FIXED*/}
+                    {/*                alt="Current"*/}
+                    {/*                className="services-current-image"*/}
+                    {/*                onError={(e) => {*/}
+                    {/*                    e.target.style.display = "none";*/}
+                    {/*                    e.target.parentElement.innerHTML = '<p style="color: #999; padding: 20px; text-align: center; font-size: 0.9rem;">No image available</p>';*/}
+                    {/*                }}*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
 
                     {/* Form Actions */}
                     <div className="services-form-actions">

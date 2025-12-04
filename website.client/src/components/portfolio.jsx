@@ -9,12 +9,12 @@ const Portfolio = () => {
     const [isMobile, setIsMobile] = useState(false);
 
     const portfolioItems = [
-        { id: 1, image: "src/public/img/banner.jpg", title: "Wedding" },
-        { id: 2, image: "src/public/img/event7.jpg", title: "Suriagroup Kaamatan Raya" },
-        { id: 3, image: "src/public/img/event5.jpg", title: "IEM Dinner" },
-        { id: 4, image: "src/public/img/event6.jpg", title: "Desa Appreciation Night" },
-        { id: 5, image: "src/public/img/event4.jpg", title: "Cultural Celebration" },
-        { id: 6, image: "src/public/img/event6.jpg", title: "Majlis Apresiasi Ko-Nelayan 2024" }
+        { id: 1, image: "/img/banner.jpg", title: "Wedding" },
+        { id: 2, image: "/img/event7.jpg", title: "Suriagroup Kaamatan Raya" },
+        { id: 3, image: "/img/event5.jpg", title: "IEM Dinner" },
+        { id: 4, image: "/img/event6.jpg", title: "Desa Appreciation Night" },
+        { id: 5, image: "/img/event4.jpg", title: "Cultural Celebration" },
+        { id: 6, image: "/img/event6.jpg", title: "Majlis Apresiasi Ko-Nelayan 2024" }
     ];
 
     // Check if mobile

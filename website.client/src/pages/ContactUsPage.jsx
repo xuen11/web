@@ -154,7 +154,7 @@ function ContactUsPage() {
             <div className="cp-hero-zone" ref={heroRef}>
                 <div
                     className="cp-hero-visual"
-                    style={{ backgroundImage: `url('src/public/img/services.jpg')` }}
+                    style={{ backgroundImage: `url('/img/services.jpg')` }}
                 ></div>
                 <h1 className="cp-hero-headline" ref={titleRef}>
                     Contact <span>Us</span>

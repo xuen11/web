@@ -17,14 +17,14 @@ const Event = () => {
             title: 'Lets plan your memorable moment at Sam Sound & Light',
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
-            image: "src/public/img/event1.jpg",
+            image: "/img/event1.jpg",
         },
         {
             id: 2,
             title: 'Steppin Out 1st Anniversary Competition',
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
-            image: "src/public/img/event2.jpg",
+            image: "/img/event2.jpg",
         }
     ];
 

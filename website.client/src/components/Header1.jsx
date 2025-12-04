@@ -144,7 +144,7 @@ const Header = () => {
                 {/* LOGO */}
                 <div className="logo-container" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
                     <img
-                        src='src/public/img/logo.jpg'
+                        src='/img/logo.jpg'
                         className="logo-img"
                         alt="Logo"
                         onError={handleImageError}

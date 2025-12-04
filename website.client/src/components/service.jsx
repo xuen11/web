@@ -8,15 +8,15 @@ const ServicePage = () => {
     const cardRefs = useRef([]);
 
     const audioServices = [
-        { image: "./img/soundSystem.jpg", title: 'Sound System' },
-        { image: "/public/img/karaoke.jpg", title: 'Karaoke Service' },
+        { image: "/img/soundSystem.jpg", title: 'Sound System' },
+        { image: "/img/karaoke.jpg", title: 'Karaoke Service' },
         { image: "/img/lighting.jpg", title: 'Lighting System' },
-        { image: "src/public/img/LED.jpg", title: 'LED Screen' },
-        { image: "src/public/img/visual.jpg", title: 'Visual System' },
-        { image: "src/public/img/projection.jpg", title: 'Projection System' },
-        { image: "src/public/img/liveBand.jpg", title: 'Live Band' },
-        { image: "src/public/img/artist.jpg", title: 'Local Artist' },
-        { image: "src/public/img/installation.jpg", title: 'Installation Service' }
+        { image: "/img/LED.jpg", title: 'LED Screen' },
+        { image: "/img/visual.jpg", title: 'Visual System' },
+        { image: "/img/projection.jpg", title: 'Projection System' },
+        { image: "/img/liveBand.jpg", title: 'Live Band' },
+        { image: "/img/artist.jpg", title: 'Local Artist' },
+        { image: "/img/installation.jpg", title: 'Installation Service' }
     ];
 
     const handleLearnMore = () => {

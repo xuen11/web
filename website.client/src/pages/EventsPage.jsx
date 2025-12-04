@@ -122,7 +122,7 @@ const EventsPage = () => {
         <div className="events-page-container">
             <section className="events-hero">
                 <div className="events-hero-background">
-                    <img src="src/public/img/bg3.jpg" alt="Events Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src="/img/bg3.jpg" alt="Events Banner" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                 </div>
                 <div className="services-hero-content">
                     <h2 className="events-hero-title fade-in-up">Our <span>Events</span></h2>

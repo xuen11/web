@@ -41,7 +41,6 @@ const PortfolioPage = () => {
         loadPortfolios();
     }, []);
 
-    // Set up Intersection Observer for scroll animations
     useEffect(() => {
         if (portfolios.length === 0) return;
 
@@ -56,10 +55,8 @@ const PortfolioPage = () => {
                     const id = entry.target.dataset.id;
                     setVisibleItems(prev => [...new Set([...prev, id])]);
 
-                    // Add animation class
                     entry.target.classList.add('portfolio-visible');
 
-                    // Optional: Unobserve after animation
                     setTimeout(() => {
                         observer.unobserve(entry.target);
                     }, 1000);
@@ -67,7 +64,6 @@ const PortfolioPage = () => {
             });
         }, observerOptions);
 
-        // Observe header
         if (headerRef.current) {
             observer.observe(headerRef.current);
         }
