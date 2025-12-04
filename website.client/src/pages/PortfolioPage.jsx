@@ -297,8 +297,6 @@ const PortfolioPage = () => {
                                 ? `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/${p.imagePath}`
                                 : null;
 
-                            // This should produce: http://localhost:8080/uploads/filename.jpg
-                            console.log("Image path:", fullImagePath); // Add this to debug
                             // Calculate animation delay for staggered effect
                             const animationDelay = `${index * 0.1}s`;
 
