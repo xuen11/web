@@ -41,7 +41,7 @@ namespace website.Server.Data
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Title).IsRequired().HasMaxLength(100);
-                entity.Property(e => e.ImagePath).HasMaxLength(500);
+                entity.Property(e => e.ImagePath).IsRequired().HasMaxLength(500); // Add IsRequired()
 
                 // FIX: Use MySQL 8+ compatible syntax
                 entity.Property(e => e.CreatedAt)

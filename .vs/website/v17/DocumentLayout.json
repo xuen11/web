@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\source\\repos\\website\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Models\\Portfolio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ServiceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\ServiceController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\components\\portfolio.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -92,10 +96,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Models\\Event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Data\\AdminDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -484,7 +484,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -500,7 +500,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PortfolioController.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
+              "RelativeDocumentMoniker": "website.Server\\Controllers\\PortfolioController.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
+              "RelativeToolTip": "website.Server\\Controllers\\PortfolioController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAYwDMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T15:58:55.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Portfolio.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
+              "RelativeDocumentMoniker": "website.Server\\Models\\Portfolio.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
+              "RelativeToolTip": "website.Server\\Models\\Portfolio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-01T16:00:57.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
+              "RelativeDocumentMoniker": "website.Server\\Data\\AdminDbContext.cs",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
+              "RelativeToolTip": "website.Server\\Data\\AdminDbContext.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAiwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-05T07:19:41.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PortfolioPage.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\pages\\PortfolioPage.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
+              "RelativeToolTip": "website.client\\src\\pages\\PortfolioPage.jsx",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-26T01:20:01.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EventsPage.jsx",
+              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
+              "RelativeDocumentMoniker": "website.client\\src\\pages\\EventsPage.jsx",
+              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
+              "RelativeToolTip": "website.client\\src\\pages\\EventsPage.jsx",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAwwHwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-11-29T08:01:57.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "portfolio.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\portfolio.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\portfolio.jsx",
@@ -513,45 +578,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EventsPage.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\pages\\EventsPage.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\EventsPage.jsx",
-              "RelativeToolTip": "website.client\\src\\pages\\EventsPage.jsx",
-              "ViewState": "AgIAAO0AAAAAAAAAAAAwwHwAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-29T08:01:57.663Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Portfolio.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
-              "RelativeDocumentMoniker": "website.Server\\Models\\Portfolio.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Portfolio.cs",
-              "RelativeToolTip": "website.Server\\Models\\Portfolio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T16:00:57.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PortfolioPage.jsx",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
-              "RelativeDocumentMoniker": "website.client\\src\\pages\\PortfolioPage.jsx",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
-              "RelativeToolTip": "website.client\\src\\pages\\PortfolioPage.jsx",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAKkAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-26T01:20:01.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ContactUsPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ContactUsPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\ContactUsPage.jsx",
@@ -559,11 +586,12 @@
               "RelativeToolTip": "website.client\\src\\pages\\ContactUsPage.jsx",
               "ViewState": "AgIAABYBAAAAAAAAAAAAwJwAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-24T02:23:09.629Z"
+              "WhenOpened": "2025-11-24T02:23:09.629Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ServicesPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\ServicesPage.jsx",
@@ -576,7 +604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Header1.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Header1.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Header1.jsx",
@@ -584,11 +612,12 @@
               "RelativeToolTip": "website.client\\src\\components\\Header1.jsx",
               "ViewState": "AgIAALoAAAAAAAAAAAAAAJIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-20T05:57:07.488Z"
+              "WhenOpened": "2025-11-20T05:57:07.488Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\App.css",
               "RelativeDocumentMoniker": "website.client\\src\\App.css",
@@ -596,24 +625,12 @@
               "RelativeToolTip": "website.client\\src\\App.css",
               "ViewState": "AgIAAJsPAAAAAAAAAAAAALYPAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-05T04:29:14.338Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PortfolioController.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
-              "RelativeDocumentMoniker": "website.Server\\Controllers\\PortfolioController.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
-              "RelativeToolTip": "website.Server\\Controllers\\PortfolioController.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAYwFMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T15:58:55.35Z",
+              "WhenOpened": "2025-11-05T04:29:14.338Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "AboutPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\AboutPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\AboutPage.jsx",
@@ -621,11 +638,12 @@
               "RelativeToolTip": "website.client\\src\\pages\\AboutPage.jsx",
               "ViewState": "AgIAAM8AAAAAAAAAAAAAAAMBAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-24T02:40:43.292Z"
+              "WhenOpened": "2025-11-24T02:40:43.292Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "login.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\login.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\login.jsx",
@@ -633,11 +651,12 @@
               "RelativeToolTip": "website.client\\src\\components\\login.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-06T13:53:04.349Z"
+              "WhenOpened": "2025-11-06T13:53:04.349Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Intro.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\Intro.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\Intro.jsx",
@@ -645,11 +664,12 @@
               "RelativeToolTip": "website.client\\src\\components\\Intro.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-20T07:31:16.419Z"
+              "WhenOpened": "2025-11-20T07:31:16.419Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "service.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\service.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\service.jsx",
@@ -657,11 +677,12 @@
               "RelativeToolTip": "website.client\\src\\components\\service.jsx",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-12-01T07:19:49.1Z"
+              "WhenOpened": "2025-12-01T07:19:49.1Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "footer.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\footer.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\footer.jsx",
@@ -669,11 +690,12 @@
               "RelativeToolTip": "website.client\\src\\components\\footer.jsx",
               "ViewState": "AgIAANUAAAAAAAAAAAAAAFEAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-05T07:10:33.729Z"
+              "WhenOpened": "2025-11-05T07:10:33.729Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "event.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\event.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\event.jsx",
@@ -681,11 +703,12 @@
               "RelativeToolTip": "website.client\\src\\components\\event.jsx",
               "ViewState": "AgIAAFcAAAAAAAAAAAAAAFIAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-12-01T07:16:00.57Z"
+              "WhenOpened": "2025-12-01T07:16:00.57Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "contactUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\contactUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\contactUs.jsx",
@@ -693,11 +716,12 @@
               "RelativeToolTip": "website.client\\src\\components\\contactUs.jsx",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-23T10:20:22.313Z"
+              "WhenOpened": "2025-11-23T10:20:22.313Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "AuthContext.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\AuthContext.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\AuthContext.jsx",
@@ -705,11 +729,12 @@
               "RelativeToolTip": "website.client\\src\\components\\AuthContext.jsx",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-07T01:37:05.485Z"
+              "WhenOpened": "2025-11-07T01:37:05.485Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "aboutUs.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\components\\aboutUs.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\components\\aboutUs.jsx",
@@ -717,11 +742,12 @@
               "RelativeToolTip": "website.client\\src\\components\\aboutUs.jsx",
               "ViewState": "AgIAACcAAAAAAAAAAAAAAD8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-23T07:00:48.052Z"
+              "WhenOpened": "2025-11-23T07:00:48.052Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "EventsController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\EventsController.cs",
@@ -729,11 +755,12 @@
               "RelativeToolTip": "website.Server\\Controllers\\EventsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T14:33:53.449Z"
+              "WhenOpened": "2025-11-14T14:33:53.449Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "banner.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\Redesign\\unuse\\banner.jsx",
               "RelativeDocumentMoniker": "..\\Redesign\\unuse\\banner.jsx",
@@ -741,11 +768,12 @@
               "RelativeToolTip": "..\\Redesign\\unuse\\banner.jsx",
               "ViewState": "AgIAABgAAAAAAAAAAAAAACgAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-12-04T06:03:05.449Z"
+              "WhenOpened": "2025-12-04T06:03:05.449Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "ContactController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ContactController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\ContactController.cs",
@@ -753,11 +781,12 @@
               "RelativeToolTip": "website.Server\\Controllers\\ContactController.cs",
               "ViewState": "AgIAAGAAAAAAAAAAAAAAACUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T06:03:43.296Z"
+              "WhenOpened": "2025-11-07T06:03:43.296Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Event.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Models\\Event.cs",
               "RelativeDocumentMoniker": "website.Server\\Models\\Event.cs",
@@ -765,19 +794,8 @@
               "RelativeToolTip": "website.Server\\Models\\Event.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAwwA0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T07:18:58.885Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "AdminDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
-              "RelativeDocumentMoniker": "website.Server\\Data\\AdminDbContext.cs",
-              "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Data\\AdminDbContext.cs",
-              "RelativeToolTip": "website.Server\\Data\\AdminDbContext.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwH8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T07:19:41.245Z"
+              "WhenOpened": "2025-11-05T07:18:58.885Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -789,7 +807,8 @@
               "RelativeToolTip": "website.client\\.env",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-03T06:23:42.59Z"
+              "WhenOpened": "2025-12-03T06:23:42.59Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -801,7 +820,8 @@
               "RelativeToolTip": "website.Server\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-07T03:33:20.118Z"
+              "WhenOpened": "2025-11-07T03:33:20.118Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -813,7 +833,8 @@
               "RelativeToolTip": "website.Server\\website.Server.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-07T06:31:45.25Z"
+              "WhenOpened": "2025-11-07T06:31:45.25Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -825,7 +846,8 @@
               "RelativeToolTip": "website.Server\\Models\\Service.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-01T16:15:13.876Z"
+              "WhenOpened": "2025-12-01T16:15:13.876Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -837,7 +859,8 @@
               "RelativeToolTip": "website.Server\\Program.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T09:59:45.934Z"
+              "WhenOpened": "2025-11-05T09:59:45.934Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -849,7 +872,8 @@
               "RelativeToolTip": "website.client\\website.client.esproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-02T03:24:10.843Z"
+              "WhenOpened": "2025-12-02T03:24:10.843Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -861,7 +885,8 @@
               "RelativeToolTip": "website.Server\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-07T06:06:43.21Z"
+              "WhenOpened": "2025-11-07T06:06:43.21Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -873,7 +898,8 @@
               "RelativeToolTip": "website.Server\\Controllers\\AuthController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGcAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T02:56:09.571Z"
+              "WhenOpened": "2025-11-07T02:56:09.571Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -885,7 +911,8 @@
               "RelativeToolTip": "website.client\\src\\App.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-05T04:29:20.912Z"
+              "WhenOpened": "2025-11-05T04:29:20.912Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -897,7 +924,8 @@
               "RelativeToolTip": "website.Server\\Models\\LoginResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T02:44:38.745Z"
+              "WhenOpened": "2025-11-07T02:44:38.745Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -909,7 +937,8 @@
               "RelativeToolTip": "website.Server\\Models\\LoginRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T02:25:30.408Z"
+              "WhenOpened": "2025-11-07T02:25:30.408Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -921,7 +950,8 @@
               "RelativeToolTip": "website.Server\\Models\\Contact.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T06:06:32.915Z"
+              "WhenOpened": "2025-11-07T06:06:32.915Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -933,7 +963,8 @@
               "RelativeToolTip": "website.client\\.gitignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-06T15:02:59.627Z"
+              "WhenOpened": "2025-11-06T15:02:59.627Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -945,7 +976,8 @@
               "RelativeToolTip": "website.Server\\.env",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-14T15:53:37.933Z"
+              "WhenOpened": "2025-11-14T15:53:37.933Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1005,7 +1037,8 @@
               "RelativeToolTip": "website.Server\\Models\\StaffAccount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T07:19:19.852Z"
+              "WhenOpened": "2025-11-05T07:19:19.852Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1017,7 +1050,8 @@
               "RelativeToolTip": "website.Server\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T02:45:00.305Z"
+              "WhenOpened": "2025-11-07T02:45:00.305Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1029,7 +1063,8 @@
               "RelativeToolTip": "Dockerfile",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-08T06:19:43.083Z"
+              "WhenOpened": "2025-11-08T06:19:43.083Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1125,7 +1160,8 @@
               "RelativeToolTip": "website.client\\index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-11-05T14:10:06.846Z"
+              "WhenOpened": "2025-11-05T14:10:06.846Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1137,7 +1173,8 @@
               "RelativeToolTip": "website.Server\\Migrations\\AdminDbContextModelSnapshot.cs",
               "ViewState": "AgIAAJYAAAAAAAAAAAAAAIcAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-14T15:18:13.314Z"
+              "WhenOpened": "2025-11-14T15:18:13.314Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1149,7 +1186,8 @@
               "RelativeToolTip": "website.Server\\website.Server.csproj.user",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
-              "WhenOpened": "2025-11-07T17:27:41.401Z"
+              "WhenOpened": "2025-11-07T17:27:41.401Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1161,7 +1199,8 @@
               "RelativeToolTip": "website.Server\\website.Server.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-11-07T16:41:25.083Z"
+              "WhenOpened": "2025-11-07T16:41:25.083Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1184,7 +1223,8 @@
               "RelativeToolTip": "railway.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-02T02:55:41.101Z"
+              "WhenOpened": "2025-12-02T02:55:41.101Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1196,7 +1236,8 @@
               "RelativeToolTip": "Directory.Build.props",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-12-02T04:50:33.78Z"
+              "WhenOpened": "2025-12-02T04:50:33.78Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1208,7 +1249,8 @@
               "RelativeToolTip": "website.Server\\publish\\appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-17T03:04:59.172Z"
+              "WhenOpened": "2025-11-17T03:04:59.172Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1220,7 +1262,8 @@
               "RelativeToolTip": "website.Server\\Properties\\launchSettings.json",
               "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-02T03:17:09.721Z"
+              "WhenOpened": "2025-12-02T03:17:09.721Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1232,7 +1275,8 @@
               "RelativeToolTip": "website.client\\vite.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-05T05:57:51.735Z"
+              "WhenOpened": "2025-11-05T05:57:51.735Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1244,7 +1288,8 @@
               "RelativeToolTip": "website.client\\package.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-05T04:34:29.675Z"
+              "WhenOpened": "2025-11-05T04:34:29.675Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1256,7 +1301,8 @@
               "RelativeToolTip": "website.client\\package-lock.json",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-17T02:19:27.181Z"
+              "WhenOpened": "2025-11-17T02:19:27.181Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1268,7 +1314,8 @@
               "RelativeToolTip": "website.client\\nuget.config",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-11-14T14:30:49.231Z"
+              "WhenOpened": "2025-11-14T14:30:49.231Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1280,7 +1327,8 @@
               "RelativeToolTip": "website.client\\eslint.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-14T09:01:58.34Z"
+              "WhenOpened": "2025-11-14T09:01:58.34Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1292,7 +1340,8 @@
               "RelativeToolTip": "website.client\\src\\main.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-05T10:12:28.262Z"
+              "WhenOpened": "2025-11-05T10:12:28.262Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1304,7 +1353,8 @@
               "RelativeToolTip": "website.client\\src\\index.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-05T04:39:39.345Z"
+              "WhenOpened": "2025-11-05T04:39:39.345Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1316,7 +1366,8 @@
               "RelativeToolTip": "nixpacks.toml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-02T06:17:57.216Z"
+              "WhenOpened": "2025-12-02T06:17:57.216Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1328,7 +1379,8 @@
               "RelativeToolTip": "website.Server\\obj\\website.Server.csproj.nuget.g.props",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-12-02T04:52:20.424Z"
+              "WhenOpened": "2025-12-02T04:52:20.424Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1351,7 +1403,8 @@
               "RelativeToolTip": "website.Server\\publish\\website.Server.staticwebassets.endpoints.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-02T03:22:37.599Z"
+              "WhenOpened": "2025-12-02T03:22:37.599Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1363,7 +1416,8 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files (x86)\\Nuget\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-12-02T03:21:14.399Z"
+              "WhenOpened": "2025-12-02T03:21:14.399Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1375,7 +1429,8 @@
               "RelativeToolTip": "website.Server\\obj\\project.assets.json",
               "ViewState": "AgIAADAAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-02T03:17:04.492Z"
+              "WhenOpened": "2025-12-02T03:17:04.492Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1541,7 +1596,8 @@
               "RelativeToolTip": "website.client\\src\\assets\\react.svg",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP2SURBVDhPbZRbiJVVFIC/tfZ/2ec46jjMpNLFo1IPYswYRG8yPQUSXurBgqIpggqKLi89xUxBFEFkjz2p6YuQjPQQUqEm0UOYM\u002BBDNmPNSZqMMDyX/3bOP/\u002B/e/hnbNQ2LBZ7rb2\u002BddmwhP87Z2cG1Suek0LGgTFxNLQEKWXWFK5plvRU9/FdR28Pwzknt9vM\u002BQv7SzgswiBu2ehAS8EUYJYEswReLs2wr1N/HRy9Bay3XM7/9IkTplEGHeAEnAICqzMLgjhpOMeRe45dmlzl\u002Bu9dcHZmspByyqkDAbfidDC\u002Bbi1j9TpDxnCplXF6sY3fF/yeEPQFv6eHrry8882bQPv1zESp5WFnoBRw4hCE0YEaJ3dsZ9AzHP/zH67GOa82Ruj0Cp48\u002BxtJVBL2BD9TbCIHZt/ecUoA6qdnFkp1jdK4qk2B0YEa3449wNWsz2MX5ulkBaYQ9g6v5/gjW3nrhz\u002BY/qVFkAlhKoSptgauZ1t17ZczE1rQ0FLQopJtfsjJndtp5wUHLy4QJSVervg9Jc5KAOK0qNruC36u\u002BH0ZJKhNqMlln1kSTC7LPyi809jMFhvw1bUO124s4WdKkCpBpjx97xCL3T5n5iP83jIwq2YZZjKuXmEaJq\u002BAXjVgdg8NAHDiSoswMQSxIYwNQWI4Mxez70STIDP4PSXIhKAnBKkSpt6o\u002BpmM\u002BX3F6yl\u002BZtgV1LmvFtDpF8wv5oRdg028Cpwazv2ckN2AIFHCRAlTxaaKTYUwlYZ6PcXLlDA12MhjpAgA6PRKbOQRxB5h1xBElQ6jqtowNYSJYhODTQSbKDZR1E\u002B1absetuthOx5B6gEgpWA7lT2MvQqyAoq1kqTStWWxscyq7fizNvKx7Qq4cKUA4O71HiN5QC1aThZVbdvYsKUesnd0HbXY3JR6pNQi/V1tR7\u002BrKvGxXZ\u002Blvw0X5/sAPPvwesKuh11pM/YII8Nr\u002BzcwN9unHin1SLFdQy0y\u002BLk3rev6HAk7fsu2fWzbx7Z8jn2RAnDw0TXsGA4JYw8bG4bxeO\u002BVIRbnCroLjnrbo94yrOkYwkSbH/\u002B4\u002BagAjD9zfb\u002B3JNNSCFII4uDAHstLL1oAfm0WiINtWw2ffxbzzXSM7TlsKti\u002B4PcdWjDx/uWNFRBgz54bh9SZ17WQm0th4yZh54OGTXcJaeT4/nSPvF0Q5g6bQZiDFg6hfPeDyxunWL1tAJ7YHU\u002BZQierXQPqHOIcxoFflvi5IygcYe4wpUOlRJz79MNfRt5YYdyxYJ96KJ1Qp5MGGlI4vLIK9lwFU1dg1CG4lrji\u002BY/mhk\u002Btjr8DuHJeuL8/4TnZZ0rXUCnGlBKjRdMIsyruXN4rjx5qbmjdHvcveKLGH1NQZuIAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-11-05T05:49:19.005Z"
+              "WhenOpened": "2025-11-05T05:49:19.005Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1718,7 +1774,8 @@
               "RelativeToolTip": "website.Server\\obj\\website.Server.csproj.nuget.g.targets",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-11-17T03:05:39.838Z"
+              "WhenOpened": "2025-11-17T03:05:39.838Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1752,7 +1809,8 @@
               "RelativeToolTip": "website.client\\src\\public\\vite.svg",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP2SURBVDhPbZRbiJVVFIC/tfZ/2ec46jjMpNLFo1IPYswYRG8yPQUSXurBgqIpggqKLi89xUxBFEFkjz2p6YuQjPQQUqEm0UOYM\u002BBDNmPNSZqMMDyX/3bOP/\u002B/e/hnbNQ2LBZ7rb2\u002BddmwhP87Z2cG1Suek0LGgTFxNLQEKWXWFK5plvRU9/FdR28Pwzknt9vM\u002BQv7SzgswiBu2ehAS8EUYJYEswReLs2wr1N/HRy9Bay3XM7/9IkTplEGHeAEnAICqzMLgjhpOMeRe45dmlzl\u002Bu9dcHZmspByyqkDAbfidDC\u002Bbi1j9TpDxnCplXF6sY3fF/yeEPQFv6eHrry8882bQPv1zESp5WFnoBRw4hCE0YEaJ3dsZ9AzHP/zH67GOa82Ruj0Cp48\u002BxtJVBL2BD9TbCIHZt/ecUoA6qdnFkp1jdK4qk2B0YEa3449wNWsz2MX5ulkBaYQ9g6v5/gjW3nrhz\u002BY/qVFkAlhKoSptgauZ1t17ZczE1rQ0FLQopJtfsjJndtp5wUHLy4QJSVervg9Jc5KAOK0qNruC36u\u002BH0ZJKhNqMlln1kSTC7LPyi809jMFhvw1bUO124s4WdKkCpBpjx97xCL3T5n5iP83jIwq2YZZjKuXmEaJq\u002BAXjVgdg8NAHDiSoswMQSxIYwNQWI4Mxez70STIDP4PSXIhKAnBKkSpt6o\u002BpmM\u002BX3F6yl\u002BZtgV1LmvFtDpF8wv5oRdg028Cpwazv2ckN2AIFHCRAlTxaaKTYUwlYZ6PcXLlDA12MhjpAgA6PRKbOQRxB5h1xBElQ6jqtowNYSJYhODTQSbKDZR1E\u002B1absetuthOx5B6gEgpWA7lT2MvQqyAoq1kqTStWWxscyq7fizNvKx7Qq4cKUA4O71HiN5QC1aThZVbdvYsKUesnd0HbXY3JR6pNQi/V1tR7\u002BrKvGxXZ\u002Blvw0X5/sAPPvwesKuh11pM/YII8Nr\u002BzcwN9unHin1SLFdQy0y\u002BLk3rev6HAk7fsu2fWzbx7Z8jn2RAnDw0TXsGA4JYw8bG4bxeO\u002BVIRbnCroLjnrbo94yrOkYwkSbH/\u002B4\u002BagAjD9zfb\u002B3JNNSCFII4uDAHstLL1oAfm0WiINtWw2ffxbzzXSM7TlsKti\u002B4PcdWjDx/uWNFRBgz54bh9SZ17WQm0th4yZh54OGTXcJaeT4/nSPvF0Q5g6bQZiDFg6hfPeDyxunWL1tAJ7YHU\u002BZQierXQPqHOIcxoFflvi5IygcYe4wpUOlRJz79MNfRt5YYdyxYJ96KJ1Qp5MGGlI4vLIK9lwFU1dg1CG4lrji\u002BY/mhk\u002Btjr8DuHJeuL8/4TnZZ0rXUCnGlBKjRdMIsyruXN4rjx5qbmjdHvcveKLGH1NQZuIAAAAASUVORK5CYII=",
-              "WhenOpened": "2025-11-15T09:03:43.23Z"
+              "WhenOpened": "2025-11-15T09:03:43.23Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1775,7 +1833,8 @@
               "RelativeToolTip": "website.client\\README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-11-14T14:30:46.535Z"
+              "WhenOpened": "2025-11-14T14:30:46.535Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1864,7 +1923,8 @@
               "RelativeToolTip": "..\\AddressBookSystem\\addressbooksystem.client\\src\\main.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-06T15:05:57.869Z"
+              "WhenOpened": "2025-11-06T15:05:57.869Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -1920,7 +1980,8 @@
               "RelativeToolTip": "..\\AddressBookSystem\\AddressBookSystem.Server\\Controllers\\ContactsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T07:37:16.029Z"
+              "WhenOpened": "2025-11-05T07:37:16.029Z",
+              "EditorCaption": ""
             }
           ]
         }
@@ -1945,7 +2006,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "ServiceController.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\ServiceController.cs",
               "RelativeDocumentMoniker": "website.Server\\Controllers\\ServiceController.cs",
