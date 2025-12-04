@@ -10,61 +10,38 @@ const PortfolioPage = () => {
     const isStaff = user.role === "staff" || user.role === "admin";
 
     const [portfolios, setPortfolios] = useState([]);
-    const [editMode, setEditMode] = useState(false);
-    const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
-    const [showEditButton, setShowEditButton] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [file, setFile] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
     const [showAddForm, setShowAddForm] = useState(false);
-    const [newImageUrl, setNewImageUrl] = useState("");
+    const [visibleItems, setVisibleItems] = useState([]);
+    const [editMode, setEditMode] = useState(false);
 
+    // Refs for portfolio items
     const portfolioItemsRef = useRef([]);
     const headerRef = useRef(null);
     const gridRef = useRef(null);
-    const [visibleItems, setVisibleItems] = useState([]);
-
-    // Default portfolio items (like events page)
-    const defaultPortfolios = [
-        {
-            id: 1,
-            imagePath: './img/portfolio1.jpg',
-            title: 'Event Setup 1',
-            description: 'Professional audio setup for corporate event'
-        },
-        {
-            id: 2,
-            imagePath: './img/portfolio2.jpg',
-            title: 'Wedding Sound System',
-            description: 'Complete audio system for wedding ceremony'
-        }
-    ];
-
-    const newPortfolioTemplate = {
-        id: 0,
-        imagePath: './img/default-portfolio.jpg',
-        title: 'New Portfolio Image',
-        description: 'Add description here...'
-    };
 
     // Load portfolios from backend
     const loadPortfolios = async () => {
+        setLoading(true);
         try {
             const res = await fetch(API_BASE);
-            if (res.ok) {
-                const data = await res.json();
-                setPortfolios(data); // always use backend
-                return;
-            }
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            setPortfolios(data || []);
         } catch (err) {
-            console.log("Failed to load from backend, using default");
+            console.error("Failed to load portfolios:", err);
+            setPortfolios([]);
+        } finally {
+            setLoading(false);
         }
-        setPortfolios([]);
     };
 
     useEffect(() => {
         loadPortfolios();
     }, []);
 
-    // Intersection Observer for animations
     useEffect(() => {
         if (portfolios.length === 0) return;
 
@@ -78,59 +55,108 @@ const PortfolioPage = () => {
                 if (entry.isIntersecting) {
                     const id = entry.target.dataset.id;
                     setVisibleItems(prev => [...new Set([...prev, id])]);
+
                     entry.target.classList.add('portfolio-visible');
-                    setTimeout(() => observer.unobserve(entry.target), 1000);
+
+                    setTimeout(() => {
+                        observer.unobserve(entry.target);
+                    }, 1000);
                 }
             });
         }, observerOptions);
 
-        if (headerRef.current) observer.observe(headerRef.current);
-        portfolioItemsRef.current.forEach(item => item && observer.observe(item));
-        if (gridRef.current) observer.observe(gridRef.current);
-
-        return () => observer.disconnect();
-    }, [portfolios]);
-
-    // Handle portfolio item change (for editing)
-    const handlePortfolioChange = (index, field, value) => {
-        const updatedPortfolios = [...portfolios];
-        updatedPortfolios[index] = {
-            ...updatedPortfolios[index],
-            [field]: value
-        };
-        setPortfolios(updatedPortfolios);
-    };
-
-    // Add new portfolio item
-    const addPortfolio = () => {
-        if (!newImageUrl.trim()) {
-            alert("Please enter an image URL first");
-            return;
+        if (headerRef.current) {
+            observer.observe(headerRef.current);
         }
 
-        const portfolioToAdd = {
-            ...newPortfolioTemplate,
-            id: portfolios.length > 0 ? Math.max(...portfolios.map(p => p.id)) + 1 : 1,
-            imagePath: newImageUrl,
-            title: 'New Portfolio Item',
-            description: 'Description here...'
+        // Observe portfolio items
+        portfolioItemsRef.current.forEach(item => {
+            if (item) observer.observe(item);
+        });
+
+        // Observe grid container for staggered animation
+        if (gridRef.current) {
+            observer.observe(gridRef.current);
+        }
+
+        return () => {
+            observer.disconnect();
         };
+    }, [portfolios]);
 
-        setPortfolios([...portfolios, portfolioToAdd]);
-        setNewImageUrl("");
+    // Handle file selection
+    const handleImageChange = (e) => {
+        const f = e.target.files[0];
+        if (!f) return;
+        if (!f.type.startsWith("image/")) return alert("Please select a valid image.");
+        if (f.size > 5 * 1024 * 1024) return alert("Image must be smaller than 5MB");
+
+        setFile(f);
+        setPreviewImage(URL.createObjectURL(f));
+    };
+
+    // Remove selected image
+    const handleRemoveImage = () => {
+        if (previewImage) URL.revokeObjectURL(previewImage);
+        setFile(null);
+        setPreviewImage(null);
+        const fileInput = document.getElementById('portfolioFileInput');
+        if (fileInput) fileInput.value = '';
+    };
+
+    const handleCancelForm = () => {
         setShowAddForm(false);
+        handleRemoveImage();
     };
 
-    // Remove portfolio item
-    const removePortfolio = (index) => {
-        const updatedPortfolios = portfolios.filter((_, i) => i !== index);
-        setPortfolios(updatedPortfolios);
-    };
-
-    // Save all changes to backend
+    // Save/upload image
     const handleSave = async () => {
-        setLoading(true);
+        if (!isStaff) return alert("Only staff can add.");
+        if (!file) return alert("Please select an image.");
 
+        setLoading(true);
+        try {
+            const formData = new FormData();
+            formData.append("image", file);
+
+            const res = await fetch(API_BASE, { method: "POST", body: formData });
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || "Upload failed");
+            }
+
+            alert("Image uploaded successfully!");
+            handleCancelForm();
+            loadPortfolios();
+        } catch (err) {
+            console.error("Upload error:", err);
+            alert("Error: " + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Delete image
+    const handleDelete = async (id) => {
+        if (!isStaff) return alert("Only staff can delete.");
+        if (!window.confirm("Delete this portfolio image?")) return;
+
+        try {
+            const res = await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(text || "Delete failed");
+            }
+            alert("Deleted successfully!");
+            loadPortfolios();
+        } catch (err) {
+            alert(err.message);
+        }
+    };
+
+    // Save all portfolio items (like events page)
+    const handleSaveAll = async () => {
+        setLoading(true);
         try {
             const res = await fetch(`${API_BASE}/update-all`, {
                 method: "POST",
@@ -160,24 +186,19 @@ const PortfolioPage = () => {
     };
 
     // Cancel edit mode
-    const handleCancel = () => {
-        loadPortfolios(); // Reload from backend
+    const handleCancelEdit = () => {
+        loadPortfolios();
         setEditMode(false);
-    };
-
-    const handleCancelForm = () => {
-        setShowAddForm(false);
-        setNewImageUrl("");
     };
 
     return (
         <div>
-            {/* Modal Overlay for add form */}
+            {/* Modal Overlay */}
             {showAddForm && (
                 <div className="portfolio-modal-overlay"></div>
             )}
 
-            {/* HEADER */}
+            {/* HEADER with animation trigger */}
             <div
                 ref={headerRef}
                 className="portfolio-top-header portfolio-animate"
@@ -206,208 +227,26 @@ const PortfolioPage = () => {
                 )}
             </div>
 
-            {/* MAIN PORTFOLIO CONTAINER */}
-            <div
-                className="portfolio-page-grid portfolio-animate"
-                data-animate="stagger-fade-up"
-                onMouseEnter={() => isStaff && setShowEditButton(true)}
-                onMouseLeave={() => isStaff && setShowEditButton(false)}
-            >
-                {isStaff && !editMode && (
-                    <button
-                        className={`portfolio-edit-btn ${showEditButton ? 'visible' : ''}`}
-                        onClick={() => setEditMode(true)}
-                    >
-                        Edit Portfolio
-                    </button>
-                )}
-
-                {/* ADD FORM MODAL */}
-                {showAddForm && editMode && isStaff && (
-                    <div className="portfolio-form-container">
-                        <div className="portfolio-form-header">
-                            <h3>Add New Portfolio Image</h3>
-                            <button
-                                className="portfolio-close-btn"
-                                onClick={handleCancelForm}
-                            >
-                                ×
-                            </button>
-                        </div>
-
-                        <div className="portfolio-url-input-section">
-                            <label htmlFor="imageUrl">Image URL:</label>
-                            <input
-                                id="imageUrl"
-                                type="text"
-                                value={newImageUrl}
-                                onChange={(e) => setNewImageUrl(e.target.value)}
-                                placeholder="https://example.com/image.jpg"
-                                className="portfolio-url-input"
-                            />
-                            <p className="portfolio-url-hint">
-                                Enter the full URL of the image (e.g., ./img/portfolio1.jpg)
-                            </p>
-                        </div>
-
-                        {newImageUrl && (
-                            <div className="portfolio-preview-container">
-                                <h4 className="portfolio-preview-title">Preview:</h4>
-                                <div className="portfolio-preview-box">
-                                    <img
-                                        src={newImageUrl}
-                                        alt="Preview"
-                                        className="portfolio-preview-image"
-                                        onError={(e) => {
-                                            e.target.src = "/img/banner.jpg";
-                                            e.target.className = "portfolio-image-error";
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="portfolio-form-actions">
-                            <button
-                                className="portfolio-cancel-btn"
-                                onClick={handleCancelForm}
-                                disabled={loading}
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                className="portfolio-save-btn"
-                                onClick={addPortfolio}
-                                disabled={loading || !newImageUrl.trim()}
-                            >
-                                {loading ? "Adding..." : "Add Image"}
-                            </button>
-                        </div>
-                    </div>
-                )}
-
-                {/* PORTFOLIO GRID */}
-                {portfolios.map((portfolio, index) => {
-                    const portfolioId = portfolio.id || portfolio.ID || portfolio._id || index;
-                    const animationDelay = `${index * 0.1}s`;
-
-                    return (
-                        <div
-                            key={portfolioId}
-                            ref={el => portfolioItemsRef.current[index] = el}
-                            data-id={portfolioId}
-                            className="portfolio-page-item portfolio-animate"
-                            data-animate="fade-up"
-                            onMouseEnter={() => setHoveredItemIndex(index)}
-                            onMouseLeave={() => setHoveredItemIndex(null)}
-                            style={{ '--animation-delay': animationDelay }}
-                        >
-                            {/* Delete button visible in edit mode */}
-                            {editMode && isStaff && (
-                                <button
-                                    className={`portfolio-delete-btn ${hoveredItemIndex === index ? 'visible' : ''}`}
-                                    onClick={() => removePortfolio(index)}
-                                    title="Remove portfolio item"
-                                    disabled={loading}
-                                >
-                                    ×
-                                </button>
-                            )}
-
-                            {/* Image display/editing */}
-                            <div className="portfolio-image-wrapper">
-                                {editMode && isStaff ? (
-                                    <div className="portfolio-edit-fields">
-                                        <input
-                                            type="text"
-                                            value={portfolio.imagePath || ''}
-                                            onChange={(e) => handlePortfolioChange(index, 'imagePath', e.target.value)}
-                                            className="portfolio-image-url-input"
-                                            placeholder="🖼️ Enter image URL..."
-                                            disabled={loading}
-                                        />
-                                        <input
-                                            type="text"
-                                            value={portfolio.title || ''}
-                                            onChange={(e) => handlePortfolioChange(index, 'title', e.target.value)}
-                                            className="portfolio-title-input"
-                                            placeholder="Image title..."
-                                            disabled={loading}
-                                        />
-                                        <input
-                                            type="text"
-                                            value={portfolio.description || ''}
-                                            onChange={(e) => handlePortfolioChange(index, 'description', e.target.value)}
-                                            className="portfolio-description-input"
-                                            placeholder="Image description..."
-                                            disabled={loading}
-                                        />
-                                    </div>
-                                ) : (
-                                    <div className="portfolio-display-content">
-                                        {portfolio.imagePath ? (
-                                            <img
-                                                src={portfolio.imagePath}
-                                                alt={portfolio.title || 'Portfolio'}
-                                                className="portfolio-image"
-                                                onError={(e) => {
-                                                    e.target.src = "/img/banner.jpg";
-                                                    e.target.className = "portfolio-image-error";
-                                                }}
-                                            />
-                                        ) : (
-                                            <div className="portfolio-fallback">
-                                                <div className="portfolio-fallback-content">
-                                                    <div className="portfolio-fallback-icon">🖼️</div>
-                                                    No Image
-                                                </div>
-                                            </div>
-                                        )}
-                                        <div className="portfolio-overlay">
-                                            {portfolio.title || `Portfolio Item #${portfolioId}`}
-                                            {portfolio.description && (
-                                                <p className="portfolio-overlay-description">
-                                                    {portfolio.description}
-                                                </p>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    );
-                })}
-
-                {/* Add new item card in edit mode */}
-                {editMode && isStaff && portfolios.length > 0 && (
-                    <div
-                        className="portfolio-page-item add-new-portfolio"
-                        onClick={() => setShowAddForm(true)}
-                        onMouseEnter={() => setHoveredItemIndex('add')}
-                        onMouseLeave={() => setHoveredItemIndex(null)}
-                    >
-                        <div className="add-portfolio-wrapper">
-                            <div className="add-portfolio-icon">+</div>
-                            <h3>Add New Image</h3>
-                            <p>Click to add new portfolio image</p>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* Edit Mode Action Buttons */}
+            {/* EDIT MODE CONTROLS */}
             {editMode && isStaff && (
-                <div className="portfolio-action-controls">
+                <div className="portfolio-edit-controls">
                     <button
-                        className="save-portfolio-btn"
-                        onClick={handleSave}
+                        className="portfolio-add-new-btn"
+                        onClick={() => setShowAddForm(true)}
                         disabled={loading}
                     >
-                        {loading ? 'Saving...' : 'Save Changes'}
+                        + Add New Image
                     </button>
                     <button
-                        className="cancel-portfolio-btn"
-                        onClick={handleCancel}
+                        className="portfolio-save-all-btn"
+                        onClick={handleSaveAll}
+                        disabled={loading}
+                    >
+                        {loading ? 'Saving...' : 'Save All Changes'}
+                    </button>
+                    <button
+                        className="portfolio-cancel-edit-btn"
+                        onClick={handleCancelEdit}
                         disabled={loading}
                     >
                         Cancel
@@ -415,11 +254,164 @@ const PortfolioPage = () => {
                 </div>
             )}
 
-            {portfolios.length === 0 && !editMode && (
-                <div className="no-portfolio-message">
-                    <p>No portfolio images yet.</p>
-                    {isStaff && (
-                        <p>Hover over this section and click "Edit Portfolio" to add new images.</p>
+            {/* ADD FORM MODAL */}
+            {showAddForm && isStaff && (
+                <div className="portfolio-form-container">
+                    <div className="portfolio-form-header">
+                        <h3>Add New Portfolio Image</h3>
+                        <button
+                            className="portfolio-close-btn"
+                            onClick={handleCancelForm}
+                        >
+                            ×
+                        </button>
+                    </div>
+
+                    <div
+                        className="portfolio-upload-area"
+                        onClick={() => document.getElementById('portfolioFileInput').click()}
+                    >
+                        <input
+                            id="portfolioFileInput"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            className="portfolio-file-input"
+                        />
+                        <div className="portfolio-upload-icon">📁</div>
+                        <p className="portfolio-upload-text">
+                            Click to upload or drag and drop
+                        </p>
+                        <p className="portfolio-upload-hint">
+                            PNG, JPG, GIF up to 5MB
+                        </p>
+                    </div>
+
+                    {previewImage && (
+                        <div className="portfolio-preview-container">
+                            <h4 className="portfolio-preview-title">Preview:</h4>
+                            <div className="portfolio-preview-box">
+                                <img
+                                    src={previewImage}
+                                    alt="Preview"
+                                    className="portfolio-preview-image"
+                                />
+                                <button
+                                    className="portfolio-remove-btn"
+                                    onClick={handleRemoveImage}
+                                    title="Remove image"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="portfolio-form-actions">
+                        <button
+                            className="portfolio-cancel-btn"
+                            onClick={handleCancelForm}
+                            disabled={loading}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className="portfolio-save-btn"
+                            onClick={handleSave}
+                            disabled={loading || !file}
+                        >
+                            {loading ? "Uploading..." : "Upload Image"}
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {/* LOADING STATE */}
+            {loading && !showAddForm && (
+                <div className="portfolio-loading">
+                    <div className="loading-spinner"></div>
+                    <p>Loading portfolio images...</p>
+                </div>
+            )}
+
+            {/* PORTFOLIO GRID with animation trigger */}
+            {!loading && (
+                <div
+                    ref={gridRef}
+                    className="portfolio-page-grid portfolio-animate"
+                    data-animate="stagger-fade-up"
+                >
+                    {portfolios.length === 0 ? (
+                        <div
+                            className="portfolio-empty-state portfolio-animate"
+                            data-animate="fade-up"
+                        >
+                            <div className="portfolio-empty-icon">📷</div>
+                            <p className="portfolio-empty-text">
+                                No portfolio images yet
+                            </p>
+                            {isStaff && !editMode && (
+                                <p className="portfolio-empty-subtext">
+                                    Click "Edit Portfolio" to add new images!
+                                </p>
+                            )}
+                        </div>
+                    ) : (
+                        portfolios.map((p, index) => {
+                            const portfolioId = p.id || p.ID || p._id || index;
+                            const fullImagePath = p.imagePath
+                                ? `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/${p.imagePath}`
+                                : null;
+
+                            // Calculate animation delay for staggered effect
+                            const animationDelay = `${index * 0.1}s`;
+
+                            return (
+                                <div
+                                    key={portfolioId}
+                                    ref={el => portfolioItemsRef.current[index] = el}
+                                    data-id={portfolioId}
+                                    className="portfolio-page-item portfolio-animate"
+                                    data-animate="fade-up"
+                                    style={{
+                                        '--animation-delay': animationDelay
+                                    }}
+                                >
+                                    {fullImagePath ? (
+                                        <img
+                                            src={fullImagePath}
+                                            alt="Portfolio"
+                                            onError={(e) => {
+                                                e.target.src = "/img/banner.jpg";
+                                                e.target.className = "portfolio-image-error";
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="portfolio-fallback">
+                                            <div className="portfolio-fallback-content">
+                                                <div className="portfolio-fallback-icon">🖼️</div>
+                                                No Image
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="portfolio-overlay">
+                                        Portfolio Item #{portfolioId}
+                                    </div>
+
+                                    {/* Show delete button in edit mode */}
+                                    {editMode && isStaff && (
+                                        <button
+                                            className="portfolio-delete-btn"
+                                            onClick={() => handleDelete(portfolioId)}
+                                            title="Delete image"
+                                        >
+                                            ✕
+                                        </button>
+                                    )}
+                                </div>
+                            );
+                        })
                     )}
                 </div>
             )}
