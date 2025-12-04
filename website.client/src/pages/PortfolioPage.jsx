@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect, useRef } from "react";
-import "/src/App.css";
+import "/src/App.css"; // Import your CSS file
 
 const API_BASE = import.meta.env.VITE_API_URL
     ? `${import.meta.env.VITE_API_URL}/api/portfolio`
@@ -15,7 +15,6 @@ const PortfolioPage = () => {
     const [previewImage, setPreviewImage] = useState(null);
     const [showAddForm, setShowAddForm] = useState(false);
     const [visibleItems, setVisibleItems] = useState([]);
-    const [editMode, setEditMode] = useState(false);
 
     // Refs for portfolio items
     const portfolioItemsRef = useRef([]);
@@ -154,43 +153,6 @@ const PortfolioPage = () => {
         }
     };
 
-    // Save all portfolio items (like events page)
-    const handleSaveAll = async () => {
-        setLoading(true);
-        try {
-            const res = await fetch(`${API_BASE}/update-all`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(portfolios),
-            });
-
-            if (res.ok) {
-                const data = await res.json();
-                if (data.success) {
-                    alert("Portfolio updated successfully!");
-                    setEditMode(false);
-                } else {
-                    alert(data.message || "Failed to update portfolio.");
-                }
-            } else {
-                throw new Error(`HTTP ${res.status}`);
-            }
-        } catch (err) {
-            alert("Portfolio updated successfully!");
-            setEditMode(false);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Cancel edit mode
-    const handleCancelEdit = () => {
-        loadPortfolios();
-        setEditMode(false);
-    };
-
     return (
         <div>
             {/* Modal Overlay */}
@@ -216,43 +178,16 @@ const PortfolioPage = () => {
                     Projects and events we have done previously.
                 </h3>
 
-                {isStaff && !editMode && (
+                {isStaff && (
                     <button
                         className="portfolio-add-btn fade-in-up"
-                        onClick={() => setEditMode(true)}
+                        onClick={() => setShowAddForm(true)}
                         style={{ animationDelay: "0.7s" }}
                     >
-                        Edit Portfolio
+                        + Add Portfolio Image
                     </button>
                 )}
             </div>
-
-            {/* EDIT MODE CONTROLS */}
-            {editMode && isStaff && (
-                <div className="portfolio-edit-controls">
-                    <button
-                        className="portfolio-add-new-btn"
-                        onClick={() => setShowAddForm(true)}
-                        disabled={loading}
-                    >
-                        + Add New Image
-                    </button>
-                    <button
-                        className="portfolio-save-all-btn"
-                        onClick={handleSaveAll}
-                        disabled={loading}
-                    >
-                        {loading ? 'Saving...' : 'Save All Changes'}
-                    </button>
-                    <button
-                        className="portfolio-cancel-edit-btn"
-                        onClick={handleCancelEdit}
-                        disabled={loading}
-                    >
-                        Cancel
-                    </button>
-                </div>
-            )}
 
             {/* ADD FORM MODAL */}
             {showAddForm && isStaff && (
@@ -311,7 +246,6 @@ const PortfolioPage = () => {
                         <button
                             className="portfolio-cancel-btn"
                             onClick={handleCancelForm}
-                            disabled={loading}
                         >
                             Cancel
                         </button>
@@ -350,22 +284,21 @@ const PortfolioPage = () => {
                             <p className="portfolio-empty-text">
                                 No portfolio images yet
                             </p>
-                            {isStaff && !editMode && (
+                            {isStaff && (
                                 <p className="portfolio-empty-subtext">
-                                    Click "Edit Portfolio" to add new images!
+                                    Click "Add Portfolio Image" to showcase your work!
                                 </p>
                             )}
                         </div>
                     ) : (
                         portfolios.map((p, index) => {
                             const portfolioId = p.id || p.ID || p._id || index;
-                            // In your frontend component, update the image path construction:
                             const fullImagePath = p.imagePath
-                                ? p.imagePath.startsWith('http') || p.imagePath.startsWith('/') || p.imagePath.startsWith('./')
-                                    ? p.imagePath
-                                    : `${import.meta.env.VITE_API_URL || "http://localhost:8080"}${p.imagePath.startsWith('/') ? '' : '/'}${p.imagePath}`
+                                ? `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/${p.imagePath}`
                                 : null;
 
+                            // This should produce: http://localhost:8080/uploads/filename.jpg
+                            console.log("Image path:", fullImagePath); // Add this to debug
                             // Calculate animation delay for staggered effect
                             const animationDelay = `${index * 0.1}s`;
 
@@ -402,10 +335,9 @@ const PortfolioPage = () => {
                                         Portfolio Item #{portfolioId}
                                     </div>
 
-                                    {/* Show delete button in edit mode */}
-                                    {editMode && isStaff && (
+                                    {isStaff && (
                                         <button
-                                            className="portfolio-delete-btn"
+                                            className="cancel-btn"
                                             onClick={() => handleDelete(portfolioId)}
                                             title="Delete image"
                                         >

@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Create necessary directories
 var wwwrootPath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot");
 Directory.CreateDirectory(wwwrootPath);
-Directory.CreateDirectory(Path.Combine(wwwrootPath, "uploads", "portfolio"));
+Directory.CreateDirectory(Path.Combine(wwwrootPath, "uploads")); // ✅ Remove /portfolio
 Directory.CreateDirectory(Path.Combine(wwwrootPath, "uploads", "services"));
 
 // Configure form options for file uploads
