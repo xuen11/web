@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\asus\\source\\repos\\website\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Controllers\\PortfolioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.client\\src\\pages\\PortfolioPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.Server\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:website.Server\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\ServicesPage.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -484,7 +484,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -500,15 +500,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PortfolioPage.jsx",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
               "RelativeDocumentMoniker": "website.client\\src\\pages\\PortfolioPage.jsx",
               "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.client\\src\\pages\\PortfolioPage.jsx",
               "RelativeToolTip": "website.client\\src\\pages\\PortfolioPage.jsx",
-              "ViewState": "AgIAAFEBAAAAAAAAAAAiwGMBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAB0BAAAAAAAAAAAAwC4BAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-11-26T01:20:01.504Z"
+              "WhenOpened": "2025-11-26T01:20:01.504Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -518,20 +519,20 @@
               "RelativeDocumentMoniker": "website.Server\\Controllers\\PortfolioController.cs",
               "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Controllers\\PortfolioController.cs",
               "RelativeToolTip": "website.Server\\Controllers\\PortfolioController.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAAwMEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-01T15:58:55.35Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Program.cs",
               "RelativeDocumentMoniker": "website.Server\\Program.cs",
               "ToolTip": "C:\\Users\\asus\\source\\repos\\website\\website.Server\\Program.cs",
               "RelativeToolTip": "website.Server\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAABSAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-05T09:59:45.934Z",
               "EditorCaption": ""

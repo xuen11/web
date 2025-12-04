@@ -293,9 +293,15 @@ const PortfolioPage = () => {
                     ) : (
                         portfolios.map((p, index) => {
                             const portfolioId = p.id || p.ID || p._id || index;
+                            // In your map function, update the image path:
                             const fullImagePath = p.imagePath
-                                ? `${import.meta.env.VITE_API_URL || "http://localhost:8080"}/${p.imagePath}`
+                                ? p.imagePath.startsWith('http')
+                                    ? p.imagePath
+                                    : p.imagePath.startsWith('./') || p.imagePath.startsWith('/')
+                                        ? p.imagePath
+                                        : `./img/${p.imagePath}`
                                 : null;
+
 
                             // Calculate animation delay for staggered effect
                             const animationDelay = `${index * 0.1}s`;
