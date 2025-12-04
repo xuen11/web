@@ -167,7 +167,7 @@ const PortfolioPage = () => {
                 data-animate="fade-up"
             >
                 <img
-                    src="src/public/img/sound1.jpg"
+                    src="/img/sound1.jpg"
                     className="portfolio-top-image"
                     alt="Portfolio header"
                 />

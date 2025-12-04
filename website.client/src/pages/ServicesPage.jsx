@@ -243,7 +243,7 @@ const ServicePage = () => {
             {/* HEADER */}
             <div ref={headerRef} className="service-top-header">
                 <img
-                    src="src/public/img/sound1.jpg"
+                    src="/img/sound1.jpg"
                     className="service-top-image"
                     alt="Services header"
                 />
