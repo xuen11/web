@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import "/src/App.css";
 
 const API_BASE = import.meta.env.VITE_API_URL
@@ -20,6 +20,11 @@ const ServicePage = () => {
     const [file, setFile] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
 
+    // Refs for animations
+    const serviceItemsRef = useRef([]);
+    const headerRef = useRef(null);
+    const gridRef = useRef(null);
+
     const loadServices = async () => {
         try {
             setLoading(true);
@@ -38,6 +43,49 @@ const ServicePage = () => {
     useEffect(() => {
         loadServices();
     }, []);
+
+    // Set up Intersection Observer for scroll animations
+    useEffect(() => {
+        if (services.length === 0) return;
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add animation class
+                    entry.target.classList.add('services-visible');
+
+                    // Optional: Unobserve after animation
+                    setTimeout(() => {
+                        observer.unobserve(entry.target);
+                    }, 1000);
+                }
+            });
+        }, observerOptions);
+
+        // Observe header
+        if (headerRef.current) {
+            observer.observe(headerRef.current);
+        }
+
+        // Observe service items
+        serviceItemsRef.current.forEach(item => {
+            if (item) observer.observe(item);
+        });
+
+        // Observe grid container
+        if (gridRef.current) {
+            observer.observe(gridRef.current);
+        }
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [services]);
 
     const handleImageChange = (e) => {
         const f = e.target.files[0];
@@ -62,17 +110,15 @@ const ServicePage = () => {
         setPreviewImage(URL.createObjectURL(f));
     };
 
-
     const handleRemoveImage = () => {
         if (previewImage) {
             URL.revokeObjectURL(previewImage);
         }
         setFile(null);
         setPreviewImage(null);
-        const fileInput = document.querySelector('input[type="file"]');
+        const fileInput = document.getElementById('servicesFileInput');
         if (fileInput) fileInput.value = '';
     };
-
 
     const handleCancel = () => {
         setShowAddForm(false);
@@ -92,29 +138,31 @@ const ServicePage = () => {
         setEditingService(null);
     };
 
-
-
     const handleEdit = (service) => {
-        console.log("Editing service:", service);
         setEditingService(service);
+        setTitle(service.title || service.Title || ""); // Handle both cases
 
-        // Set title
-        setTitle(service.Title || service.title || "");
+        // FIX: Use correct property name - it's imagePath (lowercase) from your backend
+        const currentImage = service.imagePath || service.ImagePath || "";
 
-        // Preload current image as preview
-        const currentImage = service.ImagePath || service.imagePath || service.image || service.Image || "";
         if (currentImage) {
-            setPreviewImage(currentImage.startsWith("http") || currentImage.startsWith("/")
-                ? currentImage
-                : `/${currentImage}`);
+            // Construct the full URL for preview
+            const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
+            // If it's already a full URL or starts with /, use as-is
+            // Otherwise prepend the base URL
+            if (currentImage.startsWith("http") || currentImage.startsWith("/")) {
+                setPreviewImage(currentImage);
+            } else {
+                setPreviewImage(`${baseUrl}/${currentImage}`);
+            }
         } else {
             setPreviewImage(null);
         }
 
-        setFile(null); // No new file yet
+        setFile(null);
         setShowEditForm(true);
     };
-
 
     const handleSave = async (isEdit = false) => {
         if (!title.trim()) {
@@ -128,7 +176,7 @@ const ServicePage = () => {
         formData.append("Title", title);
         if (file) formData.append("Image", file);
 
-        const url = isEdit ? `${API_BASE}/${editingService.Id}` : API_BASE;
+        const url = isEdit ? `${API_BASE}/${editingService.id}` : API_BASE;
         const method = isEdit ? "PUT" : "POST";
 
         try {
@@ -160,7 +208,6 @@ const ServicePage = () => {
         }
     };
 
-
     const handleDelete = async (id) => {
         if (!isStaff) return alert("Only staff can delete.");
         if (!window.confirm("Delete this service?")) return;
@@ -180,234 +227,100 @@ const ServicePage = () => {
         }
     };
 
-    // Test function to check if backend is working
-    const testBackend = async () => {
-        try {
-            console.log("Testing backend connection...");
-            const res = await fetch(API_BASE);
-            console.log("GET test status:", res.status);
-            const data = await res.json();
-            console.log("GET test data:", data);
-
-            // Also test a simple POST without file
-            const testFormData = new FormData();
-            testFormData.append("Title", "Test Service");
-
-            // Create a simple test image
-            const canvas = document.createElement('canvas');
-            canvas.width = 10;
-            canvas.height = 10;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = 'red';
-            ctx.fillRect(0, 0, 10, 10);
-
-            canvas.toBlob(async (blob) => {
-                const testFile = new File([blob], 'test.png', { type: 'image/png' });
-                testFormData.append("Image", testFile);
-
-                const testRes = await fetch(API_BASE, {
-                    method: 'POST',
-                    body: testFormData
-                });
-                console.log("POST test status:", testRes.status);
-                const testData = await testRes.text();
-                console.log("POST test response:", testData);
-            }, 'image/png');
-
-        } catch (err) {
-            console.error("Test error:", err);
-        }
-    };
+    // Group services into rows of 3 for staggered layout
+    const groupedServices = [];
+    for (let i = 0; i < services.length; i += 3) {
+        groupedServices.push(services.slice(i, i + 3));
+    }
 
     return (
         <div>
+            {/* Modal Overlay */}
+            {(showAddForm || showEditForm) && (
+                <div className="services-modal-overlay"></div>
+            )}
 
             {/* HEADER */}
-            <div className="portfolio-top-header">
-                <img src="src/public/img/sound1.jpg" className="portfolio-top-image" alt="Services header" />
-                <h1 className="portfolio-top-title fade-in-up">
+            <div ref={headerRef} className="service-top-header">
+                <img
+                    src="src/public/img/sound1.jpg"
+                    className="service-top-image"
+                    alt="Services header"
+                />
+                <h1 className="service-top-title fade-in-up">
                     Our <span>Services</span>
                 </h1>
-                <h3 className="fade-in-up" style={{ animationDelay: "0.5s" }}>
+                <h3 className="service-subtitle fade-in-up" style={{ animationDelay: "0.5s" }}>
                     Professional services we offer to our clients.
                 </h3>
 
                 {isStaff && (
                     <button
-                        className="portfolio-edit-btn"
+                        className="service-add-btn fade-in-up"
                         onClick={() => setShowAddForm(true)}
-                        style={{
-                            position: "absolute",
-                            top: "75%",
-                            left: "50%",
-                            transform: "translateX(-50%)",
-                            padding: "12px 30px",
-                            background: "#007bff",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "5px",
-                            fontSize: "16px",
-                            cursor: "pointer",
-                        }}
+                        style={{ animationDelay: "0.7s" }}
                     >
-                        + Add Service Image
+                        + Add Service
                     </button>
                 )}
-
-                {/* Debug button */}
-                <button
-                    onClick={testBackend}
-                    style={{
-                        position: "absolute",
-                        top: "85%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        padding: "8px 15px",
-                        background: "#6c757d",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        fontSize: "12px",
-                        cursor: "pointer",
-                        marginTop: "10px"
-                    }}
-                >
-                    Test Backend
-                </button>
             </div>
 
-            {/* ADD/EDIT FORM */}
+            {/* ADD/EDIT FORM MODAL */}
             {(showAddForm || showEditForm) && isStaff && (
-                <div style={{
-                    maxWidth: "600px",
-                    margin: "40px auto",
-                    padding: "30px",
-                    background: "white",
-                    borderRadius: "10px",
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
-                    position: "relative",
-                    zIndex: 1000
-                }}>
-                    <div style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        borderBottom: "2px solid #007bff",
-                        marginBottom: "25px",
-                        paddingBottom: "15px"
-                    }}>
+                <div className="services-form-container">
+                    <div className="services-form-header">
                         <h3>{showEditForm ? "Edit Service" : "Add New Service"}</h3>
-                        <button onClick={handleCancel} style={{
-                            background: "none",
-                            border: "none",
-                            fontSize: "28px",
-                            cursor: "pointer",
-                            color: "#666",
-                            lineHeight: "1"
-                        }}>
+                        <button
+                            className="services-close-btn"
+                            onClick={handleCancel}
+                        >
                             ×
                         </button>
                     </div>
 
-                    <div style={{ marginBottom: "25px" }}>
-                        <label style={{
-                            display: "block",
-                            marginBottom: "10px",
-                            fontWeight: "bold",
-                            color: "#333"
-                        }}>
-                            Title *
-                        </label>
+                    {/* Title Input */}
+                    <div className="services-title-input-container">
+                        <label className="services-title-label">Title *</label>
                         <input
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder="Enter service title"
-                            style={{
-                                width: "100%",
-                                padding: "10px",
-                                border: "1px solid #ddd",
-                                borderRadius: "5px"
-                            }}
+                            className="services-title-input"
                         />
                     </div>
 
-                    <div style={{ marginBottom: "25px" }}>
-                        <label style={{
-                            display: "block",
-                            marginBottom: "10px",
-                            fontWeight: "bold",
-                            color: "#333"
-                        }}>
-                            {showEditForm ? "Image (Leave empty to keep current)" : "Image *"}
-                        </label>
+                    {/* File Upload */}
+                    <div className="services-upload-area" onClick={() => document.getElementById('servicesFileInput').click()}>
                         <input
+                            id="servicesFileInput"
                             type="file"
                             accept="image/*"
                             onChange={handleImageChange}
-                            style={{
-                                width: "100%",
-                                padding: "10px",
-                                border: "1px solid #ddd",
-                                borderRadius: "5px"
-                            }}
+                            className="services-file-input"
                         />
-                        <p style={{ fontSize: "12px", color: "#666", marginTop: "5px" }}>
-                            Maximum file size: 5MB. Supported formats: JPEG, PNG, GIF
+                        <div className="services-upload-icon">📁</div>
+                        <p className="services-upload-text">
+                            Click to upload or drag and drop
+                        </p>
+                        <p className="services-upload-hint">
+                            PNG, JPG, GIF up to 5MB
                         </p>
                     </div>
 
-                    {/* PREVIEW WITH REMOVE BUTTON */}
+                    {/* Preview Image */}
                     {previewImage && (
-                        <div style={{
-                            marginTop: "20px",
-                            marginBottom: "25px",
-                            position: "relative"
-                        }}>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                marginBottom: "10px"
-                            }}>
-                                <h4 style={{ margin: 0, color: "#333" }}>Preview:</h4>
-                            </div>
-                            <div style={{
-                                position: "relative",
-                                borderRadius: "8px",
-                                border: "1px solid #ddd",
-                                overflow: "hidden"
-                            }}>
+                        <div className="services-preview-container">
+                            <h4 className="services-preview-title">Preview:</h4>
+                            <div className="services-preview-box">
                                 <img
                                     src={previewImage}
                                     alt="Preview"
-                                    style={{
-                                        width: "100%",
-                                        height: "300px",
-                                        objectFit: "contain",
-                                        backgroundColor: "#f8f9fa"
-                                    }}
+                                    className="services-preview-image"
                                 />
                                 <button
+                                    className="services-remove-btn"
                                     onClick={handleRemoveImage}
-                                    style={{
-                                        position: "absolute",
-                                        top: "10px",
-                                        right: "10px",
-                                        background: "rgba(220, 53, 69, 0.9)",
-                                        color: "white",
-                                        border: "none",
-                                        borderRadius: "50%",
-                                        width: "36px",
-                                        height: "36px",
-                                        cursor: "pointer",
-                                        fontSize: "20px",
-                                        lineHeight: "1",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        boxShadow: "0 2px 8px rgba(0,0,0,0.3)"
-                                    }}
                                     title="Remove image"
                                 >
                                     ✕
@@ -418,79 +331,44 @@ const ServicePage = () => {
 
                     {/* No image selected message */}
                     {!previewImage && showAddForm && (
-                        <div style={{
-                            textAlign: "center",
-                            padding: "30px",
-                            backgroundColor: "#f8f9fa",
-                            borderRadius: "8px",
-                            marginBottom: "25px"
-                        }}>
-                            <p style={{
-                                color: "#6c757d",
-                                margin: 0
-                            }}>
+                        <div className="services-no-image-message">
+                            <p className="services-no-image-text">
                                 No image selected. Please choose an image to upload.
                             </p>
                         </div>
                     )}
 
                     {/* Current image for edit */}
+                    {/* Current image for edit */}
                     {showEditForm && !previewImage && editingService && (
-                        <div style={{ marginBottom: "25px" }}>
-                            <h4 style={{ marginBottom: "10px", color: "#333" }}>Current Image:</h4>
-                            <img
-                                src={editingService.ImagePath || editingService.imagePath}
-                                alt="Current"
-                                style={{
-                                    width: "100%",
-                                    maxHeight: "300px",
-                                    objectFit: "contain",
-                                    borderRadius: "8px",
-                                    border: "1px solid #ddd"
-                                }}
-                                onError={(e) => {
-                                    e.target.style.display = "none";
-                                    e.target.parentElement.innerHTML = '<p style="color: #999; padding: 40px; text-align: center;">No image available</p>';
-                                }}
-                            />
+                        <div className="services-current-image-container">
+                            <h4 className="services-current-image-title">Current Image:</h4>
+                            <div className="services-current-image-box">
+                                <img
+                                    src={editingService.imagePath || editingService.ImagePath} // FIXED
+                                    alt="Current"
+                                    className="services-current-image"
+                                    onError={(e) => {
+                                        e.target.style.display = "none";
+                                        e.target.parentElement.innerHTML = '<p style="color: #999; padding: 20px; text-align: center; font-size: 0.9rem;">No image available</p>';
+                                    }}
+                                />
+                            </div>
                         </div>
                     )}
 
-                    <div style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        gap: "10px",
-                        marginTop: "20px"
-                    }}>
+                    {/* Form Actions */}
+                    <div className="services-form-actions">
                         <button
+                            className="services-cancel-btn"
                             onClick={handleCancel}
-                            style={{
-                                padding: "10px 20px",
-                                background: "#6c757d",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "5px",
-                                cursor: "pointer",
-                                fontSize: "16px",
-                                minWidth: "100px"
-                            }}
                         >
                             Cancel
                         </button>
                         <button
+                            className="services-save-btn"
                             onClick={() => handleSave(showEditForm)}
-                            disabled={loading}
-                            style={{
-                                padding: "10px 30px",
-                                background: loading ? "#6c757d" : "#007bff",
-                                color: "white",
-                                border: "none",
-                                borderRadius: "5px",
-                                cursor: loading ? "not-allowed" : "pointer",
-                                fontSize: "16px",
-                                opacity: loading ? 0.7 : 1,
-                                minWidth: "100px"
-                            }}
+                            disabled={loading || (!previewImage && showAddForm)}
                         >
                             {loading ? "Saving..." : showEditForm ? "Update" : "Save"}
                         </button>
@@ -500,161 +378,117 @@ const ServicePage = () => {
 
             {/* LOADING STATE */}
             {loading && !showAddForm && !showEditForm && (
-                <div style={{
-                    textAlign: "center",
-                    padding: "40px",
-                    fontSize: "18px",
-                    color: "#666"
-                }}>
-                    Loading services...
+                <div className="services-loading">
+                    <div className="loading-spinner"></div>
+                    <p>Loading services...</p>
                 </div>
             )}
 
-            {/* SERVICES GRID */}
-            <div className="portfolio-page-grid">
-                {services.length === 0 && !loading ? (
-                    <div style={{
-                        textAlign: "center",
-                        padding: "40px",
-                        gridColumn: "1 / -1"
-                    }}>
-                        <p style={{ fontSize: "18px", color: "#666" }}>
-                            No services yet.
-                            {isStaff && " Click 'Add Service Image' to get started!"}
-                        </p>
-                    </div>
-                ) : (
-                    services.map((service, index) => {
-                        const imagePath =
-                            service.ImagePath ||
-                            service.imagePath ||
-                            service.image ||
-                            service.Image ||
-                            service.filename ||
-                            "";
+            {/* STAGGERED SERVICES GRID */}
+            {!loading && (
+                <div
+                    ref={gridRef}
+                    className="services-grid-container services-animate"
+                    data-animate="stagger-fade-up"
+                >
+                    {services.length === 0 ? (
+                        <div className="services-empty-state">
+                            <div className="services-empty-icon">🔧</div>
+                            <p className="services-empty-text">
+                                No services available
+                            </p>
+                            {isStaff && (
+                                <p className="services-empty-subtext">
+                                    Click "Add Service" to get started!
+                                </p>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="services-staggered-grid">
+                            {groupedServices.map((row, rowIndex) => (
+                                <div key={rowIndex} className="services-staggered-row">
+                                    {row.map((service, colIndex) => {
+                                        const serviceId = service.id;
+                                        const serviceTitle = service.title;
 
-                        let fullImagePath = imagePath;
-                        if (imagePath && !imagePath.startsWith("/") && !imagePath.startsWith("http")) {
-                            fullImagePath = `/${imagePath}`;
-                        }
+                                        const imagePath = service.imagePath;
+                                        let fullImagePath = imagePath;
+                                        if (imagePath) {
+                                            // Since images are stored in wwwroot with just filename, prepend with base URL
+                                            const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8080";
+                                            fullImagePath = `${baseUrl}/${imagePath}`;
+                                        }
 
-                        const serviceTitle = service.Title || service.title || "";
-                        const serviceId = service.Id || service.id || service.ID || service._id || index;
+                                        const animationDelay = `${(rowIndex * 3 + colIndex) * 0.1}s`;
 
-                        return (
-                            <div key={serviceId} className="portfolio-page-item">
-                                {fullImagePath ? (
-                                    <img
-                                        src={fullImagePath}
-                                        alt={serviceTitle}
-                                        onError={(e) => {
-                                            console.error("Failed to load image:", fullImagePath);
-                                            e.target.src = "/img/placeholder.jpg";
-                                        }}
-                                        style={{
-                                            width: "100%",
-                                            height: "300px",
-                                            objectFit: "cover",
-                                            borderRadius: "8px"
-                                        }}
-                                    />
-                                ) : (
-                                    <div style={{
-                                        width: "100%",
-                                        height: "300px",
-                                        backgroundColor: "#f0f0f0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        borderRadius: "8px",
-                                        color: "#999"
-                                    }}>
-                                        No Image
-                                    </div>
-                                )}
-
-                                {/* TITLE OVERLAY */}
-                                <div className="portfolio-overlay">
-                                    <h4>{serviceTitle}</h4>
-                                </div>
-
-                                {/* ACTION BUTTONS (for staff) */}
-                                {isStaff && (
-                                    <div style={{
-                                        position: "absolute",
-                                        top: "10px",
-                                        right: "10px",
-                                        display: "flex",
-                                        gap: "5px"
-                                    }}>
-                                        <button
-                                            onClick={() => handleEdit(service)}
-                                            style={{
-                                                background: "#28a745",
-                                                color: "white",
-                                                border: "none",
-                                                borderRadius: "50%",
-                                                width: "30px",
-                                                height: "30px",
-                                                cursor: "pointer",
-                                                fontSize: "16px",
-                                                lineHeight: "1",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
-                                                transition: "all 0.2s ease"
-                                            }}
-                                            onMouseOver={(e) => {
-                                                e.target.style.transform = "scale(1.1)";
-                                                e.target.style.background = "#218838";
-                                            }}
-                                            onMouseOut={(e) => {
-                                                e.target.style.transform = "scale(1)";
-                                                e.target.style.background = "#28a745";
-                                            }}
-                                            title="Edit service"
-                                        >
-                                            ✎
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(serviceId)}
-                                            style={{
-                                                background: "#dc3545",
-                                                color: "white",
-                                                border: "none",
-                                                borderRadius: "50%",
-                                                width: "30px",
-                                                height: "30px",
-                                                cursor: "pointer",
-                                                fontSize: "20px",
-                                                lineHeight: "1",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                                boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
-                                                transition: "all 0.2s ease"
-                                            }}
-                                            onMouseOver={(e) => {
-                                                e.target.style.transform = "scale(1.1)";
-                                                e.target.style.background = "#c82333";
-                                            }}
-                                            onMouseOut={(e) => {
-                                                e.target.style.transform = "scale(1)";
-                                                e.target.style.background = "#dc3545";
-                                            }}
-                                            title="Delete service"
-                                        >
-                                            ✕
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })
-                )}
+                                        return (
+                                            <div
+                                                key={serviceId}
+                                                ref={el => serviceItemsRef.current[rowIndex * 3 + colIndex] = el}
+                                                data-id={serviceId}
+                                                className="services-item-container services-animate"
+                                                data-animate="fade-up"
+                                                style={{ '--animation-delay': animationDelay }}
+                                            >
+                                                <div className="services-card">
+                                                    {fullImagePath ? (
+                                                        <img
+                                                            src={fullImagePath}
+                                                            alt={serviceTitle}
+                                                            className="services-image"
+                                                            onError={(e) => {
+                                                                e.target.style.display = "none";
+                                                                e.target.parentElement.innerHTML = `
+            <div class="services-fallback">
+                <div class="services-fallback-content">
+                    <div class="services-fallback-icon">🔧</div>
+                    <div>No Image</div>
+                </div>
             </div>
+        `;
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <div className="services-fallback">
+                                                            <div className="services-fallback-content">
+                                                                <div className="services-fallback-icon">🔧</div>
+                                                                <div>No Image</div>
+                                                            </div>
+                                                        </div>
+                                                    )}
 
+                                                    <div className="services-title-overlay">
+                                                        <h3 className="services-item-title">{serviceTitle}</h3>
+                                                    </div>
+
+                                                    {isStaff && (
+                                                        <div className="services-actions">
+                                                            <button
+                                                                className="services-edit-btn"
+                                                                onClick={() => handleEdit(service)}
+                                                                title="Edit service"
+                                                            >
+                                                                ✎
+                                                            </button>
+                                                            <button
+                                                                className="services-delete-btn"
+                                                                onClick={() => handleDelete(serviceId)}
+                                                                title="Delete service"
+                                                            >
+                                                                ✕
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

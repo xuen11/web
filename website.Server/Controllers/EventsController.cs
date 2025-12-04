@@ -67,6 +67,7 @@ namespace website.Server.Controllers
                         UpdatedAt = DateTime.UtcNow
                     };
 
+
                     _context.Events.Add(newEvent);
                 }
 

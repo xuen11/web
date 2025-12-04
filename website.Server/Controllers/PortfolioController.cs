@@ -17,43 +17,41 @@ namespace website.Server.Controllers
             _env = env;
         }
 
-        // GET: api/portfolio
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_context.Portfolios.ToList());
         }
 
-        // POST: api/portfolio
         [HttpPost]
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload([FromForm] IFormFile image)
         {
-            if (file == null || file.Length == 0)
-                return BadRequest("No file uploaded.");
+            if (image == null || image.Length == 0)
+                return BadRequest("No file uploaded");
 
-            string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads/services");
+            // Save original file name
+            string fileName = Path.GetFileName(image.FileName)
+                                .Replace(" ", "_")
+                                .Replace("/", "")
+                                .Replace("\\", "");
 
-            if (!Directory.Exists(uploadsFolder))
-                Directory.CreateDirectory(uploadsFolder);
+            // Save directly in wwwroot
+            string folder = _env.WebRootPath; // wwwroot
+            string filePath = Path.Combine(folder, fileName);
 
-            // KEEP ORIGINAL FILENAME
-            var originalFileName = Path.GetFileName(file.FileName);
-
-            // SAFE FILENAME (remove dangerous chars)
-            originalFileName = originalFileName.Replace(" ", "_");
-
-            string filePath = Path.Combine(uploadsFolder, originalFileName);
-
+            // Save the file
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await file.CopyToAsync(stream);
+                await image.CopyToAsync(stream);
             }
 
+            // Store only filename in DB
             var portfolio = new Portfolio
             {
-                ImagePath = $"/uploads/services/{originalFileName}",
-                CreatedBy = "admin",
-                UpdatedBy = "admin",
+                ImagePath = fileName, // only filename
+                CreatedBy = "system",
+                UpdatedBy = "system",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -64,8 +62,6 @@ namespace website.Server.Controllers
             return Ok(portfolio);
         }
 
-
-        // DELETE: api/portfolio/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -73,8 +69,8 @@ namespace website.Server.Controllers
             if (item == null)
                 return NotFound("Portfolio item not found.");
 
-            // Delete the file
             var filePath = Path.Combine(_env.WebRootPath, item.ImagePath);
+
             if (System.IO.File.Exists(filePath))
                 System.IO.File.Delete(filePath);
 

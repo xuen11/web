@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using website.Server.Data;
 using website.Server.Models;
 
@@ -10,50 +9,70 @@ namespace website.Server.Controllers
     public class ServiceController : ControllerBase
     {
         private readonly AdminDbContext _context;
-        private readonly IWebHostEnvironment _environment;
+        private readonly IWebHostEnvironment _env;
 
-        public ServiceController(AdminDbContext context, IWebHostEnvironment environment)
+        public ServiceController(AdminDbContext context, IWebHostEnvironment env)
         {
             _context = context;
-            _environment = environment;
+            _env = env;
         }
 
-        // GET: api/service
         [HttpGet]
-        public async Task<IActionResult> GetServices()
+        public IActionResult GetAll()
         {
-            var services = await _context.Services.ToListAsync();
-            return Ok(services);
+            var services = _context.Services.OrderByDescending(s => s.CreatedAt).ToList();
+
+            var result = services.Select(s => new
+            {
+                id = s.Id,
+                title = s.Title,
+                imagePath = s.ImagePath, // already stored as /uploads/services/filename.jpg
+                createdAt = s.CreatedAt,
+                updatedAt = s.UpdatedAt
+            });
+
+            return Ok(result);
         }
 
-        // POST: api/service
         [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> CreateService([FromForm] string Title, [FromForm] IFormFile Image)
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload([FromForm] string Title, [FromForm] IFormFile image)
         {
             if (string.IsNullOrWhiteSpace(Title))
-                return BadRequest(new { error = "Title is required" });
+                return BadRequest("Title is required");
 
-            if (Image == null || Image.Length == 0)
-                return BadRequest(new { error = "Image file is required" });
+            if (image == null || image.Length == 0)
+                return BadRequest("No file uploaded");
 
-            // Save file
-            var uploadsPath = Path.Combine(_environment.WebRootPath, "uploads", "services");
-            Directory.CreateDirectory(uploadsPath);
+            // Validate file type
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+            var fileExtension = Path.GetExtension(image.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(fileExtension))
+                return BadRequest("Invalid file type. Only JPG, JPEG, PNG, GIF, and WEBP are allowed.");
 
-            var fileName = Guid.NewGuid() + Path.GetExtension(Image.FileName);
-            var filePath = Path.Combine(uploadsPath, fileName);
+            // Validate file size (5MB max)
+            const long maxFileSize = 5 * 1024 * 1024;
+            if (image.Length > maxFileSize)
+                return BadRequest("File size exceeds 5MB limit.");
+
+            // Generate unique filename
+            string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+
+            // Save in wwwroot/uploads/services/
+            string folder = Path.Combine(_env.WebRootPath, "uploads", "services");
+            Directory.CreateDirectory(folder); // Ensure folder exists
+            string filePath = Path.Combine(folder, uniqueFileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await Image.CopyToAsync(stream);
+                await image.CopyToAsync(stream);
             }
 
-            // Save service to database
+            // Store relative path in DB
             var service = new Service
             {
-                Title = Title,
-                ImagePath = "/uploads/services/" + fileName,
+                Title = Title.Trim(),
+                ImagePath = $"uploads/services/{uniqueFileName}", // relative path
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -65,47 +84,54 @@ namespace website.Server.Controllers
             {
                 success = true,
                 message = "Service created successfully",
-                id = service.Id,
-                title = service.Title,
-                imagePath = service.ImagePath
+                service = new
+                {
+                    id = service.Id,
+                    title = service.Title,
+                    imagePath = service.ImagePath,
+                    createdAt = service.CreatedAt
+                }
             });
         }
 
-        // PUT: api/service/{id}
         [HttpPut("{id}")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> UpdateService(int id, [FromForm] string Title, [FromForm] IFormFile Image)
+        [DisableRequestSizeLimit]
+        public async Task<IActionResult> Update(int id, [FromForm] string Title, [FromForm] IFormFile image)
         {
-            var service = await _context.Services.FindAsync(id);
+            var service = _context.Services.Find(id);
             if (service == null)
-                return NotFound(new { error = "Service not found" });
+                return NotFound("Service not found.");
 
             if (!string.IsNullOrWhiteSpace(Title))
-                service.Title = Title;
+                service.Title = Title.Trim();
 
-            if (Image != null && Image.Length > 0)
+            if (image != null && image.Length > 0)
             {
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
+                var fileExtension = Path.GetExtension(image.FileName).ToLowerInvariant();
+                if (!allowedExtensions.Contains(fileExtension))
+                    return BadRequest("Invalid file type. Only JPG, JPEG, PNG, GIF, and WEBP are allowed.");
+
+                const long maxFileSize = 5 * 1024 * 1024;
+                if (image.Length > maxFileSize)
+                    return BadRequest("File size exceeds 5MB limit.");
+
                 // Delete old image
                 if (!string.IsNullOrEmpty(service.ImagePath))
-                {
-                    var oldFilePath = Path.Combine(_environment.WebRootPath, service.ImagePath.TrimStart('/'));
-                    if (System.IO.File.Exists(oldFilePath))
-                        System.IO.File.Delete(oldFilePath);
-                }
+                    DeleteOldImage(service.ImagePath);
 
                 // Save new image
-                var uploadsPath = Path.Combine(_environment.WebRootPath, "uploads", "services");
-                Directory.CreateDirectory(uploadsPath);
-
-                var fileName = Guid.NewGuid() + Path.GetExtension(Image.FileName);
-                var filePath = Path.Combine(uploadsPath, fileName);
+                string uniqueFileName = Guid.NewGuid().ToString() + fileExtension;
+                string folder = Path.Combine(_env.WebRootPath, "uploads", "services");
+                Directory.CreateDirectory(folder);
+                string filePath = Path.Combine(folder, uniqueFileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await Image.CopyToAsync(stream);
+                    await image.CopyToAsync(stream);
                 }
 
-                service.ImagePath = "/uploads/services/" + fileName;
+                service.ImagePath = $"uploads/services/{uniqueFileName}";
             }
 
             service.UpdatedAt = DateTime.UtcNow;
@@ -115,32 +141,49 @@ namespace website.Server.Controllers
             {
                 success = true,
                 message = "Service updated successfully",
-                id = service.Id,
-                title = service.Title,
-                imagePath = service.ImagePath
+                service = new
+                {
+                    id = service.Id,
+                    title = service.Title,
+                    imagePath = service.ImagePath,
+                    updatedAt = service.UpdatedAt
+                }
             });
         }
 
-        // DELETE: api/service/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteService(int id)
+        public IActionResult Delete(int id)
         {
-            var service = await _context.Services.FindAsync(id);
+            var service = _context.Services.Find(id);
             if (service == null)
-                return NotFound(new { error = "Service not found" });
+                return NotFound("Service not found.");
 
-            // Delete physical file
             if (!string.IsNullOrEmpty(service.ImagePath))
-            {
-                var filePath = Path.Combine(_environment.WebRootPath, service.ImagePath.TrimStart('/'));
-                if (System.IO.File.Exists(filePath))
-                    System.IO.File.Delete(filePath);
-            }
+                DeleteOldImage(service.ImagePath);
 
             _context.Services.Remove(service);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
-            return Ok(new { success = true, message = "Service deleted successfully" });
+            return Ok(new
+            {
+                success = true,
+                message = "Service deleted successfully",
+                deletedId = id
+            });
+        }
+
+        private void DeleteOldImage(string imagePath)
+        {
+            if (string.IsNullOrEmpty(imagePath))
+                return;
+
+            string filePath = Path.Combine(_env.WebRootPath, imagePath.Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+            if (System.IO.File.Exists(filePath))
+            {
+                try { System.IO.File.Delete(filePath); }
+                catch { /* Log error if needed */ }
+            }
         }
     }
 }

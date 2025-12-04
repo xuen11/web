@@ -22,7 +22,6 @@ const EventsPage = () => {
             date: 'Sat, 29 June',
             detail: 'Event by Sam Sound & Lights',
             image: './img/event1.jpg',
-            buttonText: 'Learn More'
         },
         {
             id: 2,
@@ -30,7 +29,6 @@ const EventsPage = () => {
             date: 'Sat, 19 Nov',
             detail: 'Event by Karabaw Martial Arts & Fitness Centre',
             image: './img/event2.jpg',
-            buttonText: 'Learn More'
         }
     ];
 
@@ -39,8 +37,7 @@ const EventsPage = () => {
         title: 'New Event Title',
         date: 'Date TBA',
         detail: 'Event details here...',
-        image: './img/default-event.jpg',
-        buttonText: 'Learn More'
+        image: './img/default-event.jpg'
     };
 
     // Load events from backend
@@ -49,15 +46,13 @@ const EventsPage = () => {
             const res = await fetch(API_BASE);
             if (res.ok) {
                 const data = await res.json();
-                if (data && data.length > 0) {
-                    setEvents(data);
-                    return;
-                }
+                setEvents(data); // always use backend
+                return;
             }
         } catch (err) {
             console.log("Failed to load from backend, using default");
         }
-        setEvents(defaultEvents);
+        setEvents([]);
     };
 
     useEffect(() => {
@@ -118,9 +113,10 @@ const EventsPage = () => {
     };
 
     const handleCancel = () => {
-        setEvents(defaultEvents);
+        loadEvents();         // ✅ Reload from backend again
         setEditMode(false);
     };
+
 
     return (
         <div className="events-page-container">
@@ -213,14 +209,7 @@ const EventsPage = () => {
                                                     placeholder="ℹ️ Event details..."
                                                     disabled={loading}
                                                 />
-                                                <input
-                                                    type="text"
-                                                    value={event.buttonText}
-                                                    onChange={(e) => handleEventChange(index, 'buttonText', e.target.value)}
-                                                    className="edit-button-input"
-                                                    placeholder="🔘 Button text..."
-                                                    disabled={loading}
-                                                />
+                                                
                                             </div>
                                         ) : (
                                             <div className="event-display-content">

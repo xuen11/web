@@ -8,9 +8,9 @@ const ServicePage = () => {
     const cardRefs = useRef([]);
 
     const audioServices = [
-        { image: "src/public/img/soundSystem.jpg", title: 'Sound System' },
-        { image: "src/public/img/karaoke.jpg", title: 'Karaoke Service' },
-        { image: "src/public/img/lighting.jpg", title: 'Lighting System' },
+        { image: "./img/soundSystem.jpg", title: 'Sound System' },
+        { image: "./public/img/karaoke.jpg", title: 'Karaoke Service' },
+        { image: "/img/lighting.jpg", title: 'Lighting System' },
         { image: "src/public/img/LED.jpg", title: 'LED Screen' },
         { image: "src/public/img/visual.jpg", title: 'Visual System' },
         { image: "src/public/img/projection.jpg", title: 'Projection System' },

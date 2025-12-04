@@ -7,10 +7,10 @@
     "\\website.client\\src\\pages",
     "\\website.Server",
     "\\website.Server\\Controllers",
-    "\\website.Server\\Data",
-    "\\website.Server\\Migrations",
-    "\\website.Server\\Models"
+    "\\website.Server\\publish",
+    "\\website.Server\\publish\\publish",
+    "\\website.Server\\publish\\wwwroot\\uploads"
   ],
-  "SelectedNode": "\\website.client\\src\\pages\\PortfolioPage.jsx",
+  "SelectedNode": "\\website.client\\src\\components\\service.jsx",
   "PreviewInSolutionExplorer": false
 }

@@ -21,7 +21,7 @@ const Intro = () => {
                 <div className="hero-right">
                     <video
                         className="hero-video full-img"
-                        src="src/public/bgVideo.mp4"
+                        src="./bgVideo.mp4"
                         autoPlay
                         loop
                         muted
