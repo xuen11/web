@@ -9,7 +9,7 @@ const ServicePage = () => {
 
     const audioServices = [
         { image: "./img/soundSystem.jpg", title: 'Sound System' },
-        { image: "./public/img/karaoke.jpg", title: 'Karaoke Service' },
+        { image: "/public/img/karaoke.jpg", title: 'Karaoke Service' },
         { image: "/img/lighting.jpg", title: 'Lighting System' },
         { image: "src/public/img/LED.jpg", title: 'LED Screen' },
         { image: "src/public/img/visual.jpg", title: 'Visual System' },

@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\website.client",
+    "\\public",
     "\\website.client\\src",
     "\\website.client\\src\\components",
     "\\website.client\\src\\pages",
     "\\website.Server",
     "\\website.Server\\Controllers",
     "\\website.Server\\publish",
-    "\\website.Server\\publish\\publish",
-    "\\website.Server\\publish\\wwwroot\\uploads"
+    "\\website.Server\\publish\\publish"
   ],
-  "SelectedNode": "\\website.client\\src\\components\\service.jsx",
+  "SelectedNode": "\\public\\img",
   "PreviewInSolutionExplorer": false
 }
