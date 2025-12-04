@@ -11,8 +11,8 @@ using website.Server.Data;
 namespace website.Server.Migrations
 {
     [DbContext(typeof(AdminDbContext))]
-    [Migration("20251203070517_AddTitleToService")]
-    partial class AddTitleToService
+    [Migration("20251204083050_AddTitleDescriptionToPortfolio")]
+    partial class AddTitleDescriptionToPortfolio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -193,20 +193,20 @@ namespace website.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4649),
+                            CreatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9202),
                             Email = "staff@gmail.com",
                             Password = "staff123",
                             Role = "staff",
-                            UpdatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4652)
+                            UpdatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9205)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4654),
+                            CreatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9206),
                             Email = "admin@gmail.com",
                             Password = "admin123",
                             Role = "admin",
-                            UpdatedAt = new DateTime(2025, 12, 3, 7, 5, 17, 63, DateTimeKind.Utc).AddTicks(4654)
+                            UpdatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9207)
                         });
                 });
 #pragma warning restore 612, 618

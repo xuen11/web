@@ -105,10 +105,6 @@ namespace website.Server.Migrations
                         .HasColumnType("datetime(6)")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -118,10 +114,6 @@ namespace website.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -198,20 +190,20 @@ namespace website.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 12, 3, 9, 58, 17, 838, DateTimeKind.Utc).AddTicks(5552),
+                            CreatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9202),
                             Email = "staff@gmail.com",
                             Password = "staff123",
                             Role = "staff",
-                            UpdatedAt = new DateTime(2025, 12, 3, 9, 58, 17, 838, DateTimeKind.Utc).AddTicks(5554)
+                            UpdatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9205)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 12, 3, 9, 58, 17, 838, DateTimeKind.Utc).AddTicks(5556),
+                            CreatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9206),
                             Email = "admin@gmail.com",
                             Password = "admin123",
                             Role = "admin",
-                            UpdatedAt = new DateTime(2025, 12, 3, 9, 58, 17, 838, DateTimeKind.Utc).AddTicks(5556)
+                            UpdatedAt = new DateTime(2025, 12, 4, 8, 30, 50, 431, DateTimeKind.Utc).AddTicks(9207)
                         });
                 });
 #pragma warning restore 612, 618

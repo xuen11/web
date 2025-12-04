@@ -7,9 +7,10 @@
     "\\website.client\\src\\pages",
     "\\website.Server",
     "\\website.Server\\Controllers",
+    "\\website.Server\\Data",
     "\\website.Server\\Migrations",
     "\\website.Server\\Models"
   ],
-  "SelectedNode": "\\website.Server\\Controllers\\PortfolioController.cs",
+  "SelectedNode": "\\website.Server\\Migrations\\20251204083050_AddTitleDescriptionToPortfolio.cs",
   "PreviewInSolutionExplorer": false
 }

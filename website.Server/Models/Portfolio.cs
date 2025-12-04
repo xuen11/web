@@ -12,9 +12,6 @@ namespace website.Server.Models
         [Required]
         public string ImagePath { get; set; } = string.Empty;
 
-        public string CreatedBy { get; set; } = "system";
-        public string UpdatedBy { get; set; } = "system";
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }

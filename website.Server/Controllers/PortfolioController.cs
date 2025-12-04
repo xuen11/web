@@ -10,12 +10,11 @@ namespace website.Server.Controllers
     public class PortfolioController : ControllerBase
     {
         private readonly AdminDbContext _context;
-        private readonly IWebHostEnvironment _environment;
 
-        public PortfolioController(AdminDbContext context, IWebHostEnvironment environment)
+        public PortfolioController(AdminDbContext context)
         {
             _context = context;
-            _environment = environment;
+            // Remove IWebHostEnvironment dependency since we're not saving files
         }
 
         // GET: api/portfolio
@@ -40,64 +39,26 @@ namespace website.Server.Controllers
             }
             catch (Exception ex)
             {
-                // Return empty array on error (same pattern as EventsController)
+                // Return empty array on error
                 return Ok(new List<object>());
             }
         }
 
-        // POST: api/portfolio
+        // POST: api/portfolio (optional - if you want to add single items via form)
         [HttpPost]
-        [RequestSizeLimit(10 * 1024 * 1024)] // 10MB limit
-        public async Task<ActionResult> UploadPortfolio([FromForm] IFormFile image)
+        public async Task<ActionResult> AddPortfolio([FromBody] PortfolioInputModel portfolioInput)
         {
             try
             {
-                if (image == null || image.Length == 0)
+                if (portfolioInput == null || string.IsNullOrEmpty(portfolioInput.imagePath))
                 {
-                    return BadRequest(new { success = false, message = "No file uploaded" });
+                    return BadRequest(new { success = false, message = "Image URL is required" });
                 }
 
-                // Validate file type
-                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
-                var fileExtension = Path.GetExtension(image.FileName).ToLowerInvariant();
-                if (!allowedExtensions.Contains(fileExtension))
-                {
-                    return BadRequest(new
-                    {
-                        success = false,
-                        message = "Invalid file type. Only JPG, JPEG, PNG, GIF, and WEBP are allowed."
-                    });
-                }
-
-                // Validate file size (5MB max)
-                const long maxFileSize = 5 * 1024 * 1024;
-                if (image.Length > maxFileSize)
-                {
-                    return BadRequest(new
-                    {
-                        success = false,
-                        message = "File size exceeds 5MB limit."
-                    });
-                }
-
-                // Generate unique filename
-                string uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
-
-                // Save to wwwroot (adjust path as needed)
-                var uploadsPath = Path.Combine(_environment.WebRootPath, "uploads", "portfolio");
-                Directory.CreateDirectory(uploadsPath);
-
-                var filePath = Path.Combine(uploadsPath, uniqueFileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await image.CopyToAsync(stream);
-                }
-
-                // Store relative path in database
                 var portfolio = new Portfolio
                 {
-                    ImagePath = $"uploads/portfolio/{uniqueFileName}",
+                    ImagePath = portfolioInput.imagePath,
+                   
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 };
@@ -108,11 +69,12 @@ namespace website.Server.Controllers
                 var response = new
                 {
                     success = true,
-                    message = "Portfolio image uploaded successfully",
+                    message = "Portfolio item added successfully",
                     portfolio = new
                     {
                         id = portfolio.Id,
                         imagePath = portfolio.ImagePath,
+                       
                         createdAt = portfolio.CreatedAt,
                         updatedAt = portfolio.UpdatedAt
                     }
@@ -125,7 +87,7 @@ namespace website.Server.Controllers
                 return StatusCode(500, new
                 {
                     success = false,
-                    message = $"Error uploading portfolio image: {ex.Message}"
+                    message = $"Error adding portfolio item: {ex.Message}"
                 });
             }
         }
@@ -147,16 +109,7 @@ namespace website.Server.Controllers
                     });
                 }
 
-                // Delete physical file if it exists
-                if (!string.IsNullOrEmpty(portfolio.ImagePath))
-                {
-                    var filePath = Path.Combine(_environment.WebRootPath, portfolio.ImagePath);
-                    if (System.IO.File.Exists(filePath))
-                    {
-                        System.IO.File.Delete(filePath);
-                    }
-                }
-
+                // No need to delete physical file since we're only storing URLs
                 _context.Portfolios.Remove(portfolio);
                 await _context.SaveChangesAsync();
 
@@ -177,7 +130,7 @@ namespace website.Server.Controllers
             }
         }
 
-        // POST: api/portfolio/update-all (if you need bulk update like Events)
+        // POST: api/portfolio/update-all (Bulk update like Events)
         [HttpPost("update-all")]
         public async Task<ActionResult> UpdateAllPortfolios([FromBody] List<PortfolioInputModel> portfolios)
         {
@@ -192,15 +145,18 @@ namespace website.Server.Controllers
                     });
                 }
 
+                // Clear existing portfolios
                 var existingPortfolios = await _context.Portfolios.ToListAsync();
                 _context.Portfolios.RemoveRange(existingPortfolios);
 
-                foreach (var portfolioItem in portfolios)
+                // Add new portfolios
+                foreach (var item in portfolios)
                 {
                     var newPortfolio = new Portfolio
                     {
-                        ImagePath = portfolioItem.imagePath,
-                        CreatedAt = portfolioItem.createdAt ?? DateTime.UtcNow,
+                        ImagePath = item.imagePath,
+                      
+                        CreatedAt = item.createdAt ?? DateTime.UtcNow,
                         UpdatedAt = DateTime.UtcNow
                     };
 
@@ -209,11 +165,13 @@ namespace website.Server.Controllers
 
                 await _context.SaveChangesAsync();
 
+                // Return updated list
                 var updatedPortfolios = await _context.Portfolios.ToListAsync();
                 var response = updatedPortfolios.Select(p => new
                 {
                     id = p.Id,
                     imagePath = p.ImagePath,
+                   
                     createdAt = p.CreatedAt,
                     updatedAt = p.UpdatedAt
                 }).ToList();
