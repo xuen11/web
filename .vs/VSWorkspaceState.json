@@ -6,7 +6,9 @@
     "\\website.client\\src\\pages",
     "\\website.Server",
     "\\website.Server\\Controllers",
-    "\\website.Server\\wwwroot"
+    "\\website.Server\\wwwroot",
+    "\\website.Server\\wwwroot\\portfolio"
   ],
+  "SelectedNode": "\\website.Server\\wwwroot\\portfolio",
   "PreviewInSolutionExplorer": false
 }
